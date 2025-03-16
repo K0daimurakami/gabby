@@ -38,8 +38,10 @@ const ChatApp = () => {
 
   return (
     <Container maxWidth="sm">
+        <Typography variant="h5" gutterBottom>
+        チャット画面
+      </Typography>
       <Paper elevation={3} sx={{ height: "500px", display: "flex", flexDirection: "column", padding: 2 }}>
-        
         {/* メッセージリスト */}
         <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
           <List>
@@ -99,7 +101,7 @@ const ChatApp = () => {
                   cursor: "pointer",
                   border: selectedTemplate === "message" ? "2px solid #007bff" : "none", // 選択時にボーダーを表示
                   "&:hover": {
-                    backgroundColor: "#f1f1f1",
+                    backgroundColor: "#F1CF24",
                   },
                 }}
                 onClick={() => handleSelectTemplate("message")}
@@ -119,7 +121,7 @@ const ChatApp = () => {
                   cursor: "pointer",
                   border: selectedTemplate === "help" ? "2px solid #007bff" : "none", // 選択時にボーダーを表示
                   "&:hover": {
-                    backgroundColor: "#f1f1f1",
+                    backgroundColor: "#F1CF24",
                   },
                 }}
                 onClick={() => handleSelectTemplate("help")}
@@ -139,7 +141,7 @@ const ChatApp = () => {
                   cursor: "pointer",
                   border: selectedTemplate === "info" ? "2px solid #007bff" : "none", // 選択時にボーダーを表示
                   "&:hover": {
-                    backgroundColor: "#f1f1f1",
+                    backgroundColor: "#F1CF24",
                   },
                 }}
                 onClick={() => handleSelectTemplate("info")}
@@ -162,7 +164,7 @@ const ChatApp = () => {
             sx={{ marginRight: 1 }}
           />
           <Button variant="contained" color="primary" onClick={handleSendMessage}>
-            Send
+            送信
           </Button>
         </Box>
       </Paper>
