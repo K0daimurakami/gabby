@@ -19,7 +19,7 @@ const Home: React.FC = () => {
           <AccordionExpandIcon />
         </Grid>
         <Grid item xs={6}>
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ mb: 2 }}>
             <ProcessContainer />
           </Grid>
           {/* ✅ プロセスが完了したら画像を表示 */}

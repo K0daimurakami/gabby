@@ -42,8 +42,8 @@ const ProcessContainer = () => {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Typography variant="h5" gutterBottom>
-        推論内容トレース
+      <Typography variant="h5" sx={{ backgroundColor: '#E3823D', color: 'white' }}>
+        ◆ 推論内容トレース
       </Typography>
       <Stepper
         activeStep={visibleSteps.findIndex((msg) => msg.state === "processing")}

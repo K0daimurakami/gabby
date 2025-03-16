@@ -26,7 +26,10 @@ const theme = createTheme({
     text: {
       primary: "#000000", // タイトル用
       secondary: "#333333", // 本文用（必要に応じて調整してください）
-    },
+    }
+  },
+  typography: {
+    fontFamily: "NotoSansReguler, sans-serif",
   },
 });
 

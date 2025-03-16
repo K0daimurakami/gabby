@@ -10,8 +10,11 @@ const ResultImageContainer: React.FC = () => {
 
   return (
     <>
-      <Typography variant="h5" gutterBottom>
-        結果
+      <Typography
+        variant="h5"
+        sx={{ backgroundColor: "#E3823D", color: "white" }}
+      >
+        ◆ 結果
       </Typography>
       <Card>
         <CardMedia component="img" image={outputUrl} alt="出力結果画像" />

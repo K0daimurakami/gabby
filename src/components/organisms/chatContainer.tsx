@@ -51,8 +51,11 @@ const ChatApp = () => {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant="h5" gutterBottom>
-        チャット画面
+      <Typography
+        variant="h5"
+        sx={{ backgroundColor: "#E3823D", color: "white" }}
+      >
+        ◆ チャット画面
       </Typography>
       <Paper
         elevation={3}
