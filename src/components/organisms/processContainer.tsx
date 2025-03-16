@@ -31,7 +31,7 @@ const ProcessContainer = () => {
   }, [processMessages, onProcessing, dispatch]);
 
   return (
-    <Box sx={{ width: "100%", mt: 4 }}>
+    <Box sx={{ width: "100%" }}>
       <Typography variant="h5" gutterBottom>
         推論内容トレース
       </Typography>
