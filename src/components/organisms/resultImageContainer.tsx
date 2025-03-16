@@ -3,6 +3,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Card, CardMedia, Typography } from "@mui/material";
 
+const styles = {
+  typography: {
+    backgroundColor: "#E3823D",
+    color: "white",
+  },
+};
+
 const ResultImageContainer: React.FC = () => {
   const outputUrl = useSelector((state: RootState) => state.details.outputUrl);
 
@@ -10,10 +17,7 @@ const ResultImageContainer: React.FC = () => {
 
   return (
     <>
-      <Typography
-        variant="h5"
-        sx={{ backgroundColor: "#E3823D", color: "white" }}
-      >
+      <Typography variant="h5" sx={styles.typography}>
         ◆ 結果
       </Typography>
       <Card>
