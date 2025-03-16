@@ -19,7 +19,7 @@ interface Message {
 
 interface ProcessMessage {
   id: string;
-  state: "processing" | "success";
+  state: "pending" | "processing" | "success";
   isLoading: boolean;
   text: string;
 }
@@ -32,6 +32,7 @@ interface DetailsState {
   isShowOutput: boolean;
   currentStep: number;
   outputUrl: string | null;
+  isShowHelpButton: boolean;
 }
 
 const initialState: DetailsState = {
@@ -41,7 +42,8 @@ const initialState: DetailsState = {
   processMessages: [],
   isShowOutput: false,
   currentStep: 0,
-  outputUrl: null,
+  outputUrl: null, // ✅ 初期状態で画像のURLを持たない
+  isShowHelpButton: true,
 };
 
 const detailsSlice = createSlice({
@@ -49,7 +51,6 @@ const detailsSlice = createSlice({
   initialState,
   reducers: {
     resetState: (state) => {
-      // Redux の状態を初期化
       state.messages = [];
       state.onProcessing = false;
       state.isActiveSendButton = false;
@@ -57,10 +58,10 @@ const detailsSlice = createSlice({
       state.isShowOutput = false;
       state.currentStep = 0;
       state.outputUrl = null;
+      state.isShowHelpButton = true;
     },
 
     sendMessage: (state, action: PayloadAction<Message>) => {
-      // ✅ もし `isShowOutput` が `true` なら、一度初期化してから動作するようにする
       if (state.isShowOutput) {
         detailsSlice.caseReducers.resetState(state);
       }
@@ -69,7 +70,7 @@ const detailsSlice = createSlice({
       state.onProcessing = true;
       state.isActiveSendButton = false;
       state.isShowOutput = false;
-      state.outputUrl = null;
+      state.outputUrl = null; // ✅ 送信時に画像URLをリセット
 
       let selectedPattern: MessagePattern | null = null;
       for (const pattern in messagesTyped) {
@@ -84,15 +85,16 @@ const detailsSlice = createSlice({
       }
 
       if (selectedPattern) {
-        state.processMessages = [
-          {
-            id: "1",
-            state: "processing",
-            isLoading: true,
-            text: selectedPattern.process_messages[0],
-          },
-        ];
+        state.processMessages = selectedPattern.process_messages.map(
+          (text, index) => ({
+            id: (index + 1).toString(),
+            state: index === 0 ? "processing" : "pending",
+            isLoading: index === 0,
+            text,
+          })
+        );
         state.currentStep = 0;
+        state.outputUrl = selectedPattern.output_url; // ✅ 画像URLを Redux State に保存
       } else {
         state.messages.push({
           id: new Date().getTime().toString(),
@@ -106,46 +108,18 @@ const detailsSlice = createSlice({
     },
 
     proceedProcessing: (state) => {
-      let selectedPattern: MessagePattern | null = null;
-      for (const pattern in messagesTyped) {
-        if (
-          messagesTyped[pattern as keyof typeof messagesTyped]
-            .send_trigger_message ===
-          state.messages.find((msg) => msg.sender === "me")?.text
-        ) {
-          selectedPattern =
-            messagesTyped[pattern as keyof typeof messagesTyped];
-          break;
-        }
-      }
+      if (state.currentStep >= state.processMessages.length - 1) return;
 
-      if (!selectedPattern) return;
-
+      // ✅ 現在のステップを `success` にする
       state.processMessages[state.currentStep].state = "success";
       state.processMessages[state.currentStep].isLoading = false;
 
       const nextStep = state.currentStep + 1;
 
-      if (nextStep < selectedPattern.process_messages.length) {
-        state.processMessages.push({
-          id: (nextStep + 1).toString(),
-          state: "processing",
-          isLoading: true,
-          text: selectedPattern.process_messages[nextStep],
-        });
-        state.currentStep = nextStep;
-      } else {
-        state.onProcessing = false;
-        state.isShowOutput = true;
-        state.outputUrl = selectedPattern.output_url;
-
-        state.messages.push({
-          id: new Date().getTime().toString(),
-          sender: "other",
-          userName: "Bot",
-          text: selectedPattern.myle_response,
-        });
-      }
+      // ✅ 次のステップを `processing` に変更
+      state.processMessages[nextStep].state = "processing";
+      state.processMessages[nextStep].isLoading = true;
+      state.currentStep = nextStep;
     },
 
     endProcessing: (state) => {
@@ -155,10 +129,27 @@ const detailsSlice = createSlice({
       });
       state.onProcessing = false;
       state.isActiveSendButton = true;
+      state.isShowOutput = true;
+    },
+
+    sendMessageByHelpButton: (state, action: PayloadAction<string>) => {
+      detailsSlice.caseReducers.sendMessage(state, {
+        payload: {
+          id: new Date().getTime().toString(),
+          sender: "me",
+          userName: "User",
+          text: action.payload,
+        },
+      } as PayloadAction<Message>);
     },
   },
 });
 
-export const { sendMessage, proceedProcessing, endProcessing, resetState } =
-  detailsSlice.actions;
+export const {
+  sendMessage,
+  proceedProcessing,
+  endProcessing,
+  resetState,
+  sendMessageByHelpButton,
+} = detailsSlice.actions;
 export default detailsSlice.reducer;

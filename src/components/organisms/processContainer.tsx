@@ -17,32 +17,43 @@ const ProcessContainer = () => {
   const onProcessing = useSelector(
     (state: RootState) => state.details.onProcessing
   );
+  const currentStep = useSelector(
+    (state: RootState) => state.details.currentStep
+  );
+
+  // `processing` または `success` のステップのみを表示する
+  const visibleSteps = processMessages.filter((msg) => msg.state !== "pending");
+
+  const totalSteps = visibleSteps.length;
 
   useEffect(() => {
     if (onProcessing && processMessages.length > 0) {
       const timer = setTimeout(() => {
-        if (processMessages.length === 4) {
-          dispatch(endProcessing()); // ✅ 最後のステップでのみ `endProcessing()` を呼ぶ
-        } else {
+        if (currentStep + 1 < processMessages.length) {
           dispatch(proceedProcessing());
+        } else {
+          dispatch(endProcessing());
         }
       }, 3000);
 
       return () => clearTimeout(timer);
     }
-  }, [processMessages, onProcessing, dispatch]);
+  }, [currentStep, processMessages.length, onProcessing, dispatch]);
 
   return (
     <Box sx={{ width: "100%" }}>
       <Typography variant="h5" gutterBottom>
         推論内容トレース
       </Typography>
-      <Stepper activeStep={processMessages.length - 1} orientation="vertical">
-        {processMessages.map((msg, index) => (
+      <Stepper
+        activeStep={visibleSteps.findIndex((msg) => msg.state === "processing")}
+        orientation="vertical"
+      >
+        {visibleSteps.map((msg, index) => (
           <Step key={msg.id}>
             <StepLabel
               icon={
-                msg.isLoading ? (
+                msg.state === "processing" ? (
                   <CircularProgress size={24} />
                 ) : (
                   <CheckCircleIcon color="success" />

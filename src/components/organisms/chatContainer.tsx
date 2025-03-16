@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { sendMessage } from "../../pages/details/detailsSlice";
+import {
+  sendMessage,
+  sendMessageByHelpButton,
+} from "../../pages/details/detailsSlice";
 import {
   TextField,
   Button,
@@ -9,7 +12,6 @@ import {
   Paper,
   List,
   ListItem,
-  ListItemText,
   Box,
   Grid,
   Typography,
@@ -20,27 +22,13 @@ import {
   Info as InfoIcon,
 } from "@mui/icons-material";
 
-// // JSONからメッセージデータを取得する
-// const initialMessages = [
-//   { id: 1, text: "Hello!", sender: "other" }, // 他の人のメッセージ
-//   { id: 2, text: "How are you?", sender: "other" }, // 他の人のメッセージ
-// ];
-
-// メインコンポーネント
 const ChatApp = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state: RootState) => state.details.messages);
-  //   const [messages, setMessages] = useState<
-  //     Array<{ id: number; text: string; sender: string }>
-  //   >([]);
   const [input, setInput] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
 
-  //   useEffect(() => {
-  //     setMessages(initialMessages);
-  //   }, []);
-
-  // メッセージを送信する関数
+  // メッセージを送信
   const handleSendMessage = () => {
     if (input.trim()) {
       dispatch(
@@ -52,19 +40,13 @@ const ChatApp = () => {
         })
       );
       setInput("");
-      //   const newMessage = {
-      //     id: Date.now(),
-      //     text: input,
-      //     sender: "me", // 自分のメッセージには'sender'を'me'に設定
-      //   };
-      //   setMessages((prevMessages) => [...prevMessages, newMessage]); // 新しいメッセージを追加
-      setInput(""); // 入力フィールドをクリア
     }
   };
 
-  // テンプレートを選択する関数
-  const handleSelectTemplate = (template: string) => {
-    setSelectedTemplate(template);
+  // テンプレートメッセージを送信
+  const handleTemplateClick = (templateText: string) => {
+    dispatch(sendMessageByHelpButton(templateText));
+    setSelectedTemplate(templateText);
   };
 
   return (
@@ -84,59 +66,29 @@ const ChatApp = () => {
         {/* メッセージリスト */}
         <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
           <List>
-            {messages.length > 0 ? (
-              messages.map((message) => (
-                <ListItem
-                  key={message.id}
+            {messages.map((message) => (
+              <ListItem
+                key={message.id}
+                sx={{
+                  justifyContent:
+                    message.sender === "me" ? "flex-end" : "flex-start",
+                }}
+              >
+                <Box
                   sx={{
-                    justifyContent:
-                      message.sender === "me" ? "flex-end" : "flex-start",
+                    display: "inline-block",
+                    maxWidth: "75%",
+                    padding: "10px 15px",
+                    borderRadius: "20px",
+                    backgroundColor:
+                      message.sender === "me" ? "#DCF8C6" : "#F1CF24",
+                    textAlign: message.sender === "me" ? "right" : "left",
                   }}
                 >
-                  {/* メッセージのテキスト */}
-                  <Box
-                    sx={{
-                      display: "inline-block",
-                      maxWidth: "75%",
-                      padding: "10px 15px",
-                      borderRadius: "20px",
-                      backgroundColor:
-                        message.sender === "me" ? "#DCF8C6" : "#F1CF24",
-                      position: "relative",
-                      textAlign: message.sender === "me" ? "right" : "left",
-                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                    }}
-                  >
-                    <Box>{message.text}</Box>
-
-                    {/* 吹き出しの尾（しっぽ） */}
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        bottom: "-10px",
-                        [message.sender === "me" ? "right" : "left"]: "10px",
-                        width: 0,
-                        height: 0,
-                        borderLeft:
-                          message.sender === "me"
-                            ? "10px solid transparent"
-                            : "none",
-                        borderRight:
-                          message.sender === "me"
-                            ? "none"
-                            : "10px solid transparent",
-                        borderTop:
-                          message.sender === "me"
-                            ? "10px solid #DCF8C6"
-                            : "10px solid #F1CF24",
-                      }}
-                    />
-                  </Box>
-                </ListItem>
-              ))
-            ) : (
-              <ListItem>{/* <Box>No messages yet</Box> */}</ListItem>
-            )}
+                  <Box>{message.text}</Box>
+                </Box>
+              </ListItem>
+            ))}
           </List>
         </Box>
 
@@ -161,16 +113,16 @@ const ChatApp = () => {
                   border:
                     selectedTemplate === "message"
                       ? "2px solid #007bff"
-                      : "none", // 選択時にボーダーを表示
-                  "&:hover": {
-                    backgroundColor: "#F1CF24",
-                  },
+                      : "none",
+                  "&:hover": { backgroundColor: "#F1CF24" },
                 }}
-                onClick={() => handleSelectTemplate("message")}
+                onClick={() =>
+                  handleTemplateClick("AさんとBさんにイベント告知をして")
+                }
               >
                 <SendIcon fontSize="large" />
                 <Typography variant="body2" sx={{ marginTop: 1 }}>
-                  〇〇さんと〇〇さんにイベント告知をして
+                  AさんとBさんにイベント告知をして
                 </Typography>
               </Paper>
             </Grid>
@@ -184,16 +136,18 @@ const ChatApp = () => {
                   alignItems: "center",
                   cursor: "pointer",
                   border:
-                    selectedTemplate === "help" ? "2px solid #007bff" : "none", // 選択時にボーダーを表示
-                  "&:hover": {
-                    backgroundColor: "#F1CF24",
-                  },
+                    selectedTemplate === "help" ? "2px solid #007bff" : "none",
+                  "&:hover": { backgroundColor: "#F1CF24" },
                 }}
-                onClick={() => handleSelectTemplate("help")}
+                onClick={() =>
+                  handleTemplateClick(
+                    "女性向け産休説明会を女性従業員に告知して"
+                  )
+                }
               >
                 <HelpIcon fontSize="large" />
                 <Typography variant="body2" sx={{ marginTop: 1 }}>
-                  〇〇イベントを女性従業員に告知して
+                  女性向け産休説明会を女性従業員に告知して
                 </Typography>
               </Paper>
             </Grid>
@@ -207,16 +161,16 @@ const ChatApp = () => {
                   alignItems: "center",
                   cursor: "pointer",
                   border:
-                    selectedTemplate === "info" ? "2px solid #007bff" : "none", // 選択時にボーダーを表示
-                  "&:hover": {
-                    backgroundColor: "#F1CF24",
-                  },
+                    selectedTemplate === "info" ? "2px solid #007bff" : "none",
+                  "&:hover": { backgroundColor: "#F1CF24" },
                 }}
-                onClick={() => handleSelectTemplate("info")}
+                onClick={() =>
+                  handleTemplateClick("管理職に管理職向けイベントを告知して")
+                }
               >
                 <InfoIcon fontSize="large" />
                 <Typography variant="body2" sx={{ marginTop: 1 }}>
-                  管理職に〇〇イベントを告知して
+                  管理職に管理職向けイベントを告知して
                 </Typography>
               </Paper>
             </Grid>
@@ -226,11 +180,10 @@ const ChatApp = () => {
         {/* メッセージ入力フォーム */}
         <Box sx={{ display: "flex", marginTop: 2 }}>
           <TextField
-            label="コメントを入力してください"
             fullWidth
             variant="outlined"
             value={input}
-            onChange={(e) => setInput(e.target.value)} // 入力フィールドの値を更新
+            onChange={(e) => setInput(e.target.value)}
             sx={{ marginRight: 1 }}
           />
           <Button

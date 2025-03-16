@@ -6,7 +6,7 @@ import { Card, CardMedia, Typography } from "@mui/material";
 const ResultImageContainer: React.FC = () => {
   const outputUrl = useSelector((state: RootState) => state.details.outputUrl);
 
-  if (!outputUrl) return null; // 画像が設定されていない場合は何も表示しない
+  if (!outputUrl) return null; // ✅ 画像が設定されていない場合は何も表示しない
 
   return (
     <>

@@ -2,23 +2,39 @@
   "messages": {
     "pattern1": {
       "process_messages": [
-        "処理ステップ1",
-        "処理ステップ2",
-        "処理ステップ3"
+        "イベント情報の取得",
+        "Aさんの従業員情報の取得",
+        "Bさんの従業員情報の取得",
+        "Aさん向けの告知文を作成",
+        "Bさん向けの告知文を作成",
+        "Aさんに告知文章を送信",
+        "Bさんに告知文章を送信"
       ],
-      "send_trigger_message": "こんにちは",
-      "myle_response": "こんにちは！処理が完了しました。",
+      "send_trigger_message": "AさんとBさんにイベント告知をして",
+      "myle_response": "AさんとBさんにイベントを告知しました",
       "output_url": "/images/eventNoticeResult.png"
     },
     "pattern2": {
       "process_messages": [
-        "分析開始",
-        "データ処理中",
-        "最適化完了"
+        "女性従業員のデータを取得",
+        "女性向け産休説明会のイベント情報を取得",
+        "一人一人の従業員に対しての告知文を作成",
+        "女性従業員に告知文章を送信"
       ],
-      "send_trigger_message": "分析してください",
-      "myle_response": "分析が完了しました。",
+      "send_trigger_message": "女性向け産休説明会を女性従業員に告知して",
+      "myle_response": "女性従業員に産休説明会を告知しました。",
       "output_url": "/images/eventNoticeResult2.png"
+    },
+    "pattern3": {
+      "process_messages": [
+        "管理職情報の取得",
+        "管理職向けイベント情報の取得",
+        "管理職向けの告知文を作成",
+        "管理職に告知文章を送信"
+      ],
+      "send_trigger_message": "管理職に管理職向けイベントを告知して",
+      "myle_response": "管理職向けイベントを告知しました。",
+      "output_url": "/images/eventNoticeResult3.png"
     }
   }
 }
