@@ -7,6 +7,7 @@ interface AgentItem {
   title: string;
   description: string;
   image: string;
+  detailPage: string; // 遷移先ページのパス（必須）
 }
 
 // コンポーネントのプロパティ型定義
@@ -35,6 +36,7 @@ const AgentCategoryContainer: React.FC<Props> = ({ title, agents }) => {
             title={agent.title}
             description={agent.description}
             image={agent.image}
+            navigateTo={`/${agent.detailPage}`} // detailPageは必須項目
           />
         ))}
       </Box>
