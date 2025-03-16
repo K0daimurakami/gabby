@@ -1,4 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import messagesData from "../../constants/detail_messages.json";
+
+interface MessagePattern {
+  process_messages: string[];
+  send_trigger_message: string;
+  myle_response: string;
+  output_url: string;
+}
+
+const messagesTyped: Record<string, MessagePattern> = messagesData.messages;
 
 interface Message {
   id: string;
@@ -21,9 +31,8 @@ interface DetailsState {
   processMessages: ProcessMessage[];
   isShowOutput: boolean;
   currentStep: number;
+  outputUrl: string | null;
 }
-
-const steps = ["STEP1: 処理1", "STEP2: 処理2", "STEP3: 処理3", "STEP4: 処理4"];
 
 const initialState: DetailsState = {
   messages: [],
@@ -32,58 +41,113 @@ const initialState: DetailsState = {
   processMessages: [],
   isShowOutput: false,
   currentStep: 0,
+  outputUrl: null,
 };
 
 const detailsSlice = createSlice({
   name: "details",
   initialState,
   reducers: {
+    resetState: (state) => {
+      // Redux の状態を初期化
+      state.messages = [];
+      state.onProcessing = false;
+      state.isActiveSendButton = false;
+      state.processMessages = [];
+      state.isShowOutput = false;
+      state.currentStep = 0;
+      state.outputUrl = null;
+    },
+
     sendMessage: (state, action: PayloadAction<Message>) => {
+      // ✅ もし `isShowOutput` が `true` なら、一度初期化してから動作するようにする
+      if (state.isShowOutput) {
+        detailsSlice.caseReducers.resetState(state);
+      }
+
       state.messages.push(action.payload);
       state.onProcessing = true;
       state.isActiveSendButton = false;
-      state.isShowOutput = false; // 新しいメッセージ送信時に画像を非表示
-    },
-    receiveMessage: (state, action: PayloadAction<Message>) => {
-      state.messages.push(action.payload);
-    },
-    startProcessing: (state) => {
-      state.processMessages = [
-        {
-          id: "1",
-          state: "processing",
-          isLoading: true,
-          text: steps[0],
-        },
-      ];
-      state.onProcessing = true;
-      state.currentStep = 0;
       state.isShowOutput = false;
+      state.outputUrl = null;
+
+      let selectedPattern: MessagePattern | null = null;
+      for (const pattern in messagesTyped) {
+        if (
+          messagesTyped[pattern as keyof typeof messagesTyped]
+            .send_trigger_message === action.payload.text
+        ) {
+          selectedPattern =
+            messagesTyped[pattern as keyof typeof messagesTyped];
+          break;
+        }
+      }
+
+      if (selectedPattern) {
+        state.processMessages = [
+          {
+            id: "1",
+            state: "processing",
+            isLoading: true,
+            text: selectedPattern.process_messages[0],
+          },
+        ];
+        state.currentStep = 0;
+      } else {
+        state.messages.push({
+          id: new Date().getTime().toString(),
+          role: "bot",
+          userName: "Bot",
+          text: "対応する処理が見つかりません。",
+        });
+        state.onProcessing = false;
+        state.isActiveSendButton = true;
+      }
     },
+
     proceedProcessing: (state) => {
-      const { currentStep, processMessages } = state;
+      let selectedPattern: MessagePattern | null = null;
+      for (const pattern in messagesTyped) {
+        if (
+          messagesTyped[pattern as keyof typeof messagesTyped]
+            .send_trigger_message ===
+          state.messages.find((msg) => msg.role === "user")?.text
+        ) {
+          selectedPattern =
+            messagesTyped[pattern as keyof typeof messagesTyped];
+          break;
+        }
+      }
 
-      // 現在のステップを完了状態にする
-      processMessages[currentStep].state = "success";
-      processMessages[currentStep].isLoading = false;
+      if (!selectedPattern) return;
 
-      const nextStep = currentStep + 1;
+      state.processMessages[state.currentStep].state = "success";
+      state.processMessages[state.currentStep].isLoading = false;
 
-      if (nextStep < steps.length) {
-        // 次のステップを開始
+      const nextStep = state.currentStep + 1;
+
+      if (nextStep < selectedPattern.process_messages.length) {
         state.processMessages.push({
           id: (nextStep + 1).toString(),
           state: "processing",
           isLoading: true,
-          text: steps[nextStep],
+          text: selectedPattern.process_messages[nextStep],
         });
         state.currentStep = nextStep;
       } else {
-        // すべてのステップが完了
         state.onProcessing = false;
-        state.isShowOutput = true; // ✅ プロセス完了時に画像を表示
+        state.isShowOutput = true;
+        state.outputUrl = selectedPattern.output_url;
+
+        state.messages.push({
+          id: new Date().getTime().toString(),
+          role: "bot",
+          userName: "Bot",
+          text: selectedPattern.myle_response,
+        });
       }
     },
+
     endProcessing: (state) => {
       state.processMessages.forEach((msg) => {
         msg.state = "success";
@@ -91,33 +155,10 @@ const detailsSlice = createSlice({
       });
       state.onProcessing = false;
       state.isActiveSendButton = true;
-      state.isShowOutput = true; // ✅ プロセス完了後に画像を表示
-    },
-    activeSendButton: (state) => {
-      state.isActiveSendButton = true;
-    },
-    deactiveSendButton: (state) => {
-      state.isActiveSendButton = false;
-    },
-    clearProcessMessages: (state) => {
-      state.processMessages = [];
-      state.onProcessing = false;
-      state.isActiveSendButton = false;
-      state.currentStep = 0;
-      state.isShowOutput = false;
     },
   },
 });
 
-export const {
-  sendMessage,
-  receiveMessage,
-  startProcessing,
-  proceedProcessing,
-  endProcessing,
-  activeSendButton,
-  deactiveSendButton,
-  clearProcessMessages,
-} = detailsSlice.actions;
-
+export const { sendMessage, proceedProcessing, endProcessing, resetState } =
+  detailsSlice.actions;
 export default detailsSlice.reducer;

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { sendMessage, startProcessing } from "../../pages/details/detailsSlice";
+import { sendMessage } from "../../pages/details/detailsSlice";
 import {
-  Typography,
   TextField,
   Button,
   Container,
@@ -12,14 +11,12 @@ import {
   ListItem,
   ListItemText,
   Box,
+  Typography,
 } from "@mui/material";
 
 const ChatApp = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state: RootState) => state.details.messages);
-  const isActiveSendButton = useSelector(
-    (state: RootState) => state.details.isActiveSendButton
-  );
   const [input, setInput] = useState("");
 
   const handleSendMessage = () => {
@@ -32,7 +29,6 @@ const ChatApp = () => {
           text: input,
         })
       );
-      dispatch(startProcessing());
       setInput("");
     }
   };
@@ -42,15 +38,7 @@ const ChatApp = () => {
       <Typography variant="h5" gutterBottom>
         チャット画面
       </Typography>
-      <Paper
-        elevation={3}
-        sx={{
-          height: "500px",
-          display: "flex",
-          flexDirection: "column",
-          padding: 2,
-        }}
-      >
+      <Paper elevation={3} sx={{ height: "500px", padding: 2 }}>
         <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
           <List>
             {messages.map((message) => (
@@ -66,15 +54,13 @@ const ChatApp = () => {
             variant="outlined"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            disabled={!isActiveSendButton}
           />
           <Button
             variant="contained"
             color="primary"
             onClick={handleSendMessage}
-            disabled={!isActiveSendButton}
           >
-            Send
+            送信
           </Button>
         </Box>
       </Paper>

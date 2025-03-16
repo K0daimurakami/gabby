@@ -1,0 +1,24 @@
+{
+  "messages": {
+    "pattern1": {
+      "process_messages": [
+        "処理ステップ1",
+        "処理ステップ2",
+        "処理ステップ3"
+      ],
+      "send_trigger_message": "こんにちは",
+      "myle_response": "こんにちは！処理が完了しました。",
+      "output_url": "/images/eventNoticeResult.png"
+    },
+    "pattern2": {
+      "process_messages": [
+        "分析開始",
+        "データ処理中",
+        "最適化完了"
+      ],
+      "send_trigger_message": "分析してください",
+      "myle_response": "分析が完了しました。",
+      "output_url": "/images/eventNoticeResult2.png"
+    }
+  }
+}

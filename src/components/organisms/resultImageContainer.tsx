@@ -1,25 +1,21 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import { Typography } from "@mui/material";
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { Card, CardMedia, Typography } from "@mui/material";
 
-interface ImageCardProps {
-  imageUrl: string;
-  altText?: string;
-}
+const ResultImageContainer: React.FC = () => {
+  const outputUrl = useSelector((state: RootState) => state.details.outputUrl);
 
-const ResultImageContainer: React.FC<ImageCardProps> = ({ imageUrl, altText = "デフォルトの代替テキスト" }) => {
+  if (!outputUrl) return null; // 画像が設定されていない場合は何も表示しない
+
   return (
     <>
-    <Typography variant="h5" gutterBottom>
-      結果
-    </Typography>
-    <Card>
-        <CardMedia
-          component="img"
-          image={imageUrl}
-          alt={altText} />
-    </Card>
+      <Typography variant="h5" gutterBottom>
+        結果
+      </Typography>
+      <Card>
+        <CardMedia component="img" image={outputUrl} alt="出力結果画像" />
+      </Card>
     </>
   );
 };
