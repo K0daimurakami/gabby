@@ -25,7 +25,7 @@ const Image: React.FC<Props> = ({
         width,
         height,
         borderRadius,
-        objectFit: "cover",
+        objectFit: "contain",
         display: "block",
       }}
     />
