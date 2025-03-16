@@ -9,5 +9,7 @@ services:
     volumes:
       - .:/app
       # - /app/node_modules
+    security_opt:
+      - apparmor=unconfined
     stdin_open: true
     tty: true
