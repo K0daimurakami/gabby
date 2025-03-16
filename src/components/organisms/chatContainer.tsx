@@ -135,9 +135,7 @@ const ChatApp = () => {
                 </ListItem>
               ))
             ) : (
-              <ListItem>
-                <Box>No messages yet</Box>
-              </ListItem>
+              <ListItem>{/* <Box>No messages yet</Box> */}</ListItem>
             )}
           </List>
         </Box>
