@@ -1,5 +1,5 @@
 import React from "react";
-import categoriesData from "../../components/agent_organization.json";
+import categoriesData from "../../constants/agent_organization.json";
 import AgentCategoryLayout from "../../components/layout/AgentCategoryLayout";
 
 /**

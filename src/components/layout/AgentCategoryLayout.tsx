@@ -7,6 +7,7 @@ interface AgentItem {
   title: string;
   description: string;
   image: string;
+  detailPage: string; // 遷移先ページのパス（必須）
 }
 
 // Note: We're removing the unused Category interface
