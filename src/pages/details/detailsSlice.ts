@@ -12,7 +12,7 @@ const messagesTyped: Record<string, MessagePattern> = messagesData.messages;
 
 interface Message {
   id: string;
-  role: "user" | "bot";
+  sender: "me" | "other";
   userName: string;
   text: string;
 }
@@ -96,7 +96,7 @@ const detailsSlice = createSlice({
       } else {
         state.messages.push({
           id: new Date().getTime().toString(),
-          role: "bot",
+          sender: "other",
           userName: "Bot",
           text: "対応する処理が見つかりません。",
         });
@@ -111,7 +111,7 @@ const detailsSlice = createSlice({
         if (
           messagesTyped[pattern as keyof typeof messagesTyped]
             .send_trigger_message ===
-          state.messages.find((msg) => msg.role === "user")?.text
+          state.messages.find((msg) => msg.sender === "me")?.text
         ) {
           selectedPattern =
             messagesTyped[pattern as keyof typeof messagesTyped];
@@ -141,7 +141,7 @@ const detailsSlice = createSlice({
 
         state.messages.push({
           id: new Date().getTime().toString(),
-          role: "bot",
+          sender: "other",
           userName: "Bot",
           text: selectedPattern.myle_response,
         });
