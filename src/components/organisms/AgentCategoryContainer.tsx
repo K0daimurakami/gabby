@@ -24,7 +24,7 @@ const AgentCategoryContainer: React.FC<Props> = ({ title, agents }) => {
   return (
     <Box sx={{ marginBottom: 4 }}>
       {/* カテゴリータイトル */}
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" sx={{ backgroundColor: '#E3823D', color: 'white' }}>
         {title}
       </Typography>
       
