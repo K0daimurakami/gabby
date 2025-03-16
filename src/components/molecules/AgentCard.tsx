@@ -21,20 +21,33 @@ const AgentCard: React.FC<Props> = ({ title, description, image, navigateTo }) =
   
   return (
     <Card
-      sx={{ width: 280, height: "100%", cursor: "pointer" }}
+      sx={{
+        width: 300,
+        height: 330, // 固定の高さを設定
+        cursor: "pointer",
+        display: "flex",
+        flexDirection: "column"
+      }}
       onClick={() => handleCardClick(navigate, navigateTo)}
     >
-      <CardContent>
-        {/* Title atom */}
-        <Typography text={title} variant="h6" />
+      <CardContent sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        padding: 2
+      }}>
+        {/* Title atom - 固定高さ */}
+        <Box sx={{ height: 60, mb: 1 }}>
+          <Typography text={title} variant="h6" />
+        </Box>
         
-        {/* Image atom */}
-        <Box sx={{ my: 2, position: "relative", height: 140 }} >
+        {/* Image atom - 固定高さ */}
+        <Box sx={{ height: 140, mb: 2, position: "relative" }} >
           <Image src={image} alt={title} height="100%" width="100%" />
         </Box>
         
-        {/* Description atom */}
-        <Box>
+        {/* Description atom - 残りのスペースを使用 */}
+        <Box sx={{ flexGrow: 1, overflow: "auto" }}>
           <Typography text={description} variant="body2" />
         </Box>
       </CardContent>

@@ -5,7 +5,14 @@ import {
   proceedProcessing,
   endProcessing,
 } from "../../pages/details/detailsSlice";
-import { Box, Stepper, Step, StepLabel, Typography } from "@mui/material";
+import {
+  Box,
+  Stepper,
+  Step,
+  StepLabel,
+  Typography,
+  Paper,
+} from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
@@ -42,29 +49,36 @@ const ProcessContainer = () => {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Typography variant="h5" sx={{ backgroundColor: '#E3823D', color: 'white' }}>
-        ◆ 推論内容トレース
-      </Typography>
-      <Stepper
-        activeStep={visibleSteps.findIndex((msg) => msg.state === "processing")}
-        orientation="vertical"
-      >
-        {visibleSteps.map((msg, index) => (
-          <Step key={msg.id}>
-            <StepLabel
-              icon={
-                msg.state === "processing" ? (
-                  <CircularProgress size={24} />
-                ) : (
-                  <CheckCircleIcon color="success" />
-                )
-              }
-            >
-              <Typography variant="body1">{msg.text}</Typography>
-            </StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+      <Paper elevation={3}>
+        <Typography
+          variant="h5"
+          sx={{ backgroundColor: "#E3823D", color: "white" }}
+        >
+          ◆ 推論内容トレース
+        </Typography>
+        <Stepper
+          activeStep={visibleSteps.findIndex(
+            (msg) => msg.state === "processing"
+          )}
+          orientation="vertical"
+        >
+          {visibleSteps.map((msg, index) => (
+            <Step key={msg.id}>
+              <StepLabel
+                icon={
+                  msg.state === "processing" ? (
+                    <CircularProgress size={24} />
+                  ) : (
+                    <CheckCircleIcon color="success" />
+                  )
+                }
+              >
+                <Typography variant="body1">{msg.text}</Typography>
+              </StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Paper>
     </Box>
   );
 };
