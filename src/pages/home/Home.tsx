@@ -7,12 +7,7 @@ import AgentCategoryLayout from "../../components/layout/AgentCategoryLayout";
  * エージェントカテゴリーを表示する
  */
 const Home: React.FC = () => {
-  return (
-    <AgentCategoryLayout
-      categories={categoriesData.categories}
-      title="Myles"
-    />
-  );
+  return <AgentCategoryLayout categories={categoriesData.categories} />;
 };
 
 export default Home;

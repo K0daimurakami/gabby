@@ -17,7 +17,7 @@ const GlobalMenu: React.FC = () => {
 
         {/* タイトル */}
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          Gabby
+          Myles
         </Typography>
       </Toolbar>
     </AppBar>
