@@ -15,7 +15,9 @@ export default function AccordionExpandIcon() {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography component="span">オンボーディング支援 : 業務知識・手続き支援エージェント</Typography>
+          <Typography variant="h5" component="span" sx={{ fontWeight: 'bold' }}>
+            オンボーディング支援 : 業務知識・手続き支援エージェント
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
