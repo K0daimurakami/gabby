@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import CategoryContainer from "../../components/organisms/CategoryContainer";
 import AccordionExpandIcon from "../../components/organisms/deatilNameContainer";
 import ProcessContainer from "../../components/organisms/processContainer";
 import ResultImageContainer from "../../components/organisms/resultImageContainer";
@@ -12,7 +11,6 @@ const Home: React.FC = () => {
   const isShowOutput = useSelector(
     (state: RootState) => state.details.isShowOutput
   );
-  console.log(isShowOutput);
 
   return (
     <Container>
@@ -27,10 +25,7 @@ const Home: React.FC = () => {
           {/* ✅ プロセスが完了したら画像を表示 */}
           {isShowOutput && (
             <Grid item xs={12}>
-              <ResultImageContainer
-                imageUrl="/images/eventNoticeResult.png"
-                altText="サンプル画像: 自然風景"
-              />
+              <ResultImageContainer />
             </Grid>
           )}
         </Grid>

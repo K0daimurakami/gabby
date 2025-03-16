@@ -21,12 +21,14 @@ const ProcessContainer = () => {
   useEffect(() => {
     if (onProcessing && processMessages.length > 0) {
       const timer = setTimeout(() => {
-        dispatch(proceedProcessing());
+        if (processMessages.length === 4) {
+          dispatch(endProcessing()); // ✅ 最後のステップでのみ `endProcessing()` を呼ぶ
+        } else {
+          dispatch(proceedProcessing());
+        }
       }, 3000);
 
       return () => clearTimeout(timer);
-    } else if (!onProcessing) {
-      dispatch(endProcessing());
     }
   }, [processMessages, onProcessing, dispatch]);
 
