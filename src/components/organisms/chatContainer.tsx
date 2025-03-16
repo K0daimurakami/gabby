@@ -38,8 +38,18 @@ const ChatApp = () => {
 
   return (
     <Container maxWidth="sm">
-      <Paper elevation={3} sx={{ height: "500px", display: "flex", flexDirection: "column", padding: 2 }}>
-        
+      <Typography variant="h5" sx={{ backgroundColor: '#E3823D', color: 'white' }}>
+        ◆ チャット画面
+        </Typography>
+      <Paper
+        elevation={3}
+        sx={{
+          height: "500px",
+          display: "flex",
+          flexDirection: "column",
+          padding: 2,
+        }}
+      >
         {/* メッセージリスト */}
         <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
           <List>

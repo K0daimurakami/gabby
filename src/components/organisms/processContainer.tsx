@@ -32,8 +32,8 @@ const ProcessContainer = () => {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Typography variant="h5" gutterBottom>
-        推論内容トレース
+      <Typography variant="h5" sx={{ backgroundColor: '#E3823D', color: 'white' }}>
+        ◆ 推論内容トレース
       </Typography>
       <Stepper activeStep={processMessages.length - 1} orientation="vertical">
         {processMessages.map((msg, index) => (
