@@ -1,52 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Stepper, Step, StepLabel, Typography } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-
-const steps = [
-  'STEP1: 処理1',
-  'STEP2: 処理2',
-  'STEP2: 処理3',
-  'STEP2: 処理4'
-];
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import {
+  proceedProcessing,
+  endProcessing,
+} from "../../pages/details/detailsSlice";
+import { Box, Stepper, Step, StepLabel, Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const ProcessContainer = () => {
-  const [activeStep, setActiveStep] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const processMessages = useSelector(
+    (state: RootState) => state.details.processMessages
+  );
+  const onProcessing = useSelector(
+    (state: RootState) => state.details.onProcessing
+  );
 
   useEffect(() => {
-    // 現在のステップの非同期処理をシミュレーション
-    const timer = setTimeout(() => {
-      setLoading(false); // 非同期処理終了でスピナーをチェックマークに切替え
+    if (onProcessing && processMessages.length > 0) {
+      const timer = setTimeout(() => {
+        dispatch(proceedProcessing());
+      }, 3000);
 
-      // 次のステップがあれば、1秒後に次の処理を開始
-      const nextStep = activeStep + 1;
-      if (nextStep < steps.length) {
-        setTimeout(() => {
-          setActiveStep(nextStep);
-          setLoading(true);
-        }, 1000);
-      }
-    }, 3000); // 各ステップでの処理時間を3秒と仮定
-    return () => clearTimeout(timer);
-  }, [activeStep]);
+      return () => clearTimeout(timer);
+    } else if (!onProcessing) {
+      dispatch(endProcessing());
+    }
+  }, [processMessages, onProcessing, dispatch]);
 
   return (
-    <Box sx={{ width: '100%', mt: 4 }}>
+    <Box sx={{ width: "100%", mt: 4 }}>
       <Typography variant="h5" gutterBottom>
         推論内容トレース
       </Typography>
-      <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map((label, index) => (
-          <Step key={label}>
+      <Stepper activeStep={processMessages.length - 1} orientation="vertical">
+        {processMessages.map((msg, index) => (
+          <Step key={msg.id}>
             <StepLabel
               icon={
-                activeStep === index 
-                  ? (loading ? <CircularProgress size={24} /> : <CheckCircleIcon color="success" />)
-                  : (activeStep > index ? <CheckCircleIcon color="success" /> : null)
+                msg.isLoading ? (
+                  <CircularProgress size={24} />
+                ) : (
+                  <CheckCircleIcon color="success" />
+                )
               }
             >
-              <Typography variant="body1">{label}</Typography>
+              <Typography variant="body1">{msg.text}</Typography>
             </StepLabel>
           </Step>
         ))}
