@@ -17,7 +17,10 @@ const ResultImageContainer: React.FC = () => {
 
   return (
     <>
-      <Typography variant="h5" sx={styles.typography}>
+      <Typography
+        variant="h5"
+        sx={{ backgroundColor: "#E3823D", color: "white" }}
+      >
         ◆ 結果
       </Typography>
       <Card>
