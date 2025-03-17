@@ -3,6 +3,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Card, CardMedia, Typography } from "@mui/material";
 
+const styles = {
+  typography: {
+    backgroundColor: "#E3823D",
+    color: "white",
+  },
+};
+
 const ResultImageContainer: React.FC = () => {
   const outputUrl = useSelector((state: RootState) => state.details.outputUrl);
 

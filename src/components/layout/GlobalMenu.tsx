@@ -1,6 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, IconButton } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import CoterraceIcon from "../../components/atoms/CotteraceIcon";
 
@@ -9,15 +8,22 @@ const GlobalMenu: React.FC = () => {
 
   return (
     <AppBar position="static">
-      <Toolbar>
+      <Toolbar sx={{ position: "relative" }}>
         {/* ホームアイコン - クリックでトップページに遷移 */}
-        <IconButton edge="start" color="inherit" onClick={() => navigate("/")}>
-          <CoterraceIcon />
-        </IconButton>
+        <CoterraceIcon onClick={() => navigate("/")} />
 
-        {/* タイトル */}
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          Myles
+        {/* タイトルを中央に配置 */}
+        <Typography
+          variant="h5"
+          sx={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            fontWeight: "bold",
+            color: "#000000"
+          }}
+        >
+          Myles Play Ground
         </Typography>
       </Toolbar>
     </AppBar>
