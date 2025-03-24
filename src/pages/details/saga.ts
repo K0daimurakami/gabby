@@ -3,21 +3,25 @@ import { sendMessageByHelpButton } from "./detailsSlice";
 import axios, { AxiosResponse } from "axios";
 
 // APIのURL設定
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
+const API_URL = "https://2sva6a36r5.execute-api.ap-northeast-1.amazonaws.com";
 
 // API呼び出しを行うSaga
 function* handleSendHelpMessage(action: ReturnType<typeof sendMessageByHelpButton>) {
   try {
+    console.log("APIリクエスト開始");
     // 直接API呼び出しを行う
-    const response: AxiosResponse = yield call(async (message: string) => {
-      const res = await axios.post("http://example.com/help", { message });
-      return res;
-    }, action.payload);
-
-    console.log("API呼び出し成功:", response.data);
+    const response: AxiosResponse<any> = yield call(
+      axios.post,
+      `${API_URL}/api/v1/users/test0323/activities`, // ここをAPIGatewayのURLに設定
+      {
+        elementId: action.payload, // メッセージの内容を送信
+        actionType: "selectTemplateMessage",
+      }
+    );
+    console.log("Message saved:", response.data);
     // 必要ならここでさらにReduxの状態を更新するactionをdispatch
   } catch (error) {
-    console.error("API呼び出し失敗:", error);
+    console.error("Error sending message:", error);
   }
 }
 
