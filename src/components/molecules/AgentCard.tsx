@@ -8,6 +8,7 @@ import { RootState } from "../../redux/store";
 import { selectMyle } from "../../pages/home/homeSlice";
 
 interface Props {
+  id: number;
   title: string;
   description: string;
   image: string;
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const AgentCard: React.FC<Props> = ({
+  id,
   title,
   description,
   image,
@@ -27,7 +29,7 @@ const AgentCard: React.FC<Props> = ({
   const handleCardClick = (
     navigate: any,
     path: string,
-    id: string,
+    id: any,
     title: string
   ) => {
     dispatch(
@@ -48,7 +50,7 @@ const AgentCard: React.FC<Props> = ({
         display: "flex",
         flexDirection: "column",
       }}
-      onClick={() => handleCardClick(navigate, navigateTo, title, title)}
+      onClick={() => handleCardClick(navigate, navigateTo, id, title)}
     >
       <CardContent
         sx={{

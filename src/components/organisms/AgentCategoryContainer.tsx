@@ -32,7 +32,7 @@ const AgentCategoryContainer: React.FC<Props> = ({ title, agents }) => {
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
         {agents.map((agent, index) => (
           <AgentCard
-            key={index}
+            id={index + 1}
             title={agent.title}
             description={agent.description}
             image={agent.image}
