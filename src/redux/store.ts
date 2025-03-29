@@ -3,7 +3,7 @@ import homeReducer from "../pages/home/homeSlice";
 import detailsReducer from "../pages/details/detailsSlice";
 import createSagaMiddleware from "redux-saga";
 import watchSelectMyle from "../pages/home/saga";
-import watchHelpButton from "../pages/details/saga";
+import watchSendMessage from "../pages/details/saga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,7 +17,7 @@ const store = configureStore({
 });
 
 sagaMiddleware.run(watchSelectMyle);
-sagaMiddleware.run(watchHelpButton);
+sagaMiddleware.run(watchSendMessage);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

@@ -1,21 +1,23 @@
 import { call, takeLatest } from "redux-saga/effects";
-import { sendMessageByHelpButton } from "./detailsSlice";
+import { sendMessage } from "./detailsSlice";
 import axios, { AxiosResponse } from "axios";
 
 // APIのURL設定
 const API_URL = "https://2sva6a36r5.execute-api.ap-northeast-1.amazonaws.com";
 
 // API呼び出しを行うSaga
-function* handleSendHelpMessage(action: ReturnType<typeof sendMessageByHelpButton>) {
+function* handleSendMessage(action: ReturnType<typeof sendMessage>) {
   try {
     console.log("APIリクエスト開始");
+    console.log("action.payload", action.payload);
     // 直接API呼び出しを行う
     const response: AxiosResponse<any> = yield call(
       axios.post,
       `${API_URL}/api/v1/users/test0323/activities`, // ここをAPIGatewayのURLに設定
       {
-        elementId: action.payload, // メッセージの内容を送信
-        actionType: "selectTemplateMessage",
+        elementId: action.payload.text, // メッセージの内容を送信
+        actionType: "selectInputMessage",
+        
       }
     );
     console.log("Message saved:", response.data);
@@ -26,8 +28,8 @@ function* handleSendHelpMessage(action: ReturnType<typeof sendMessageByHelpButto
 }
 
 // actionを監視して適切なSagaを呼び出す
-function* watchHelpButton() {
-  yield takeLatest(sendMessageByHelpButton.type, handleSendHelpMessage);
+function* watchSendMessage() {
+  yield takeLatest(sendMessage.type, handleSendMessage);
 }
 
-export default watchHelpButton;
+export default watchSendMessage;
