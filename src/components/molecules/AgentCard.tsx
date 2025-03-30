@@ -8,16 +8,20 @@ import { RootState } from "../../redux/store";
 import { selectMyle } from "../../pages/home/homeSlice";
 
 interface Props {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
+  elementId: string; // 操作データを識別する一意な文字列
+  id: number; // カテゴリ内の各カードを識別するためのID
+  categoryName: string; // カテゴリの名前
+  myleName: string; // Myleの名前
+  description: string; // Myleの説明
+  image: string; // Myleのイメージ画像
   navigateTo: string; // 遷移先ページのパス
 }
 
 const AgentCard: React.FC<Props> = ({
+  elementId,
   id,
-  title,
+  categoryName,
+  myleName,
   description,
   image,
   navigateTo,
@@ -27,15 +31,19 @@ const AgentCard: React.FC<Props> = ({
 
   // onclick関数はここに
   const handleCardClick = (
+    elementId: any,
     navigate: any,
     path: string,
     id: any,
-    title: string
+    categoryName: string,
+    myleName: string
   ) => {
     dispatch(
       selectMyle({
+        elementId: elementId,
         id: id,
-        title: title,
+        categoryName: categoryName,
+        myleName: myleName,
       })
     );
     navigate(path);
@@ -50,7 +58,7 @@ const AgentCard: React.FC<Props> = ({
         display: "flex",
         flexDirection: "column",
       }}
-      onClick={() => handleCardClick(navigate, navigateTo, id, title)}
+      onClick={() => handleCardClick(elementId, navigate, navigateTo, id, categoryName, myleName)}
     >
       <CardContent
         sx={{
@@ -62,12 +70,12 @@ const AgentCard: React.FC<Props> = ({
       >
         {/* Title atom - 固定高さ */}
         <Box sx={{ height: 60, mb: 1 }}>
-          <Typography text={title} variant="h6" />
+          <Typography text={categoryName} variant="h6" />
         </Box>
 
         {/* Image atom - 固定高さ */}
         <Box sx={{ height: 140, mb: 2, position: "relative" }}>
-          <Image src={image} alt={title} height="100%" width="100%" />
+          <Image src={image} alt={categoryName} height="100%" width="100%" />
         </Box>
 
         {/* Description atom - 残りのスペースを使用 */}

@@ -4,6 +4,7 @@ import AgentCategoryContainer from "../organisms/AgentCategoryContainer";
 
 // エージェント項目の型定義
 interface AgentItem {
+  elementId: string;
   title: string;
   description: string;
   image: string;
@@ -38,7 +39,7 @@ const AgentCategoryLayout: React.FC<Props> = ({ categories, title }) => {
         {Object.entries(categories).map(([categoryName, agents]) => (
           <AgentCategoryContainer
             key={categoryName}
-            title={categoryName}
+            categoryName={categoryName}
             agents={agents}
           />
         ))}

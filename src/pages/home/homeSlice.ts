@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserClickInfo {
+  elementId: string;
   id: string;
-  title: string;
+  categoryName: string;
+  myleName: string;
 }
 
 interface HomeState {
@@ -14,7 +16,7 @@ interface HomeState {
 const initialState: HomeState = {
   categoryA: ["Item 1", "Item 2"],
   categoryB: ["Item 3", "Item 4"],
-  selectedMyle: { id: "", title: "" },
+  selectedMyle: { elementId: "", id: "", categoryName: "", myleName: "", },
 };
 
 const homeSlice = createSlice({

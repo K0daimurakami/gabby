@@ -10,14 +10,17 @@ function* handleSendSelectedMyle(action: ReturnType<typeof selectMyle>) {
   try {
     console.log("APIリクエスト開始");
     console.log("API URL:", `${API_URL}/api/v1/users/test0323/activities`);
-    console.log("送信データ:", { elementId: action.payload.id , myleName: action.payload.title});
+    console.log("送信データ:", { payload: action.payload });
     // サーバーへのPOSTリクエスト
     const response: AxiosResponse<any> = yield call(
       axios.post,
       `${API_URL}/api/v1/users/test0323/activities`, // ここをAPIGatewayのURLに設定
       {
-        elementId: action.payload.title, // メッセージの内容を送信
-        actionType: "selectMyle",
+        elementId: action.payload.elementId, // 操作データを識別する一意な文字列
+        actionType: "selectMyle", // 操作種別：Myle選択
+        categoryName: action.payload.categoryName, // Myleのカテゴリ
+        myleId: action.payload.id, // カテゴリ内のMyleのID
+        myleName: action.payload.myleName, /// Myleの名前
       }
     );
 
