@@ -22,9 +22,10 @@ import {
   Info as InfoIcon,
 } from "@mui/icons-material";
 
+// TODO コンポーネント分割、関数型に修正
 const ChatApp = () => {
   const dispatch = useDispatch();
-  const messages = useSelector((state: RootState) => state.details.messages);
+  const messages = useSelector((state: RootState) => state.details.chatMessages);
   const [input, setInput] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
 
@@ -36,7 +37,7 @@ const ChatApp = () => {
           id: Date.now().toString(),
           sender: "me",
           userName: "User",
-          text: input,
+          chatText: input,
         })
       );
       setInput("");
@@ -88,7 +89,7 @@ const ChatApp = () => {
                     textAlign: message.sender === "me" ? "right" : "left",
                   }}
                 >
-                  <Box>{message.text}</Box>
+                  <Box>{message.chatText}</Box>
                 </Box>
               </ListItem>
             ))}

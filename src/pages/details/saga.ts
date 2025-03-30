@@ -1,6 +1,7 @@
-import { call, takeLatest } from "redux-saga/effects";
+import { call, takeLatest, select } from "redux-saga/effects";
 import { sendMessage } from "./detailsSlice";
 import axios, { AxiosResponse } from "axios";
+import { RootState } from "../../redux/store";
 
 // APIのURL設定
 const API_URL = "https://2sva6a36r5.execute-api.ap-northeast-1.amazonaws.com";
@@ -8,16 +9,22 @@ const API_URL = "https://2sva6a36r5.execute-api.ap-northeast-1.amazonaws.com";
 // API呼び出しを行うSaga
 function* handleSendMessage(action: ReturnType<typeof sendMessage>) {
   try {
+    // ホーム画面からstateを取得
+    const previousState: RootState["home"] = yield select((state) => state.home);
+    const uniqueIdentifier = `${previousState.selectedMyle.elementId}_${Date.now()}`;
+
     console.log("APIリクエスト開始");
-    console.log("action.payload", action.payload);
     // 直接API呼び出しを行う
     const response: AxiosResponse<any> = yield call(
       axios.post,
       `${API_URL}/api/v1/users/test0323/activities`, // ここをAPIGatewayのURLに設定
       {
-        elementId: action.payload.text, // メッセージの内容を送信
-        actionType: "selectInputMessage",
-        
+        elementId: uniqueIdentifier, // メッセージの内容を送信
+        actionType: "InputMessage",
+        categoryName: previousState.selectedMyle.categoryName, // Myleのカテゴリ
+        myleId: previousState.selectedMyle.id, // カテゴリ内のMyleのID
+        myleName: previousState.selectedMyle.myleName, /// Myleの名前
+        inputText: action.payload.chatText, // ユーザが入力したテキスト
       }
     );
     console.log("Message saved:", response.data);
