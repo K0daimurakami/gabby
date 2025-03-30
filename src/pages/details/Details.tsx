@@ -6,11 +6,31 @@ import AccordionExpandIcon from "../../components/organisms/deatilNameContainer"
 import ProcessContainer from "../../components/organisms/processContainer";
 import ResultImageContainer from "../../components/organisms/resultImageContainer";
 import ChatApp from "../../components/organisms/chatContainer";
+import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
 
 const Home: React.FC = () => {
   const isShowOutput = useSelector(
     (state: RootState) => state.details.isShowOutput
   );
+
+  // テンプレート一覧
+    const templates = [
+      {
+        messageText: "AさんとBさんにイベント告知をして",
+        icon: <SendIcon fontSize="large" />,
+        type: "message",
+      },
+      {
+        messageText: "女性向け産休説明会を女性従業員に告知して",
+        icon: <HelpIcon fontSize="large" />,
+        type: "help",
+      },
+      {
+        messageText: "管理職に管理職向けイベントを告知して",
+        icon: <InfoIcon fontSize="large" />,
+        type: "info",
+      },
+    ];
 
   return (
     <Container>
@@ -30,7 +50,9 @@ const Home: React.FC = () => {
           )}
         </Grid>
         <Grid item xs={6}>
-          <ChatApp />
+          <ChatApp 
+          messageTemplates = {templates}
+          />
         </Grid>
       </Grid>
     </Container>

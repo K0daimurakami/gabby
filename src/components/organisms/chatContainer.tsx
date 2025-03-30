@@ -1,29 +1,24 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import {
-  sendMessage,
-  sendMessageByHelpButton,
-} from "../../pages/details/detailsSlice";
-import {
-  TextField,
-  Button,
-  Container,
-  Paper,
-  List,
-  ListItem,
-  Box,
-  Grid,
-  Typography,
-} from "@mui/material";
-import {
-  Send as SendIcon,
-  Help as HelpIcon,
-  Info as InfoIcon,
-} from "@mui/icons-material";
+import { sendMessage, sendMessageByHelpButton } from "../../pages/details/detailsSlice";
+import { TextField, Button, Container, Paper, List, ListItem, Box, Grid, Typography } from "@mui/material";
+import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
+import TemplateSelector from "../molecules/TemplateMessage";
 
-// TODO コンポーネント分割、関数型に修正
-const ChatApp = () => {
+interface MessageTemplate {
+  messageText: string;
+  icon: React.ReactNode;
+  type: string;
+}
+
+interface TemplateSelectorProps {
+  messageTemplates: MessageTemplate[];
+}
+
+const ChatApp: React.FC<TemplateSelectorProps> = ({
+  messageTemplates: messageTemplates,
+}) => {
   const dispatch = useDispatch();
   const messages = useSelector((state: RootState) => state.details.chatMessages);
   const [input, setInput] = useState("");
@@ -96,90 +91,12 @@ const ChatApp = () => {
           </List>
         </Box>
 
-        {/* テンプレート選択 */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: 2,
-          }}
-        >
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
-              <Paper
-                sx={{
-                  padding: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  border:
-                    selectedTemplate === "message"
-                      ? "2px solid #007bff"
-                      : "none",
-                  "&:hover": { backgroundColor: "#F1CF24" },
-                }}
-                onClick={() =>
-                  handleTemplateClick("AさんとBさんにイベント告知をして")
-                }
-              >
-                <SendIcon fontSize="large" />
-                <Typography variant="body2" sx={{ marginTop: 1 }}>
-                  AさんとBさんにイベント告知をして
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={4}>
-              <Paper
-                sx={{
-                  padding: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  border:
-                    selectedTemplate === "help" ? "2px solid #007bff" : "none",
-                  "&:hover": { backgroundColor: "#F1CF24" },
-                }}
-                onClick={() =>
-                  handleTemplateClick(
-                    "女性向け産休説明会を女性従業員に告知して"
-                  )
-                }
-              >
-                <HelpIcon fontSize="large" />
-                <Typography variant="body2" sx={{ marginTop: 1 }}>
-                  女性向け産休説明会を女性従業員に告知して
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={4}>
-              <Paper
-                sx={{
-                  padding: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  border:
-                    selectedTemplate === "info" ? "2px solid #007bff" : "none",
-                  "&:hover": { backgroundColor: "#F1CF24" },
-                }}
-                onClick={() =>
-                  handleTemplateClick("管理職に管理職向けイベントを告知して")
-                }
-              >
-                <InfoIcon fontSize="large" />
-                <Typography variant="body2" sx={{ marginTop: 1 }}>
-                  管理職に管理職向けイベントを告知して
-                </Typography>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Box>
+        {/* 入力テンプレート */}
+        <TemplateSelector
+          templates={messageTemplates}
+          selectedTemplate={selectedTemplate}
+          onTemplateClick={handleTemplateClick}
+        />
 
         {/* メッセージ入力フォーム */}
         <Box sx={{ display: "flex", marginTop: 2 }}>
