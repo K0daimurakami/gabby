@@ -42,6 +42,8 @@ const signOutRedirect = () => {
   window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
 };
 
+// TODO: atomic designに従ってコンポーネントを分割する
+
 const App: React.FC = () => {
   // 認証状態を取得
   const auth = useAuth();
@@ -115,7 +117,7 @@ const App: React.FC = () => {
       <CssBaseline />
       <Container>
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" minHeight="100vh">
-          <Typography variant="h5" gutterBottom>ログインしてください</Typography>
+          <Typography variant="h6" gutterBottom>ログインしてください</Typography>
           <Box>
             <Button
               onClick={() => auth.signinRedirect()}
