@@ -2,10 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { useAuth } from "react-oidc-context";
 import GlobalMenu from "./components/layout/GlobalMenu";
 import Home from "./pages/home/Home";
 import Details from "./pages/details/Details";
-import { Container, CssBaseline } from "@mui/material";
+import { Container, CssBaseline, Box, Button, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Onb001Details from "./pages/details/Onb001Details";
 import Onb002Details from "./pages/details/Onb002Details";
@@ -69,6 +70,16 @@ const theme = createTheme({
   },
 });
 
+// サインアウトリダイレクト関数
+const signOutRedirect = () => {
+  const clientId = "52raclcpqs9d6skfn49293uv8f";
+  const logoutUri = "http://localhost:3000/";
+  const cognitoDomain = "https://ap-northeast-1f2dwq8jmm.auth.ap-northeast-1.amazoncognito.com";
+  window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
+};
+
+// TODO: atomic designに従ってコンポーネントを分割する
+
 // クエリパラメータ：IDに対するコンポーネントマッピング
 const componentMap: Record<string, React.FC> = {
   "Onboarding_KnowledgeSupport_001": Onb001Details,
@@ -129,21 +140,97 @@ const DynamicDetailComponent: React.FC = () => {
  * アプリケーションのメインコンポーネント
 */
 const App: React.FC = () => {
+  // 認証状態を取得
+  const auth = useAuth();
+
+  // ローディング中
+  if (auth.isLoading) {
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Container>
+          <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+            <Typography>Loading...</Typography>
+          </Box>
+        </Container>
+      </ThemeProvider>
+    );
+  }
+
+  // エラー発生時
+  if (auth.error) {
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Container>
+          <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+            <Typography>エラーが発生しました: {auth.error.message}</Typography>
+          </Box>
+        </Container>
+      </ThemeProvider>
+    );
+  }
+
+  // 認証済みの場合
+  if (auth.isAuthenticated) {
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Provider store={store}>
+          <Router>
+            <GlobalMenu />
+            <Container>
+              
+              {/* 認証情報の表示 実験用*/}
+              <Box my={2} p={2} bgcolor="background.paper">
+                <Typography>ユーザー: {auth.user?.profile.email}</Typography>
+                <Button
+                  onClick={() => auth.removeUser()}
+                  variant="contained"
+                  color="primary"
+                  sx={{ mt: 1 }}
+                >
+                  サインアウト
+                </Button>
+              </Box>
+              
+              {/* 既存のルーティング */}
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/details" element={<DynamicDetailComponent />} />
+              </Routes>
+            </Container>
+          </Router>
+        </Provider>
+      </ThemeProvider>
+    );
+  }
+
+  // 未認証の場合
   return (
     <ThemeProvider theme={theme}>
-      {/* CssBaselineを追加して、ブラウザのデフォルトスタイルをリセット */}
       <CssBaseline />
-      <Provider store={store}>
-        <Router>
-          <GlobalMenu />
-          <Container>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/details" element={<DynamicDetailComponent />} />
-            </Routes>
-          </Container>
-        </Router>
-      </Provider>
+      <Container>
+        <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" minHeight="100vh">
+          <Typography variant="h6" gutterBottom>ログインしてください</Typography>
+          <Box>
+            <Button
+              onClick={() => auth.signinRedirect()}
+              variant="contained"
+              color="primary"
+              sx={{ mr: 2 }}
+            >
+              サインイン
+            </Button>
+            <Button
+              onClick={() => signOutRedirect()}
+              variant="outlined"
+            >
+              サインアウト
+            </Button>
+          </Box>
+        </Box>
+      </Container>
     </ThemeProvider>
   );
 };
