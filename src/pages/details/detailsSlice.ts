@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import messagesData from "../../constants/detail_messages.json";
+import { useLocation } from "react-router-dom";
 
 interface MessagePattern {
   process_messages: string[];
@@ -8,8 +9,9 @@ interface MessagePattern {
   output_url: string;
 }
 
-// JSONデータ読み込み
-const messagesTyped: Record<string, MessagePattern> = messagesData.messages;
+interface Screen {
+  [key: string]: MessagePattern; // pattern1, pattern2, pattern3 に対応
+}
 
 // チャット内メッセージ情報
 interface ChatMessage {
@@ -35,6 +37,7 @@ interface DetailsState {
   currentStep: number;
   outputUrl: string | null;
   isShowHelpButton: boolean;
+  currentScreen: string | null;
 }
 
 const initialState: DetailsState = {
@@ -46,12 +49,19 @@ const initialState: DetailsState = {
   currentStep: 0,
   outputUrl: null, // ✅ 初期状態で画像のURLを持たない
   isShowHelpButton: true,
+  currentScreen: null,
 };
 
 const detailsSlice = createSlice({
   name: "details",
   initialState,
   reducers: {
+    /**
+     * 画面のelementId取得アクション
+    */
+    setCurrentScreen: (state, action: PayloadAction<string | null>) => {
+      state.currentScreen = action.payload;
+    },
     /**
      * 状態初期化アクション
     */
@@ -80,6 +90,20 @@ const detailsSlice = createSlice({
       state.isActiveSendButton = false;
       state.isShowOutput = false;
       state.outputUrl = null; // ✅ 送信時に画像URLをリセット
+
+      // ReduxでcurrentScreen設定されているか確認
+      if (!state.currentScreen) {
+        console.error("currentScreenが設定されていません");
+        return;
+      }
+      // JSONから画面情報（テンプレ、処理中メッセージ）を取得
+      const messagesTyped: Record<string, MessagePattern> | undefined =
+        messagesData.screens[state.currentScreen as keyof typeof messagesData.screens];
+      // 存在しない場合
+      if (!messagesTyped) {
+        console.error(`Screen "${state.currentScreen}" が見つかりません`);
+        return;
+      }
 
       let selectedPattern: MessagePattern | null = null;
 
@@ -158,20 +182,13 @@ const detailsSlice = createSlice({
      * テンプレメッセージ選択時アクション
     */
     sendMessageByHelpButton: (state, action: PayloadAction<string>) => {
-      // sendMessageアクションを呼び出し
-      detailsSlice.caseReducers.sendMessage(state, {
-        payload: {
-          id: new Date().getTime().toString(),
-          sender: "me",
-          userName: "User",
-          chatText: action.payload,
-        },
-      } as PayloadAction<ChatMessage>);
+      const chatText = action.payload;
     },
   },
 });
 
 export const {
+  setCurrentScreen,
   sendMessage,
   proceedProcessing,
   endProcessing,

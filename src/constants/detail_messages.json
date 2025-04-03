@@ -1,40 +1,1371 @@
 {
-  "messages": {
-    "pattern1": {
-      "process_messages": [
-        "イベント情報の取得",
-        "Aさんの従業員情報の取得",
-        "Bさんの従業員情報の取得",
-        "Aさん向けの告知文を作成",
-        "Bさん向けの告知文を作成",
-        "Aさんに告知文章を送信",
-        "Bさんに告知文章を送信"
-      ],
-      "send_trigger_message": "AさんとBさんにイベント告知をして",
-      "myle_response": "AさんとBさんにイベントを告知しました",
-      "output_url": "/images/eventNoticeResult.png"
+  "screens": {
+    "Onboarding_KnowledgeSupport_001": {
+      "pattern1": {
+        "process_messages": [
+          "オンボーディング1：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング1：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "オンボーディング1：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング1：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "オンボーディング1：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング1：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
     },
-    "pattern2": {
-      "process_messages": [
-        "女性従業員のデータを取得",
-        "女性向け産休説明会のイベント情報を取得",
-        "一人一人の従業員に対しての告知文を作成",
-        "女性従業員に告知文章を送信"
-      ],
-      "send_trigger_message": "女性向け産休説明会を女性従業員に告知して",
-      "myle_response": "女性従業員に産休説明会を告知しました。",
-      "output_url": "/images/eventNoticeResult2.png"
+    "Onboarding_SkillGapAssessment_002": {
+      "pattern1": {
+        "process_messages": [
+          "オンボーディング2：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング2：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "オンボーディング2：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング2：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "オンボーディング2：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング2：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
     },
-    "pattern3": {
-      "process_messages": [
-        "管理職情報の取得",
-        "管理職向けイベント情報の取得",
-        "管理職向けの告知文を作成",
-        "管理職に告知文章を送信"
-      ],
-      "send_trigger_message": "管理職に管理職向けイベントを告知して",
-      "myle_response": "管理職向けイベントを告知しました。",
-      "output_url": "/images/eventNoticeResult3.png"
+    "Onboarding_NetworkBuilding_003": {
+      "pattern1": {
+        "process_messages": [
+          "オンボーディング3：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング3：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "オンボーディング3：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング3：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "オンボーディング3：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング3：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Onboarding_ProgressManagement_004": {
+      "pattern1": {
+        "process_messages": [
+          "オンボーディング4：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング4：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "オンボーディング4：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング4：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "オンボーディング4：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング4：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Onboarding_CultureIntegration_005": {
+      "pattern1": {
+        "process_messages": [
+          "オンボーディング5：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング5：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "オンボーディング5：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング5：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "オンボーディング5：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "オンボーディング5：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Diversity_GenderEquality_006": {
+      "pattern1": {
+        "process_messages": [
+          "ダイバーシティ6：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ6：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "ダイバーシティ6：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ6：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "ダイバーシティ6：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ6：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Diversity_CulturalInclusion_007": {
+      "pattern1": {
+        "process_messages": [
+          "ダイバーシティ7：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ7：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "ダイバーシティ7：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ7：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "ダイバーシティ7：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ7：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Diversity_DisabilitySupport_008": {
+      "pattern1": {
+        "process_messages": [
+          "ダイバーシティ8：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ8：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "ダイバーシティ8：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ8：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "ダイバーシティ8：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ8：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Diversity_LGBTQInclusion_009": {
+      "pattern1": {
+        "process_messages": [
+          "ダイバーシティ9：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ9：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "ダイバーシティ9：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ9：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "ダイバーシティ9：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ9：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Diversity_AgeInclusion_010": {
+      "pattern1": {
+        "process_messages": [
+          "ダイバーシティ10：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ10：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "ダイバーシティ10：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ10：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "ダイバーシティ10：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ10：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Diversity_RegionalDiversity_011": {
+      "pattern1": {
+        "process_messages": [
+          "ダイバーシティ11：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ11：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "ダイバーシティ11：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ11：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "ダイバーシティ11：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "ダイバーシティ11：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Leadership_Identification_012": {
+      "pattern1": {
+        "process_messages": [
+          "リーダーシップ12：Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ12：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "リーダーシップ12：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ12：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "リーダーシップ12：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ12：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Leadership_TrainingDesign_013": {
+      "pattern1": {
+        "process_messages": [
+          "リーダーシップ13：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ13：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "リーダーシップ13：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ13：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "リーダーシップ13：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ13：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Leadership_PracticalSupport_014": {
+      "pattern1": {
+        "process_messages": [
+          "リーダーシップ14：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ14：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "リーダーシップ14：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ14：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "リーダーシップ14：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ14：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Leadership_ProgressMonitoring_015": {
+      "pattern1": {
+        "process_messages": [
+          "リーダーシップ15：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ15：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "リーダーシップ15：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ15：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "リーダーシップ15：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ15：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Leadership_CrossOrganizationalExchange_016": {
+      "pattern1": {
+        "process_messages": [
+          "リーダーシップ16：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ16：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "リーダーシップ16：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ16：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "リーダーシップ16：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "リーダーシップ16：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Culture_EngagementScore_017": {
+      "pattern1": {
+        "process_messages": [
+          "組織風土17：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土17：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "組織風土17：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土17：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "組織風土17：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土17：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Culture_FeedbackAnalysis_018": {
+      "pattern1": {
+        "process_messages": [
+          "組織風土18：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土18：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "組織風土18：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土18：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "組織風土18：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土18：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Culture_WorkshopSupport_019": {
+      "pattern1": {
+        "process_messages": [
+          "組織風土19：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土19：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "組織風土19：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土19：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "組織風土19：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土19：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Culture_DI_Promotion_020": {
+      "pattern1": {
+        "process_messages": [
+          "組織風土20：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土20：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "組織風土20：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土20：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "組織風土20：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土20：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Culture_CultureChangeMonitoring_021": {
+      "pattern1": {
+        "process_messages": [
+          "組織風土21：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土21：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "組織風土21：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土21：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "組織風土21：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "組織風土21：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Skill_Reskilling_022": {
+      "pattern1": {
+        "process_messages": [
+          "スキル能力22：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "スキル能力22：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "スキル能力22：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "スキル能力22：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "スキル能力22：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "スキル能力22：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Skill_CareerDevelopment_023": {
+      "pattern1": {
+        "process_messages": [
+          "スキル能力23：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "スキル能力23：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "スキル能力23：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "スキル能力23：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "スキル能力23：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "スキル能力23：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Skill_PerformanceManagement_024": {
+      "pattern1": {
+        "process_messages": [
+          "スキル能力24：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "スキル能力24：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "スキル能力24：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "スキル能力24：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "スキル能力24：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "スキル能力24：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Recruitment_ReferralSupport_025": {
+      "pattern1": {
+        "process_messages": [
+          "採用関連25：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "採用関連25：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "採用関連25：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "採用関連25：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "採用関連25：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "採用関連25：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Wellbeing_HealthSupport_026": {
+      "pattern1": {
+        "process_messages": [
+          "福利厚生26：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "福利厚生26：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "福利厚生26：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "福利厚生26：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "福利厚生26：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "福利厚生26：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Wellbeing_CafeteriaPlan_027": {
+      "pattern1": {
+        "process_messages": [
+          "福利厚生27：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "福利厚生27：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "福利厚生27：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "福利厚生27：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "福利厚生27：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "福利厚生27：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Wellbeing_HybridWork_028": {
+      "pattern1": {
+        "process_messages": [
+          "福利厚生28：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "福利厚生28：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "福利厚生28：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "福利厚生28：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "福利厚生28：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "福利厚生28：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Reward_NonMonetary_029": {
+      "pattern1": {
+        "process_messages": [
+          "リワード29：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "リワード29：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "リワード29：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "リワード29：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "リワード29：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "リワード29：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Reward_PerformanceBased_030": {
+      "pattern1": {
+        "process_messages": [
+          "リワード30：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "リワード30：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "リワード30：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "リワード30：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "リワード30：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "リワード30：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Succession_LeaderIdentification_031": {
+      "pattern1": {
+        "process_messages": [
+          "サクセッション31：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション31：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "サクセッション31：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション31：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "サクセッション31：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション31：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Succession_DevelopmentProgram_032": {
+      "pattern1": {
+        "process_messages": [
+          "サクセッション32：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション32：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "サクセッション32：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション32：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "サクセッション32：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション32：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Succession_ProgressMonitoring_033": {
+      "pattern1": {
+        "process_messages": [
+          "サクセッション33：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション33：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "サクセッション33：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション33：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "サクセッション33：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション33：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Compliance_LaborLaw_034": {
+      "pattern1": {
+        "process_messages": [
+          "サクセッション34：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション34：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "サクセッション34：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション34：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "サクセッション34：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "サクセッション34：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Compliance_DataProtection_035": {
+      "pattern1": {
+        "process_messages": [
+          "コンプラ35：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "コンプラ35：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "コンプラ35：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "コンプラ35：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "コンプラ35：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "コンプラ35：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Compliance_InternationalRegulation_036": {
+      "pattern1": {
+        "process_messages": [
+          "コンプラ36：イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "コンプラ36：AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "コンプラ36：女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "コンプラ36：女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "コンプラ36：管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "コンプラ36：管理職に管理職向けイベントを告知して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
     }
   }
 }

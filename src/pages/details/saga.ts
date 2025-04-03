@@ -1,5 +1,5 @@
-import { call, takeLatest, select } from "redux-saga/effects";
-import { sendMessage } from "./detailsSlice";
+import { call, takeLatest, select, put } from "redux-saga/effects";
+import { sendMessage, sendMessageByHelpButton } from "./detailsSlice";
 import axios, { AxiosResponse } from "axios";
 import { RootState } from "../../redux/store";
 
@@ -14,6 +14,7 @@ function* handleSendMessage(action: ReturnType<typeof sendMessage>) {
     const uniqueIdentifier = `${previousState.selectedMyle.elementId}_${Date.now()}`;
 
     console.log("APIリクエスト開始");
+    console.log("action.payload: ", action.payload);
     // 直接API呼び出しを行う
     const response: AxiosResponse<any> = yield call(
       axios.post,
@@ -34,9 +35,21 @@ function* handleSendMessage(action: ReturnType<typeof sendMessage>) {
   }
 }
 
+function* handleSendMessageByHelpButton(action: ReturnType<typeof sendMessageByHelpButton>) {
+  const chatText = action.payload;
+
+  // ✅ sendMessageアクションをdispatch
+  yield put(sendMessage({
+    id: new Date().getTime().toString(),
+    sender: "me",
+    userName: "User",
+    chatText,
+  }));
+}
+
 // actionを監視して適切なSagaを呼び出す
 function* watchSendMessage() {
   yield takeLatest(sendMessage.type, handleSendMessage);
+  yield takeLatest(sendMessageByHelpButton.type, handleSendMessageByHelpButton);
 }
-
 export default watchSendMessage;

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { sendMessage, sendMessageByHelpButton } from "../../pages/details/detailsSlice";
+import { sendMessage, sendMessageByHelpButton, setCurrentScreen } from "../../pages/details/detailsSlice";
 import { TextField, Button, Container, Paper, List, ListItem, Box, Grid, Typography } from "@mui/material";
 import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
 import TemplateSelector from "../molecules/TemplateMessage";
+import { useLocation } from "react-router-dom";
 
 interface MessageTemplate {
   messageText: string;
@@ -20,9 +21,19 @@ const ChatApp: React.FC<TemplateSelectorProps> = ({
   messageTemplates: messageTemplates,
 }) => {
   const dispatch = useDispatch();
+  //  ReduxからcurrentScreenを取得
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const elementId = searchParams.get("elementId"); // URLからelementIdを取得
+  
   const messages = useSelector((state: RootState) => state.details.chatMessages);
   const [input, setInput] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+
+  // ✅ currentScreenをReduxに保存
+  useEffect(() => {
+    dispatch(setCurrentScreen(elementId || null));
+  }, [elementId, dispatch]);
 
   // メッセージを送信
   const handleSendMessage = () => {
