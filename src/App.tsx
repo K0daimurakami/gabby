@@ -40,9 +40,9 @@ import Rewd030Details from "./pages/details/Rewd030Details";
 import Succ031Details from "./pages/details/Succ031Details";
 import Succ032Details from "./pages/details/Succ032Details";
 import Succ033Details from "./pages/details/Succ033Details";
-import Compl034Details from "./pages/details/Comp034Details";
-import Compl035Details from "./pages/details/Comp035Details";
-import Compl036Details from "./pages/details/Comp036Details";
+import Comp034Details from "./pages/details/Comp034Details";
+import Comp035Details from "./pages/details/Comp035Details";
+import Comp036Details from "./pages/details/Comp036Details";
 
 // デフォルトカラーの設定
 const theme = createTheme({
@@ -104,9 +104,9 @@ const componentMap: Record<string, React.FC> = {
   "Succession_LeaderIdentification_031": Succ031Details,
   "Succession_DevelopmentProgram_032": Succ032Details,
   "Succession_ProgressMonitoring_033": Succ033Details,
-  "Compliance_LaborLaw_034": Compl034Details,
-  "Compliance_DataProtection_035": Compl035Details,
-  "Compliance_InternationalRegulation_036": Compl036Details,  
+  "Compliance_LaborLaw_034": Comp034Details,
+  "Compliance_DataProtection_035": Comp035Details,
+  "Compliance_InternationalRegulation_036": Comp036Details,  
 };
 
 /**

@@ -8,7 +8,7 @@ import ResultImageContainer from "../../components/organisms/resultImageContaine
 import ChatApp from "../../components/organisms/chatContainer";
 import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
 
-const Compl036Details: React.FC = () => {
+const Comp036Details: React.FC = () => {
   const isShowOutput = useSelector(
     (state: RootState) => state.details.isShowOutput
   );
@@ -59,4 +59,4 @@ const Compl036Details: React.FC = () => {
   );
 };
 
-export default Compl036Details;
+export default Comp036Details;
