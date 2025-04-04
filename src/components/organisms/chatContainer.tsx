@@ -1,9 +1,28 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { sendMessage, sendMessageByHelpButton, setCurrentScreen } from "../../pages/details/detailsSlice";
-import { TextField, Button, Container, Paper, List, ListItem, Box, Grid, Typography } from "@mui/material";
-import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
+import {
+  sendMessage,
+  sendMessageByHelpButton,
+  setCurrentScreen,
+} from "../../pages/details/detailsSlice";
+import {
+  TextField,
+  Button,
+  Container,
+  Paper,
+  List,
+  ListItem,
+  Box,
+  Grid,
+  Typography,
+  LinearProgress,
+} from "@mui/material";
+import {
+  Send as SendIcon,
+  Help as HelpIcon,
+  Info as InfoIcon,
+} from "@mui/icons-material";
 import TemplateSelector from "../molecules/TemplateMessage";
 import { useLocation } from "react-router-dom";
 
@@ -17,16 +36,20 @@ interface TemplateSelectorProps {
   messageTemplates: MessageTemplate[];
 }
 
-const ChatApp: React.FC<TemplateSelectorProps> = ({
-  messageTemplates: messageTemplates,
-}) => {
+const ChatApp: React.FC<TemplateSelectorProps> = ({ messageTemplates }) => {
   const dispatch = useDispatch();
   //  ReduxからcurrentScreenを取得
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const elementId = searchParams.get("elementId"); // URLからelementIdを取得
-  
-  const messages = useSelector((state: RootState) => state.details.chatMessages);
+
+  const messages = useSelector(
+    (state: RootState) => state.details.chatMessages
+  );
+
+  const onProcessing = useSelector(
+    (state: RootState) => state.details.onProcessing
+  );
   const [input, setInput] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
 
@@ -99,6 +122,26 @@ const ChatApp: React.FC<TemplateSelectorProps> = ({
                 </Box>
               </ListItem>
             ))}
+            {onProcessing && (
+              <Box sx={{ position: "relative", width: "100%", marginTop: 3 }}>
+                <LinearProgress sx={{ width: "100%" }} />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    color: "gray",
+                    backgroundColor: "#fff", // 背景を白に設定
+                    padding: "4px 12px", // テキスト周りの余白
+                    borderRadius: "8px", // 角を丸める
+                  }}
+                >
+                  ただいま対応中です！
+                </Typography>
+              </Box>
+            )}
           </List>
         </Box>
 
