@@ -2,30 +2,35 @@
     "categories": {
         "オンボーディング支援": [
             {
+                "elementId": "knowledge_support_agent",
                 "title": "業務知識・手続き支援エージェント",
                 "description": "新入社員への業務知識の提供と必要な手続きをガイドします。",
                 "image": "images/knowledgeSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "skill_gap_agent",
                 "title": "スキルギャップ診断と育成エージェント",
                 "description": "新入社員のスキルギャップを診断し、個別の育成計画を提案します。",
                 "image": "images/1on1SupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "network_building_agent",
                 "title": "社内ネットワーク構築支援エージェント",
                 "description": "新入社員が社内の人脈を効率的に構築できるよう導きます。",
                 "image": "images/eventCommunicattionSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "onboarding_progress_agent",
                 "title": "オンボーディング進捗管理エージェント",
                 "description": "新入社員の適応状況を追跡し、必要に応じて追加支援を提案します。",
                 "image": "images/knowledgeSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "culture_values_agent",
                 "title": "文化・価値観の浸透支援エージェント",
                 "description": "企業文化や価値観を新入社員に効果的に伝えるサポートを行います。",
                 "image": "images/1on1SupportMyle.png",
@@ -34,36 +39,42 @@
         ],
         "ダイバーシティ推進": [
             {
+                "elementId": "genderDiversityAgent",
                 "title": "ジェンダーダイバーシティエージェント",
                 "description": "職場におけるジェンダー平等を促進し、バランスのとれた環境づくりを実現します。",
                 "image": "images/eventCommunicattionSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "culturalNationalityDiversityAgent",
                 "title": "文化・国籍の多様性エージェント",
                 "description": "異なる文化や国籍を持つ従業員の統合と相互理解を促進します。",
                 "image": "images/knowledgeSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "disabilityEmploymentSupportAgent",
                 "title": "障がい者雇用と支援エージェント",
                 "description": "障がいを持つ従業員のワークライフを向上させるための包括的な支援を提供します。",
                 "image": "images/1on1SupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "lgbtqInclusivityAgent",
                 "title": "LGBTQ+の包摂性向上エージェント",
                 "description": "LGBTQ+コミュニティに対する理解を深め、インクルーシブな職場環境を構築します。",
                 "image": "images/eventCommunicattionSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "ageDiversityAgent",
                 "title": "年齢多様性（世代間融合）エージェント",
                 "description": "異なる世代間のコミュニケーションと協力を促進し、知識継承を円滑にします。",
                 "image": "images/knowledgeSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "regionalDiversityAgent",
                 "title": "地域の多様性（地方創生）エージェント",
                 "description": "地域特性を活かした多様な働き方と地方創生の取り組みを支援します。",
                 "image": "images/1on1SupportMyle.png",
@@ -72,30 +83,35 @@
         ],
         "リーダーシップ育成": [
             {
+                "elementId": "leaderIdentificationAgent",
                 "title": "リーダーの特定エージェント",
                 "description": "組織内の潜在的リーダーを発掘し、その素質を正確に評価します。",
                 "image": "images/eventCommunicattionSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "leadershipTrainingDesignAgent",
                 "title": "リーダーシップトレーニング設計エージェント",
                 "description": "個々のリーダーのニーズに合わせたカスタマイズ型トレーニングプログラムを設計します。",
                 "image": "images/knowledgeSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "practicalLeadershipSupportAgent",
                 "title": "現場型リーダーシップ開発支援エージェント",
                 "description": "実務を通じたリーダーシップスキル向上のための実践的支援を行います。",
                 "image": "images/1on1SupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "leaderMonitoringAgent",
                 "title": "リーダー候補の進捗モニタリングエージェント",
                 "description": "リーダー育成プログラムの効果を測定し、継続的な成長をサポートします。",
                 "image": "images/eventCommunicattionSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "crossOrganizationalLeaderNetworkingAgent",
                 "title": "組織間リーダー交流支援エージェント",
                 "description": "部門を超えたリーダー間の交流と知見共有を促進します。",
                 "image": "images/knowledgeSupportMyle.png",
@@ -104,30 +120,35 @@
         ],
         "組織風土改善": [
             {
+                "elementId": "engagementScoreVisualizationAgent",
                 "title": "エンゲージメントスコアの可視化エージェント",
                 "description": "従業員エンゲージメントを数値化し、リアルタイムで組織状態を把握します。",
                 "image": "images/1on1SupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "feedbackCollectionAgent",
                 "title": "社員フィードバック収集と分析エージェント",
                 "description": "匿名フィードバックを収集・分析し、組織課題の早期発見を支援します。",
                 "image": "images/eventCommunicattionSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "workshopTrainingSupportAgent",
                 "title": "ワークショップ・トレーニング支援エージェント",
                 "description": "組織風土改善のためのワークショップ設計と実施をサポートします。",
                 "image": "images/knowledgeSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "diversityInclusionPromotionAgent",
                 "title": "多様性と包括性（D&I）推進支援エージェント",
                 "description": "組織内の多様性と包括性を高めるための施策立案と実行を支援します。",
                 "image": "images/1on1SupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "cultureChangeMonitoringAgent",
                 "title": "文化変革プログラムのモニタリングエージェント",
                 "description": "組織文化改革の進捗状況を追跡し、効果測定を行います。",
                 "image": "images/eventCommunicattionSupportMyle.png",
@@ -136,18 +157,21 @@
         ],
         "スキル・能力開発（全般）": [
             {
+                "elementId": "reskillingAgent",
                 "title": "リスキリングエージェント",
                 "description": "従業員の新しいスキル獲得を支援し、キャリア転換をサポートします。",
                 "image": "images/knowledgeSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "careerDevelopmentSupportAgent",
                 "title": "キャリア開発支援エージェント",
                 "description": "個々の従業員のキャリアパス設計と実現を支援します。",
                 "image": "images/1on1SupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "performanceManagementAgent",
                 "title": "パフォーマンス管理エージェント",
                 "description": "業績評価と能力開発を連動させ、継続的な成長を促進します。",
                 "image": "images/eventCommunicattionSupportMyle.png",
@@ -156,6 +180,7 @@
         ],
         "採用関連": [
             {
+                "elementId": "referralRecruitmentSupportAgent",
                 "title": "リファラル採用支援エージェント",
                 "description": "従業員の人脈を活用した採用活動を効率化し、質の高い人材獲得を実現します。",
                 "image": "images/knowledgeSupportMyle.png",
@@ -164,18 +189,21 @@
         ],
         "福利厚生（Well-being支援）": [
             {
+                "elementId": "healthSupportProgramAgent",
                 "title": "健康支援プログラムエージェント",
                 "description": "従業員の心身の健康をサポートし、予防医療や健康増進活動を推進します。",
                 "image": "images/1on1SupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "cafeteriaPlanManagementAgent",
                 "title": "カフェテリアプラン管理エージェント",
                 "description": "多様な福利厚生メニューから従業員が自由に選択できる制度を管理します。",
                 "image": "images/eventCommunicattionSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "hybridWorkSupportAgent",
                 "title": "ハイブリッドワーク支援エージェント",
                 "description": "リモートとオフィスのバランスを取りながら効率的に働ける環境づくりを支援します。",
                 "image": "images/knowledgeSupportMyle.png",
@@ -184,12 +212,14 @@
         ],
         "リワード（報酬・インセンティブ）": [
             {
+                "elementId": "nonMonetaryRewardAgent",
                 "title": "非金銭的報酬（称賛・認識）エージェント",
                 "description": "社内表彰制度や感謝の表現を通じて従業員のモチベーションを高めます。",
                 "image": "images/1on1SupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "performanceLinkedRewardAgent",
                 "title": "パフォーマンス連動型報酬エージェント",
                 "description": "成果に基づく公平な報酬システムを設計し、運用をサポートします。",
                 "image": "images/eventCommunicattionSupportMyle.png",
@@ -198,18 +228,21 @@
         ],
         "サクセッションプランニング": [
             {
+                "elementId": "successorIdentificationAgent",
                 "title": "リーダー候補の特定エージェント",
                 "description": "将来の経営幹部や重要ポジションを担う人材を見極め、早期に育成計画を立てます。",
                 "image": "images/knowledgeSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "successionProgramDesignAgent",
                 "title": "育成プログラムの設計エージェント",
                 "description": "次世代リーダーの育成に必要なスキルと経験を体系的に提供するプログラムを設計します。",
                 "image": "images/1on1SupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "successionMonitoringAgent",
                 "title": "進捗モニタリングと評価エージェント",
                 "description": "後継者育成計画の進捗を定期的に確認し、必要に応じて調整を行います。",
                 "image": "images/eventCommunicattionSupportMyle.png",
@@ -218,18 +251,21 @@
         ],
         "HRコンプライアンス": [
             {
+                "elementId": "laborLawComplianceAgent",
                 "title": "労働法対応エージェント",
                 "description": "変化する労働法規制に適応し、法令順守の徹底をサポートします。",
                 "image": "images/knowledgeSupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "dataProtectionPrivacyAgent",
                 "title": "データ保護とプライバシーエージェント",
                 "description": "従業員データの適切な管理と保護を実現し、プライバシーリスクを低減します。",
                 "image": "images/1on1SupportMyle.png",
                 "detailPage": "details"
             },
             {
+                "elementId": "globalComplianceAgent",
                 "title": "多国籍法規制対応エージェント",
                 "description": "グローバル人事における各国の法的要件に対応し、国際的なコンプライアンスを確保します。",
                 "image": "images/eventCommunicattionSupportMyle.png",

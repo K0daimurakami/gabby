@@ -15,6 +15,7 @@ import {
   Box,
   Grid,
   Typography,
+  LinearProgress,
 } from "@mui/material";
 import {
   Send as SendIcon,
@@ -25,6 +26,7 @@ import {
 const ChatApp = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state: RootState) => state.details.messages);
+  const onProcessing = useSelector((state: RootState) => state.details.onProcessing);
   const [input, setInput] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
 
@@ -92,6 +94,26 @@ const ChatApp = () => {
                 </Box>
               </ListItem>
             ))}
+            {onProcessing && (
+              <Box sx={{ position: "relative", width: "100%", marginTop: 3 }}>
+              <LinearProgress sx={{ width: "100%" }} />
+              <Typography
+                variant="body2"
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  color: "gray",
+                  backgroundColor: "#fff", // 背景を白に設定
+                  padding: "4px 12px", // テキスト周りの余白
+                  borderRadius: "8px", // 角を丸める
+                }}
+              >
+                ただいま対応中です！
+              </Typography>
+            </Box>
+            )}
           </List>
         </Box>
 

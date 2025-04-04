@@ -130,6 +130,12 @@ const detailsSlice = createSlice({
       state.onProcessing = false;
       state.isActiveSendButton = true;
       state.isShowOutput = true;
+      state.messages.push({
+        id: new Date().getTime().toString(),
+        sender: "other",
+        userName: "Bot",
+        text: "処理が完了しました。",
+      });
     },
 
     sendMessageByHelpButton: (state, action: PayloadAction<string>) => {
