@@ -4,6 +4,7 @@ import AgentCard from "../molecules/AgentCard";
 
 // エージェント項目の型定義
 interface AgentItem {
+  elementId: string;
   title: string;
   description: string;
   image: string;
@@ -12,7 +13,7 @@ interface AgentItem {
 
 // コンポーネントのプロパティ型定義
 interface Props {
-  title: string;
+  categoryName: string;
   agents: AgentItem[];
 }
 
@@ -20,20 +21,22 @@ interface Props {
  * エージェントカテゴリーコンテナコンポーネント
  * 特定のカテゴリーに属するエージェントカードを表示する
  */
-const AgentCategoryContainer: React.FC<Props> = ({ title, agents }) => {
+const AgentCategoryContainer: React.FC<Props> = ({ categoryName, agents }) => {
   return (
     <Box sx={{ marginBottom: 4 }}>
       {/* カテゴリータイトル */}
       <Typography variant="h5" sx={{ backgroundColor: '#E3823D', color: 'white' }}>
-        {title}
+        {categoryName}
       </Typography>
       
       {/* エージェントカードのコンテナ - フレックスボックスでラップして表示 */}
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
         {agents.map((agent, index) => (
           <AgentCard
-            key={index}
-            title={agent.title}
+            elementId={agent.elementId}
+            id={index + 1}
+            categoryName={categoryName}
+            myleName={agent.title}
             description={agent.description}
             image={agent.image}
             navigateTo={`/${agent.detailPage}`} // detailPageは必須項目

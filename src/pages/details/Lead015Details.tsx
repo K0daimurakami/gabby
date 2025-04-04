@@ -8,7 +8,7 @@ import ResultImageContainer from "../../components/organisms/resultImageContaine
 import ChatApp from "../../components/organisms/chatContainer";
 import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
 
-const Home: React.FC = () => {
+const Lead015Details: React.FC = () => {
   const isShowOutput = useSelector(
     (state: RootState) => state.details.isShowOutput
   );
@@ -16,17 +16,17 @@ const Home: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "AさんとBさんにイベント告知をして",
+        messageText: "リーダーシップ15：AさんとBさんにイベント告知をして",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "女性向け産休説明会を女性従業員に告知して",
+        messageText: "リーダーシップ15：女性向け産休説明会を女性従業員に告知して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "管理職に管理職向けイベントを告知して",
+        messageText: "リーダーシップ15：管理職に管理職向けイベントを告知して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },
@@ -59,4 +59,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Lead015Details;

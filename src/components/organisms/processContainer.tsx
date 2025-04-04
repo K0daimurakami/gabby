@@ -73,7 +73,7 @@ const ProcessContainer = () => {
                   )
                 }
               >
-                <Typography variant="body1">{msg.text}</Typography>
+                <Typography variant="body1">{msg.processText}</Typography>
               </StepLabel>
             </Step>
           ))}

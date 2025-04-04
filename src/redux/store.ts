@@ -2,7 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import homeReducer from "../pages/home/homeSlice";
 import detailsReducer from "../pages/details/detailsSlice";
 import createSagaMiddleware from "redux-saga";
-import watchSendMessage from "../pages/home/saga";
+import watchSelectMyle from "../pages/home/saga";
+import watchSendMessage from "../pages/details/saga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,6 +16,7 @@ const store = configureStore({
     getDefaultMiddleware().concat(sagaMiddleware),
 });
 
+sagaMiddleware.run(watchSelectMyle);
 sagaMiddleware.run(watchSendMessage);
 
 export type RootState = ReturnType<typeof store.getState>;

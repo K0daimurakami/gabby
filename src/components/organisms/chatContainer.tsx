@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import {
   sendMessage,
   sendMessageByHelpButton,
+  setCurrentScreen,
 } from "../../pages/details/detailsSlice";
 import {
   TextField,
@@ -22,13 +23,40 @@ import {
   Help as HelpIcon,
   Info as InfoIcon,
 } from "@mui/icons-material";
+import TemplateSelector from "../molecules/TemplateMessage";
+import { useLocation } from "react-router-dom";
 
-const ChatApp = () => {
+interface MessageTemplate {
+  messageText: string;
+  icon: React.ReactNode;
+  type: string;
+}
+
+interface TemplateSelectorProps {
+  messageTemplates: MessageTemplate[];
+}
+
+const ChatApp: React.FC<TemplateSelectorProps> = ({ messageTemplates }) => {
   const dispatch = useDispatch();
-  const messages = useSelector((state: RootState) => state.details.messages);
-  const onProcessing = useSelector((state: RootState) => state.details.onProcessing);
+  //  ReduxからcurrentScreenを取得
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const elementId = searchParams.get("elementId"); // URLからelementIdを取得
+
+  const messages = useSelector(
+    (state: RootState) => state.details.chatMessages
+  );
+
+  const onProcessing = useSelector(
+    (state: RootState) => state.details.onProcessing
+  );
   const [input, setInput] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+
+  // ✅ currentScreenをReduxに保存
+  useEffect(() => {
+    dispatch(setCurrentScreen(elementId || null));
+  }, [elementId, dispatch]);
 
   // メッセージを送信
   const handleSendMessage = () => {
@@ -38,7 +66,7 @@ const ChatApp = () => {
           id: Date.now().toString(),
           sender: "me",
           userName: "User",
-          text: input,
+          chatText: input,
         })
       );
       setInput("");
@@ -90,117 +118,39 @@ const ChatApp = () => {
                     textAlign: message.sender === "me" ? "right" : "left",
                   }}
                 >
-                  <Box>{message.text}</Box>
+                  <Box>{message.chatText}</Box>
                 </Box>
               </ListItem>
             ))}
             {onProcessing && (
               <Box sx={{ position: "relative", width: "100%", marginTop: 3 }}>
-              <LinearProgress sx={{ width: "100%" }} />
-              <Typography
-                variant="body2"
-                sx={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  color: "gray",
-                  backgroundColor: "#fff", // 背景を白に設定
-                  padding: "4px 12px", // テキスト周りの余白
-                  borderRadius: "8px", // 角を丸める
-                }}
-              >
-                ただいま対応中です！
-              </Typography>
-            </Box>
+                <LinearProgress sx={{ width: "100%" }} />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    color: "gray",
+                    backgroundColor: "#fff", // 背景を白に設定
+                    padding: "4px 12px", // テキスト周りの余白
+                    borderRadius: "8px", // 角を丸める
+                  }}
+                >
+                  ただいま対応中です！
+                </Typography>
+              </Box>
             )}
           </List>
         </Box>
 
-        {/* テンプレート選択 */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: 2,
-          }}
-        >
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
-              <Paper
-                sx={{
-                  padding: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  border:
-                    selectedTemplate === "message"
-                      ? "2px solid #007bff"
-                      : "none",
-                  "&:hover": { backgroundColor: "#F1CF24" },
-                }}
-                onClick={() =>
-                  handleTemplateClick("AさんとBさんにイベント告知をして")
-                }
-              >
-                <SendIcon fontSize="large" />
-                <Typography variant="body2" sx={{ marginTop: 1 }}>
-                  AさんとBさんにイベント告知をして
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={4}>
-              <Paper
-                sx={{
-                  padding: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  border:
-                    selectedTemplate === "help" ? "2px solid #007bff" : "none",
-                  "&:hover": { backgroundColor: "#F1CF24" },
-                }}
-                onClick={() =>
-                  handleTemplateClick(
-                    "女性向け産休説明会を女性従業員に告知して"
-                  )
-                }
-              >
-                <HelpIcon fontSize="large" />
-                <Typography variant="body2" sx={{ marginTop: 1 }}>
-                  女性向け産休説明会を女性従業員に告知して
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={4}>
-              <Paper
-                sx={{
-                  padding: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  border:
-                    selectedTemplate === "info" ? "2px solid #007bff" : "none",
-                  "&:hover": { backgroundColor: "#F1CF24" },
-                }}
-                onClick={() =>
-                  handleTemplateClick("管理職に管理職向けイベントを告知して")
-                }
-              >
-                <InfoIcon fontSize="large" />
-                <Typography variant="body2" sx={{ marginTop: 1 }}>
-                  管理職に管理職向けイベントを告知して
-                </Typography>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Box>
+        {/* 入力テンプレート */}
+        <TemplateSelector
+          templates={messageTemplates}
+          selectedTemplate={selectedTemplate}
+          onTemplateClick={handleTemplateClick}
+        />
 
         {/* メッセージ入力フォーム */}
         <Box sx={{ display: "flex", marginTop: 2 }}>
