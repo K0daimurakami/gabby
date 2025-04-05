@@ -70,7 +70,7 @@ const AgentCard: React.FC<Props> = ({
       >
         {/* Title atom - 固定高さ */}
         <Box sx={{ height: 60, mb: 1 }}>
-          <Typography text={categoryName} variant="h6" />
+          <Typography text={myleName} variant="h6" />
         </Box>
 
         {/* Image atom - 固定高さ */}
