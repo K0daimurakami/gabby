@@ -44,6 +44,7 @@ const AgentCard: React.FC<Props> = ({
         id: id,
         categoryName: categoryName,
         myleName: myleName,
+        description: description,
       })
     );
     navigate(`${path}?elementId=${elementId}`);

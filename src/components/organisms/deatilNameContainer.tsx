@@ -6,8 +6,18 @@ import Typography from '@mui/material/Typography';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Box from '@mui/material/Box';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
-export default function AccordionExpandIcon() {
+/**
+ * TODO 現状テキストがベタガキだが、ここをHome画面のJSONから撮ってきたデータを入れるようにする
+ * ただcategoriesを入れるだけだと、どのmyleの名前を取って来ればいいかわからない
+ * homeStateのselectMyleから取ってくるようにする（selectMyleに名前と文章を入れる必要がある）
+*/
+
+const AccordionExpandIcon: React.FC = () => {
+  const selectedMyle = useSelector((state: RootState) => state.home.selectedMyle);
+
   return (
     <div>
       <Accordion>
@@ -29,16 +39,18 @@ export default function AccordionExpandIcon() {
           fontWeight: "bold",
           marginRight: "8px",
         }}
-      >オンボーディング支援</Box>
-          <Typography variant='h5' component="span" sx={{ display: "flex", alignItems: "center", fontWeight: "bold" }}>  業務知識・手続き支援エージェント</Typography>
+      >{selectedMyle.categoryName}</Box>
+          <Typography variant='h5' component="span" sx={{ display: "flex", alignItems: "center", fontWeight: "bold" }}>  {selectedMyle.myleName}</Typography>
 
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            新入社員への業務知識の提供と必要な手続きをガイドします。
+            {selectedMyle.description}
           </Typography>
         </AccordionDetails>
       </Accordion>
     </div>
   );
-}
+};
+
+export default AccordionExpandIcon;
