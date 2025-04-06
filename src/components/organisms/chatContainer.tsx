@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import {
+  resetState,
   sendMessage,
   sendMessageByHelpButton,
   setCurrentScreen,
@@ -38,25 +39,25 @@ interface TemplateSelectorProps {
 
 const ChatApp: React.FC<TemplateSelectorProps> = ({ messageTemplates }) => {
   const dispatch = useDispatch();
-  //  ReduxからcurrentScreenを取得
+  //  URLからcurrentScreenを取得
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const elementId = searchParams.get("elementId"); // URLからelementIdを取得
+  useEffect(() => {
+    dispatch(resetState()); // state情報を初期化
+    dispatch(setCurrentScreen(elementId || null)); // ✅ currentScreenをReduxに保存
+  }, [elementId, dispatch]);
 
+  // チャット内のメッセージ取得
   const messages = useSelector(
     (state: RootState) => state.details.chatMessages
   );
-
+  // 詳細画面の処理フラグ取得
   const onProcessing = useSelector(
     (state: RootState) => state.details.onProcessing
   );
   const [input, setInput] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
-
-  // ✅ currentScreenをReduxに保存
-  useEffect(() => {
-    dispatch(setCurrentScreen(elementId || null));
-  }, [elementId, dispatch]);
 
   // メッセージを送信
   const handleSendMessage = () => {
@@ -99,6 +100,7 @@ const ChatApp: React.FC<TemplateSelectorProps> = ({ messageTemplates }) => {
         {/* メッセージリスト */}
         <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
           <List>
+            {/* 入力されたメッセージ表示 */}
             {messages.map((message) => (
               <ListItem
                 key={message.id}
@@ -122,6 +124,7 @@ const ChatApp: React.FC<TemplateSelectorProps> = ({ messageTemplates }) => {
                 </Box>
               </ListItem>
             ))}
+            {/* 処理中バー */}
             {onProcessing && (
               <Box sx={{ position: "relative", width: "100%", marginTop: 3 }}>
                 <LinearProgress sx={{ width: "100%" }} />
