@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Box, Typography } from "@mui/material";
 import AgentCategoryContainer from "../organisms/AgentCategoryContainer";
 
-// エージェント項目の型定義
+// TOP画面の各エージェントが持つ項目
 interface AgentItem {
   elementId: string;
   title: string;
@@ -13,7 +13,7 @@ interface AgentItem {
 
 // Note: We're removing the unused Category interface
 
-// コンポーネントのプロパティ型定義
+// エージェントをまとめるカテゴリが持つ項目
 interface Props {
   categories: {
     [key: string]: AgentItem[];

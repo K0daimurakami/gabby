@@ -2,44 +2,39 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import messagesData from "../../constants/detail_messages.json";
 import { useLocation } from "react-router-dom";
 
-interface MessagePattern {
-  process_messages: string[];
-  send_trigger_message: string;
-  myle_response: string;
-  output_url: string;
-}
+/**
+ * 詳細画面に関わるRedux
+ * 1. 画面上の情報
+ * 2. 画面裏の情報
+*/
 
-interface Screen {
-  [key: string]: MessagePattern; // pattern1, pattern2, pattern3 に対応
-}
-
-// チャット内メッセージ情報
+// 1. 画面上の情報
+// チャット内のメッセージ情報
 interface ChatMessage {
   id: string;
   sender: "me" | "other"; // ユーザ側メッセージか、Myle側メッセージか
   userName: string;
   chatText: string; // メッセージ内容
 }
-
+// 各処理プロセスの情報
 interface ProcessMessage {
   id: string;
   state: "pending" | "processing" | "success";
   isLoading: boolean;
   processText: string;
 }
-
+// 画面上の情報
 interface DetailsState {
-  chatMessages: ChatMessage[];
+  chatMessages: ChatMessage[];　// チャット内のメッセージ情報
   onProcessing: boolean;
   isActiveSendButton: boolean;
-  processMessages: ProcessMessage[];
+  processMessages: ProcessMessage[]; // 各処理プロセスの情報
   isShowOutput: boolean;
   currentStep: number;
   outputUrl: string | null;
   isShowHelpButton: boolean;
   currentScreen: string | null;
 }
-
 const initialState: DetailsState = {
   chatMessages: [],
   onProcessing: false,
@@ -51,6 +46,19 @@ const initialState: DetailsState = {
   isShowHelpButton: true,
   currentScreen: null,
 };
+
+// 2. 画面裏の情報
+// 【JSONから取得】各テンプレメッセージに対する情報
+interface MessagePattern {
+  process_messages: string[];
+  send_trigger_message: string;
+  myle_response: string;
+  output_url: string;
+}
+// 【JSONから取得】各Myleに対する情報
+interface Screen {
+  [key: string]: MessagePattern; // pattern1, pattern2, pattern3 に対応
+}
 
 const detailsSlice = createSlice({
   name: "details",
@@ -176,11 +184,11 @@ const detailsSlice = createSlice({
       state.onProcessing = false;
       state.isActiveSendButton = true;
       state.isShowOutput = true;
-      state.messages.push({
+      state.chatMessages.push({
         id: new Date().getTime().toString(),
         sender: "other",
         userName: "Bot",
-        text: "処理が完了しました。",
+        chatText: "処理が完了しました。",
       });
     },
 
