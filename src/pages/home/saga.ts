@@ -1,6 +1,7 @@
-import { call, takeLatest } from "redux-saga/effects";
+import { call, takeLatest, select } from "redux-saga/effects";
 import { selectMyle } from "./homeSlice";
 import axios, { AxiosResponse } from "axios";
+import { RootState } from "../../redux/store";
 
 // APIのURL設定
 const API_URL = "https://2sva6a36r5.execute-api.ap-northeast-1.amazonaws.com";
@@ -8,6 +9,10 @@ const API_URL = "https://2sva6a36r5.execute-api.ap-northeast-1.amazonaws.com";
 // メッセージ送信の非同期処理
 function* handleSendSelectedMyle(action: ReturnType<typeof selectMyle>) {
   try {
+
+    // 認証情報を取得
+    const userProfile: RootState["user"] = yield select((state) => state.user.profile);
+      
     console.log("APIリクエスト開始");
     console.log("API URL:", `${API_URL}/api/v1/users/test0323/activities`);
     console.log("送信データ:", { payload: action.payload });
@@ -17,6 +22,8 @@ function* handleSendSelectedMyle(action: ReturnType<typeof selectMyle>) {
       `${API_URL}/api/v1/users/test0323/activities`, // ここをAPIGatewayのURLに設定
       {
         elementId: action.payload.elementId, // 操作データを識別する一意な文字列
+        userId: userProfile.sub,
+        userMailAddress: userProfile.email,
         actionType: "selectMyle", // 操作種別：Myle選択
         categoryName: action.payload.categoryName, // Myleのカテゴリ
         myleId: action.payload.id, // カテゴリ内のMyleのID
