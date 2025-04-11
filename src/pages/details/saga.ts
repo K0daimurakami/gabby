@@ -19,7 +19,7 @@ function* handleSendMessage(action: ReturnType<typeof sendMessage>) {
 
     console.log("APIリクエスト開始");
     console.log("action.payload: ", action.payload);
-    console.log("ユーザ情報: ", userProfile.sub);
+    console.log("ユーザ情報: ", userProfile.email);
 
     // 直接API呼び出しを行う
     const response: AxiosResponse<any> = yield call(
@@ -28,6 +28,7 @@ function* handleSendMessage(action: ReturnType<typeof sendMessage>) {
       {
         elementId: uniqueIdentifier, // メッセージの内容を送信
         userId: userProfile.sub,
+        userMailAddress: userProfile.email,
         actionType: "InputMessage",
         categoryName: previousState.selectedMyle.categoryName, // Myleのカテゴリ
         myleId: previousState.selectedMyle.id, // カテゴリ内のMyleのID
