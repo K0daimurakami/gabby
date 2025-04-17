@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import store from "./redux/store";
 import { useAuth } from "react-oidc-context";
 import GlobalMenu from "./components/layout/GlobalMenu";
 import Home from "./pages/home/Home";
+import { setUserProfile, clearUserProfile } from "./pages/home/userSlice";
 import Details from "./pages/details/Details";
 import { Container, CssBaseline, Box, Button, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -142,6 +143,16 @@ const DynamicDetailComponent: React.FC = () => {
 const App: React.FC = () => {
   // 認証状態を取得
   const auth = useAuth();
+  const dispatch = useDispatch();
+
+  // 認証済みならユーザ情報をReduxに保存
+  React.useEffect(() => {
+    if (auth.isAuthenticated && auth.user) {
+      dispatch(setUserProfile(auth.user.profile)); // 👈 ここで保存
+    } else {
+      dispatch(clearUserProfile());
+    }
+  }, [auth.isAuthenticated, auth.user, dispatch]);
 
   // ローディング中
   if (auth.isLoading) {

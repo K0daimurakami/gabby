@@ -9,18 +9,26 @@ const API_URL = "https://2sva6a36r5.execute-api.ap-northeast-1.amazonaws.com";
 // API呼び出しを行うSaga
 function* handleSendMessage(action: ReturnType<typeof sendMessage>) {
   try {
+
+    // 認証情報を取得
+    const userProfile: RootState["user"] = yield select((state) => state.user.profile);
+  
     // ホーム画面からstateを取得
     const previousState: RootState["home"] = yield select((state) => state.home);
     const uniqueIdentifier = `${previousState.selectedMyle.elementId}_${Date.now()}`;
 
     console.log("APIリクエスト開始");
     console.log("action.payload: ", action.payload);
+    console.log("ユーザ情報: ", userProfile.email);
+
     // 直接API呼び出しを行う
     const response: AxiosResponse<any> = yield call(
       axios.post,
       `${API_URL}/api/v1/users/test0323/activities`, // ここをAPIGatewayのURLに設定
       {
         elementId: uniqueIdentifier, // メッセージの内容を送信
+        userId: userProfile.sub,
+        userMailAddress: userProfile.email,
         actionType: "InputMessage",
         categoryName: previousState.selectedMyle.categoryName, // Myleのカテゴリ
         myleId: previousState.selectedMyle.id, // カテゴリ内のMyleのID

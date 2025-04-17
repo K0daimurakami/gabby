@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "../pages/home/userSlice"
 import homeReducer from "../pages/home/homeSlice";
 import detailsReducer from "../pages/details/detailsSlice";
 import createSagaMiddleware from "redux-saga";
@@ -9,6 +10,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
   reducer: {
+    user: userReducer,
     home: homeReducer,
     details: detailsReducer,
   },
