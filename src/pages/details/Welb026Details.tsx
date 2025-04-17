@@ -16,17 +16,17 @@ const Welb026Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "福利厚生26：AさんとBさんにイベント告知をして",
+        messageText: "従業員向け健康支援プログラムを提供して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "福利厚生26：女性向け産休説明会を女性従業員に告知して",
+        messageText: "健康増進活動を月次で計画し、実施支援を行って",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "福利厚生26：管理職に管理職向けイベントを告知して",
+        messageText: "心身の健康に関する社内セミナーを企画して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },

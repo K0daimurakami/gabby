@@ -16,17 +16,17 @@ const Skil022Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "スキル能力22：AさんとBさんにイベント告知をして",
+        messageText: "Aさんのキャリア転換に必要なリスキリングプランを提案して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "スキル能力22：女性向け産休説明会を女性従業員に告知して",
+        messageText: "部門内でリスキリング対象となる従業員を特定して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "スキル能力22：管理職に管理職向けイベントを告知して",
+        messageText: "従業員向けのスキルアップ支援プログラムを設計して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },

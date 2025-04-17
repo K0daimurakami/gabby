@@ -16,17 +16,17 @@ const Rewd030Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "リワード30：AさんとBさんにイベント告知をして",
+        messageText: "業績に応じた報酬制度を新たに設計して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "リワード30：女性向け産休説明会を女性従業員に告知して",
+        messageText: "社員個々のパフォーマンスを正確に反映する評価基準を作成して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "リワード30：管理職に管理職向けイベントを告知して",
+        messageText: "パフォーマンス評価結果を基に報酬支給を行う仕組みを整備して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },

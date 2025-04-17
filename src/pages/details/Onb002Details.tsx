@@ -16,17 +16,17 @@ const Onb002Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "オンボーディング2：AさんとBさんにイベント告知をして",
+        messageText: "Aさんにスキル診断を実施して育成計画を提案して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "オンボーディング2：女性向け産休説明会を女性従業員に告知して",
+        messageText: "新入社員全員のスキルギャップを診断して育成プランを作成して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "オンボーディング2：管理職に管理職向けイベントを告知して",
+        messageText: "スキル診断の結果をもとにフォローが必要な社員に補足研修を案内して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },
