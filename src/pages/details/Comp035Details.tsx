@@ -16,17 +16,17 @@ const Comp035Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "コンプラ35：AさんとBさんにイベント告知をして",
+        messageText: "従業員の個人情報を適切に保護する方針を導入して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "コンプラ35：女性向け産休説明会を女性従業員に告知して",
+        messageText: "プライバシーリスクを最小化するための対策を講じて",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "コンプラ35：管理職に管理職向けイベントを告知して",
+        messageText: "データ保護のルールを全社員に教育し、遵守を徹底させて",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },

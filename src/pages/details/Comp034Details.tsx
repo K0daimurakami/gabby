@@ -16,17 +16,17 @@ const Comp034Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "コンプラ34：AさんとBさんにイベント告知をして",
+        messageText: "労働法に基づく最新のガイドラインを導入して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "コンプラ34：女性向け産休説明会を女性従業員に告知して",
+        messageText: "企業内の法令順守体制を整備して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "コンプラ34：管理職に管理職向けイベントを告知して",
+        messageText: "労働法改正に伴う社内ルールの見直しを実施して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },

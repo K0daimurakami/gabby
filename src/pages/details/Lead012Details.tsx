@@ -16,17 +16,17 @@ const Lead012Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "リーダーシップ12：AさんとBさんにイベント告知をして",
+        messageText: "次世代リーダー候補をリストアップして",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "リーダーシップ12：女性向け産休説明会を女性従業員に告知して",
+        messageText: "リーダー適性の高い若手社員を特定して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "リーダーシップ12：管理職に管理職向けイベントを告知して",
+        messageText: "評価指標に基づいて潜在的リーダーを抽出して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },
