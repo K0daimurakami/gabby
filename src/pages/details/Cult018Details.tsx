@@ -16,17 +16,17 @@ const Cult018Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "組織風土18：AさんとBさんにイベント告知をして",
+        messageText: "従業員アンケートを実施し、フィードバック結果を分析して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "組織風土18：女性向け産休説明会を女性従業員に告知して",
+        messageText: "フィードバックに基づく改善案を取りまとめて",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "組織風土18：管理職に管理職向けイベントを告知して",
+        messageText: "社員からの匿名フィードバックを週次で集計して報告して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },

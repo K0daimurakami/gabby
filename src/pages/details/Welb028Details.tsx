@@ -16,17 +16,17 @@ const Welb028Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "福利厚生28：AさんとBさんにイベント告知をして",
+        messageText: "ハイブリッドワーク体制に適した業務フローを設計して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "福利厚生28：女性向け産休説明会を女性従業員に告知して",
+        messageText: "リモートワークを推進するためのツール導入をサポートして",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "福利厚生28：管理職に管理職向けイベントを告知して",
+        messageText: "ハイブリッドワーク導入後の効果を測定して報告して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },
