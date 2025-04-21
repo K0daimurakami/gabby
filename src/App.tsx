@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,15 +6,22 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import { Provider, useDispatch } from "react-redux";
-import store from "./redux/store";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import store, { RootState } from "./redux/store";
 import { useAuth } from "react-oidc-context";
 import GlobalMenu from "./components/layout/GlobalMenu";
 import Home from "./pages/home/Home";
-import { setUserProfile, clearUserProfile } from "./pages/home/userSlice";
+import { setUserProfile, clearUserProfile, loginStart, loginSuccess, loginFailure, logout } from "./pages/home/userSlice";
 import Details from "./pages/details/Details";
 import { Container, CssBaseline, Box, Button, Typography, TextField, Link } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  CognitoUserPool,
+  CognitoUser,
+  AuthenticationDetails,
+  CognitoUserSession,
+} from "amazon-cognito-identity-js"
+import { Auth } from "aws-amplify";
 import Onb001Details from "./pages/details/Onb001Details";
 import Onb002Details from "./pages/details/Onb002Details";
 import Onb003Details from "./pages/details/Onb003Details";
@@ -51,44 +58,6 @@ import Succ033Details from "./pages/details/Succ033Details";
 import Comp034Details from "./pages/details/Comp034Details";
 import Comp035Details from "./pages/details/Comp035Details";
 import Comp036Details from "./pages/details/Comp036Details";
-
-// デフォルトカラーの設定
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#F1CF24",
-    },
-    secondary: {
-      main: "#FFFAE7",
-    },
-    // 背景色の設定
-    background: {
-      default: "#FFFAE7", // 全体の背景色
-      paper: "#FFFFFF", // Paperコンポーネントの背景色
-    },
-    // テキストカラーの設定（例としてタイトル用と本文用）
-    text: {
-      primary: "#000000", // タイトル用
-      secondary: "#333333", // 本文用（必要に応じて調整してください）
-    },
-  },
-  typography: {
-    fontFamily: "NotoSansReguler, sans-serif",
-  },
-});
-
-// サインアウトリダイレクト関数
-const signOutRedirect = () => {
-  const clientId = "52raclcpqs9d6skfn49293uv8f";
-  const logoutUri = "http://localhost:3000/";
-  const cognitoDomain =
-    "https://ap-northeast-1f2dwq8jmm.auth.ap-northeast-1.amazoncognito.com";
-  window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(
-    logoutUri
-  )}`;
-};
-
-// TODO: atomic designに従ってコンポーネントを分割する
 
 // クエリパラメータ：IDに対するコンポーネントマッピング
 const componentMap: Record<string, React.FC> = {
@@ -130,6 +99,43 @@ const componentMap: Record<string, React.FC> = {
   Compliance_InternationalRegulation_036: Comp036Details,
 };
 
+// デフォルトカラーの設定
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#F1CF24",
+    },
+    secondary: {
+      main: "#FFFAE7",
+    },
+    // 背景色の設定
+    background: {
+      default: "#FFFAE7", // 全体の背景色
+      paper: "#FFFFFF", // Paperコンポーネントの背景色
+    },
+    // テキストカラーの設定（例としてタイトル用と本文用）
+    text: {
+      primary: "#000000", // タイトル用
+      secondary: "#333333", // 本文用（必要に応じて調整してください）
+    },
+  },
+  typography: {
+    fontFamily: "NotoSansReguler, sans-serif",
+  },
+});
+
+
+// TODO: atomic designに従ってコンポーネントを分割する
+
+// Cognito設定
+const poolData = {
+  UserPoolId: "ap-northeast-1_f2DWq8JMM",
+  ClientId: "52raclcpqs9d6skfn49293uv8f",
+};
+const userPool = new CognitoUserPool(poolData);
+
+// TODO Route Protectをする
+
 /**
  * クエリパラメータから遷移先コンポーネントを判定するコンポーネント
  */
@@ -143,78 +149,83 @@ const DynamicDetailComponent: React.FC = () => {
   const SelectedComponent =
     detailId && componentMap[detailId]
       ? componentMap[detailId]
-      : () => <p>該当する詳細が見つかりません。</p>;
+      : () => <p>該当するMyleが見つかりません。</p>;
   return <SelectedComponent />;
 };
 
-// サインインメアドコンポーネント
+// サインインメアド画面コンポーネント
 const UnauthEntry: React.FC = () => {
   const [email, setEmail] = React.useState("");
   const navigate = useNavigate();
 
   const handleNext = () => {
     if (!email) return;
-    navigate(`/signin-password`);
+    navigate(`/signin-password`, { state: { email } });
   };
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="column"
-      minHeight="100vh"
-      bgcolor="background.default"
-    >
-      <Box
-        bgcolor="background.paper"
-        p={4}
-        borderRadius={2}
-        boxShadow={2}
-        width="100%"
-        maxWidth={400}
-        textAlign="center"
-      >
-        <Typography variant="h5" fontWeight="bold" gutterBottom>
-          サインイン
-        </Typography>
-        <Typography variant="body1" color="text.secondary" gutterBottom>
-          作成済アカウントにサインインができます。
-        </Typography>
-
-        <TextField
-          fullWidth
-          label="メールアドレス"
-          placeholder="name@host.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          variant="outlined"
-          size="small"
-          sx={{ mt: 2 }}
-        />
-
-        <Button
-          variant="contained"
-          color="primary"
-          fullWidth
-          sx={{ mt: 3 }}
-          onClick={handleNext}
-        >
-          次へ
-        </Button>
-
-        <Typography variant="body2" sx={{ mt: 2 }}>
-          新規アカウント作成は、
-          <Link href="/signup" underline="hover">
-            こちらへ
-          </Link>
-        </Typography>
+    <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" minHeight="100vh" bgcolor="background.default">
+      <Box bgcolor="background.paper" p={4} borderRadius={2} boxShadow={2} width="100%" maxWidth={400} textAlign="center">
+        <Typography variant="h5" fontWeight="bold" gutterBottom>サインイン</Typography>
+        <TextField fullWidth label="メールアドレス" value={email} onChange={(e) => setEmail(e.target.value)} variant="outlined" size="small" sx={{ mt: 2 }} />
+        <Button variant="contained" color="primary" fullWidth sx={{ mt: 3 }} onClick={handleNext}>次へ</Button>
+        <Typography variant="body2" sx={{ mt: 2 }}>新規アカウント作成は、<Link href="/signup" underline="hover">こちらへ</Link></Typography>
       </Box>
     </Box>
   );
 };
 
-// サインアップコンポーネント
+// サインインPW画面コンポーネント
+const UnauthSignIn: React.FC = () => {
+  // ユーザー入力状態管理
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const passedEmail = location.state?.email || "";
+  const [email, setEmail] = useState(passedEmail);  
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  // ログイン処理
+  const handleLogin = async() => {
+    console.log("ログイン処理を開始");
+    dispatch(loginStart()); // ローディング開始
+    const authenticationDetails = new AuthenticationDetails({
+      Username: email,
+      Password: password,
+    });
+    const userData = {
+      Username: email,
+      Pool: userPool, // これはすでに App.tsx 内で定義されてますね
+    };
+    const cognitoUser = new CognitoUser(userData);
+    console.log("CognitoUser:", cognitoUser);
+
+    // 認証開始
+    cognitoUser.authenticateUser(authenticationDetails, {
+      onSuccess: (result) => {
+        console.log("ログイン成功！アクセストークン:", result.getAccessToken().getJwtToken());
+        dispatch(loginSuccess(email)); // email はすでに state にあるユーザーのもの
+        navigate("/home");
+      },
+      onFailure: (err) => {
+        console.error("ログイン失敗:", err);
+        dispatch(loginFailure(err.message || "ログインに失敗しました"));
+      },
+    });
+  };
+
+  return (
+    <Box>
+      <TextField label="メールアドレス" fullWidth value={email} disabled sx={{ mb: 2 }} />
+      <TextField label="パスワード" type="password" fullWidth value={password} onChange={(e) => setPassword(e.target.value)} sx={{ mb: 2 }} />
+      <Button onClick={handleLogin} variant="contained">サインイン</Button>
+      {error && <Typography color="error" mt={2}>{error}</Typography>}
+    </Box>
+  );
+};
+
+// サインアップ画面コンポーネント
 const UnauthSignUp: React.FC = () => {
   // 各フォーム入力の状態管理
   const [email, setEmail] = React.useState("");
@@ -222,54 +233,13 @@ const UnauthSignUp: React.FC = () => {
   const [birthdate, setBirthdate] = React.useState(""); // カスタム属性の例
   const [message, setMessage] = React.useState("");
 
-  // JSX部分（UI）
   return (
     <Box mt={4}>
       <Typography variant="h6">アカウントを作成</Typography>
-      <input
-        type="email"
-        placeholder="メール"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br />
-      <input
-        type="password"
-        placeholder="パスワード"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br />
-      <input
-        type="date"
-        placeholder="誕生日"
-        value={birthdate}
-        onChange={(e) => setBirthdate(e.target.value)}
-      />
-      <br />
+      <input type="email" placeholder="メール" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" placeholder="パスワード" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input type="date" placeholder="誕生日" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
       <Button variant="contained">サインアップ</Button>
-      {message && <Typography mt={2}>{message}</Typography>}
-    </Box>
-  );
-};
-
-// サインインパスワードコンポーネント
-const UnauthenticatedSignInForm: React.FC = () => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [message, setMessage] = React.useState("");
-
-  return (
-    <Box mt={4}>
-      <Typography variant="h6">ログイン</Typography>
-      <input
-        type="password"
-        placeholder="パスワード"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br />
-      <Button variant="contained">サインイン</Button>
       {message && <Typography mt={2}>{message}</Typography>}
     </Box>
   );
@@ -279,191 +249,124 @@ const UnauthenticatedSignInForm: React.FC = () => {
  * アプリケーションのメインコンポーネント
  */
 const App: React.FC = () => {
-  // 認証状態を取得
-  const auth = useAuth();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isAuthenticated, isLoading, email, error } = useSelector((state: RootState) => state.user);
 
-  // 認証済みならユーザ情報をReduxに保存
-  React.useEffect(() => {
-    if (auth.isAuthenticated && auth.user) {
-      dispatch(setUserProfile(auth.user.profile)); // 👈 ここで保存
-    } else {
-      dispatch(clearUserProfile());
-    }
-  }, [auth.isAuthenticated, auth.user, dispatch]);
+  // サインアウト処理
+  const handleLogout = () => {
+    dispatch(logout()); // ここでログアウトアクションを発行
+    navigate("/signin"); // ログアウト後、サインイン画面にリダイレクト
+  };
 
-  // ローディング中
-  if (auth.isLoading) {
-    return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Container>
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            minHeight="100vh"
-          >
-            <Typography>Loading...</Typography>
-          </Box>
-        </Container>
-      </ThemeProvider>
-    );
-  }
-
-  // エラー発生時
-  if (auth.error) {
-    return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Container>
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            minHeight="100vh"
-          >
-            <Typography>エラーが発生しました: {auth.error.message}</Typography>
-          </Box>
-        </Container>
-      </ThemeProvider>
-    );
-  }
-
-  // 認証済みの場合
-  if (auth.isAuthenticated) {
-    return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Provider store={store}>
-          <Router>
-            <GlobalMenu />
-            <Container>
-              {/* 認証情報の表示 実験用*/}
-              <Box my={2} p={2} bgcolor="background.paper">
-                <Typography>ユーザー: {auth.user?.profile.email}</Typography>
-                <Button
-                  onClick={() => auth.removeUser()}
-                  variant="contained"
-                  color="primary"
-                  sx={{ mt: 1 }}
-                >
-                  サインアウト
-                </Button>
-              </Box>
-
-              {/* 既存のルーティング */}
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/details" element={<DynamicDetailComponent />} />
-              </Routes>
-            </Container>
-          </Router>
-        </Provider>
-      </ThemeProvider>
-    );
-  }
-
-  // 未認証の場合の画面描画（サインイン・サインアップ・案内画面を表示）
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      
       <Provider store={store}>
-        <Router>
-          <Container>
-            <Routes>
-              {/* サインインメアド画面 */}
-              <Route
-                path="/signin"
-                element={
-                  <Box
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    flexDirection="column"
-                    minHeight="100vh"
-                  >
-                    {/* サインインメアド画面 */}
-                    <UnauthEntry />
-                  </Box>
-                }
-              />
+          {/* ローディング中 */}
+          {isLoading && (
+            <Container>
+              <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+                <Typography>Loading...</Typography>
+              </Box>
+            </Container>
+          )}
 
-              {/* サインインPW画面 */}
-              <Route
-                path="/signin-password"
-                element={
-                  <Box
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    flexDirection="column"
-                    minHeight="100vh"
-                  >
-                    {/* サインインメアド画面 */}
-                    <UnauthenticatedSignInForm />
-                  </Box>
-                }
-              />
+          {/* エラー時 */}
+          {error && (
+            <Container>
+              <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+                <Typography>エラーが発生しました: {error.message}</Typography>
+              </Box>
+            </Container>
+          )}
 
-              {/* サインアップ画面（カスタムUI） */}
-              <Route
-                path="/signup"
-                element={
-                  <Box
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    flexDirection="column"
-                    minHeight="100vh"
+          {/* 認証済み */}
+          {isAuthenticated && !isLoading && !error && (
+            <>
+              <GlobalMenu />
+              <Container>
+                <Box my={2} p={2} bgcolor="background.paper">
+                  <Typography>ユーザー: {email}</Typography>
+                  <Button
+                    onClick={handleLogout}
+                    variant="contained"
+                    color="primary"
+                    sx={{ mt: 1 }}
                   >
-                    {/* サインアップ画面呼び出し */}
-                    <UnauthSignUp />
-                  </Box>
-                }
-              />
+                    サインアウト
+                  </Button>
+                </Box>
 
-              {/* ログインTOP画面 */}
-              <Route
-                path="*"
-                element={
-                  <Box
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    flexDirection="column"
-                    minHeight="100vh"
-                  >
-                    {/* ユーザーへの案内文 */}
-                    <Typography variant="h6" gutterBottom>
-                      ログインしてください
-                    </Typography>
+                <Routes>
+                  <Route path="/home" element={<Home />} />
+                  <Route path="/details" element={<DynamicDetailComponent />} />
+                </Routes>
+              </Container>
+            </>
+          )}
 
-                    {/* サインイン・サインアップ画面への遷移ボタン */}
-                    <Box>
-                      <Button
-                        onClick={() => (window.location.href = "/signin")}
-                        variant="contained"
-                        color="primary"
-                        sx={{ mr: 2 }}
-                      >
-                        サインイン
-                      </Button>
-                      <Button
-                        onClick={() => (window.location.href = "/signup")}
-                        variant="outlined"
-                      >
-                        サインアップ
-                      </Button>
+          {/* 未認証 */}
+          {!isAuthenticated && !isLoading && (
+            <Container>
+              <Routes>
+                <Route
+                  path="/signin"
+                  element={
+                    <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" minHeight="100vh">
+                      <UnauthEntry />
                     </Box>
-                  </Box>
-                }
-              />
-            </Routes>
-          </Container>
-        </Router>
+                  }
+                />
+                <Route
+                  path="/signin-password"
+                  element={
+                    <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" minHeight="100vh">
+                      <UnauthSignIn />
+                    </Box>
+                  }
+                />
+                <Route
+                  path="/signup"
+                  element={
+                    <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" minHeight="100vh">
+                      <UnauthSignUp />
+                    </Box>
+                  }
+                />
+                <Route
+                  path="*"
+                  element={
+                    <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" minHeight="100vh">
+                      <Typography variant="h6" gutterBottom>
+                        ログインしてください
+                      </Typography>
+                      <Box>
+                        <Button
+                          onClick={() => (window.location.href = "/signin")}
+                          variant="contained"
+                          color="primary"
+                          sx={{ mr: 2 }}
+                        >
+                          サインイン
+                        </Button>
+                        <Button
+                          onClick={() => (window.location.href = "/signup")}
+                          variant="outlined"
+                        >
+                          サインアップ
+                        </Button>
+                      </Box>
+                    </Box>
+                  }
+                />
+              </Routes>
+            </Container>
+          )}
       </Provider>
     </ThemeProvider>
   );
 };
+
 export default App;
