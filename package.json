@@ -17,6 +17,8 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vectara/react-chatbot": "^3.0.1",
+    "amazon-cognito-identity-js": "^6.2.2",
+    "aws-amplify": "^5.0.4",
     "axios": "^1.8.3",
     "oidc-client-ts": "^3.2.0",
     "react": "^19.0.0",
