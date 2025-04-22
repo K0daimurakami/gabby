@@ -180,10 +180,10 @@ const UnauthSignIn: React.FC = () => {
   // ユーザー入力状態管理
   const location = useLocation();
   const dispatch = useDispatch();
+  const error = useSelector((state: RootState) => state.user.error);
   const passedEmail = location.state?.email || "";
   const [email, setEmail] = useState(passedEmail);  
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   // ログイン処理
@@ -219,9 +219,13 @@ const UnauthSignIn: React.FC = () => {
     <Box>
       <TextField label="メールアドレス" fullWidth value={email} disabled sx={{ mb: 2 }} />
       <TextField label="パスワード" type="password" fullWidth value={password} onChange={(e) => setPassword(e.target.value)} sx={{ mb: 2 }} />
+      {error && (
+        <Typography color="error" sx={{ mt: 2 }}>
+          メールアドレス、もしくはパスワードが誤っています。
+        </Typography>
+      )}
       <Button onClick={handleLogin} variant="contained">サインイン</Button>
-      {error && <Typography color="error" mt={2}>{error}</Typography>}
-    </Box>
+      </Box>
   );
 };
 
@@ -269,15 +273,6 @@ const App: React.FC = () => {
             <Container>
               <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
                 <Typography>Loading...</Typography>
-              </Box>
-            </Container>
-          )}
-
-          {/* エラー時 */}
-          {error && (
-            <Container>
-              <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
-                <Typography>エラーが発生しました: {error.message}</Typography>
               </Box>
             </Container>
           )}
