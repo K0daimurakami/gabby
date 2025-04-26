@@ -30,6 +30,7 @@ const userSlice = createSlice({
     clearUserProfile: (state) => {
       state.profile = null;
     },
+    // ログイン系
     loginStart: (state) => {
       state.isLoading = true;
       state.error = null;
@@ -43,6 +44,18 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    // サインアップ系
+    signupStart: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    signupSuccess: (state) => {
+      state.isLoading = false;
+    },
+    signupFailure: (state, action: PayloadAction<string | null>) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
     logout: (state) => {
       state.isAuthenticated = false;
       state.email = null;
@@ -51,5 +64,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUserProfile, clearUserProfile, loginStart, loginSuccess, loginFailure, logout} = userSlice.actions;
+export const { setUserProfile, clearUserProfile, loginStart, loginSuccess, loginFailure, signupStart, signupSuccess, signupFailure, logout} = userSlice.actions;
 export default userSlice.reducer;
