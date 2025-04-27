@@ -39,6 +39,8 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.isAuthenticated = true;
       state.email = action.payload;
+      state.error = null;
+      
     },
     loginFailure: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
