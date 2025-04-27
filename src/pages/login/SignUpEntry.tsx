@@ -1,45 +1,19 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
-import { Provider, useDispatch, useSelector } from "react-redux";
-import store, { RootState } from "../../redux/store";
-import GlobalMenu from "../../components/layout/GlobalMenu";
-import Home from "../../pages/home/Home";
-import {
-  setUserProfile,
-  clearUserProfile,
-  loginStart,
   loginSuccess,
   loginFailure,
-  signupStart,
   signupSuccess,
   signupFailure,
-  logout,
 } from "../../pages/home/userSlice";
-import LoginMailEntry from "../../pages/login/LoginMailEntry";
-import LoginPwEntry from "../../pages/login/LoginPwEntry";
-import {
-  Container,
-  CssBaseline,
-  Box,
-  Button,
-  Typography,
-  TextField,
-  Link,
-} from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AgentCard from "../../components/molecules/AgentCard";
+import { Box, Button, Typography, TextField, Card } from "@mui/material";
 import {
   CognitoUserPool,
   CognitoUser,
   AuthenticationDetails,
-  CognitoUserSession,
 } from "amazon-cognito-identity-js";
-import { Auth } from "aws-amplify";
 
 // サインアップ画面コンポーネント
 const SignUpEntry: React.FC = () => {
@@ -50,8 +24,12 @@ const SignUpEntry: React.FC = () => {
   };
   const userPool = new CognitoUserPool(poolData);
   const [email, setEmail] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [issue, setIssue] = useState<string>("");
   const [password, setPassword] = useState("");
   const [confirmationCode, setConfirmationCode] = useState("");
+  const [isConfirmed, setIsConfirmed] = useState(false);
+
   const [showCodeInput, setShowCodeInput] = useState(false);
   const [message, setMessage] = useState("");
   const [cognitoUser, setCognitoUser] = useState<CognitoUser | null>(null);
@@ -85,12 +63,10 @@ const SignUpEntry: React.FC = () => {
         setMessage(`確認失敗: ${err.message}`);
         return;
       }
-
       const authDetails = new AuthenticationDetails({
         Username: email,
         Password: password,
       });
-
       const user = new CognitoUser({
         Username: email,
         Pool: userPool,
@@ -98,8 +74,9 @@ const SignUpEntry: React.FC = () => {
 
       user.authenticateUser(authDetails, {
         onSuccess: (session) => {
-          dispatch(loginSuccess(email));
-          navigate("/home");
+          setIsConfirmed(true);
+          setMessage("");
+          // navigate("/home");
         },
         onFailure: (loginErr) => {
           dispatch(loginFailure(loginErr.message || "ログインに失敗しました"));
@@ -110,54 +87,169 @@ const SignUpEntry: React.FC = () => {
   };
 
   return (
-    <Box mt={4}>
-      <Typography variant="h6">アカウントを作成</Typography>
+    <Box mt={4} display="flex" flexDirection="column" sx={{ width: "100%" }}>
+      <Typography variant="h6" mb={2}>アカウントを作成</Typography>
+      <>
+        <TextField
+          type="email"
+          placeholder="メール"
+          label="メールアドレス"
+          fullWidth
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          sx={{ mb: 2, width: "50%" }}
+        />
 
-      {!showCodeInput ? (
-        <>
-          <TextField
-            type="email"
-            placeholder="メール"
-            label="メールアドレス"
-            fullWidth
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            sx={{ mb: 2 }}
-          />
+        <TextField
+          select
+          label="関心のあるHRカテゴリ"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          fullWidth
+          SelectProps={{
+            native: true,
+          }}
+          sx={{ mb: 2, width: "50%" }}
+        >
+          <option value=""></option>
+          <option value="オンボーディング支援">オンボーディング支援</option>
+          <option value="ダイバーシティ推進">ダイバーシティ推進</option>
+          <option value="リーダーシップ育成">リーダーシップ育成</option>
+          <option value="組織風土改善">組織風土改善</option>
+          <option value="スキル・能力開発（全般）">
+            スキル・能力開発（全般）
+          </option>
+          <option value="採用関連">採用関連</option>
+          <option value="福利厚生（Well-being支援）">
+            福利厚生（Well-being支援）
+          </option>
+          <option value="リワード（報酬・インセンティブ）">
+            リワード（報酬・インセンティブ）
+          </option>
+          <option value="サクセッションプランニング">
+            サクセッションプランニング
+          </option>
+          <option value="HRコンプライアンス">HRコンプライアンス</option>
+        </TextField>
 
+        <TextField
+          label="特に課題に思っていること"
+          placeholder="自由にご記入ください"
+          multiline
+          rows={1}
+          fullWidth
+          value={issue}
+          onChange={(e) => setIssue(e.target.value)}
+          sx={{ mb: 2, width: "70%" }}
+        />
+
+        <Box display="flex" gap={2} sx={{ mb: 7, width: "50%" }}>
           <TextField
             type="password"
             placeholder="パスワード"
             label="パスワード"
-            fullWidth
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            sx={{ mb: 2 }}
-          />
-          <Button variant="contained" onClick={handleSignUp}>
-            サインアップ
-          </Button>
-        </>
-      ) : (
-        <>
-          <TextField
-            label="確認コード"
             fullWidth
-            value={confirmationCode}
-            onChange={(e) => setConfirmationCode(e.target.value)}
-            sx={{ mb: 2 }}
           />
-          <Button variant="contained" onClick={handleConfirmCode}>
-            確認してログイン
+          <Button
+            variant="contained"
+            onClick={handleSignUp}
+            sx={{ width: "200px" }}
+          >
+            確認メール送信
           </Button>
-        </>
-      )}
+        </Box>
 
-      {message && (
-        <Typography color="error" mt={2}>
-          {message}
-        </Typography>
-      )}
+        {showCodeInput && (
+          <Box display="flex" gap={2} sx={{ mb: 2, width: "55%" }}>
+            <TextField
+              label="確認コード"
+              value={confirmationCode}
+              onChange={(e) => setConfirmationCode(e.target.value)}
+              fullWidth
+            />
+            <Button
+              variant="contained"
+              onClick={handleConfirmCode}
+              sx={{ width: "200px" }}
+            >
+              確認コード送信
+            </Button>
+          </Box>
+        )}
+
+        {message && (
+          <Typography color="error" mt={2}>
+            {message}
+          </Typography>
+        )}
+
+        {isConfirmed && (
+          <Box mt={4}>
+            <Box display="flex" justifyContent="center" mb={2}>
+              <Typography variant="h6">あなたにオススメのMyle</Typography>
+            </Box>
+            <Box display="flex" justifyContent="center" gap={2} flexWrap="wrap">
+              <AgentCard
+                elementId="Onboarding_KnowledgeSupport_001"
+                id={1}
+                categoryName="オンボーディング支援"
+                myleName="業務知識・手続き支援エージェント"
+                description="新入社員への業務知識の提供と必要な手続きをガイドします。"
+                image="images/knowledgeSupportMyle.png"
+                navigateTo="/details"
+              />
+              <AgentCard
+                elementId="CareerDevelopment_002"
+                id={2}
+                categoryName="オンボーディング支援"
+                myleName="スキルギャップ診断と育成エージェント"
+                description="新入社員が社内の人脈を効率的に構築できるよう導きます。"
+                image="images/1on1SupportMyle.png"
+                navigateTo="/details"
+              />
+              <AgentCard
+                elementId="CareerDevelopment_002"
+                id={2}
+                categoryName="オンボーディング支援"
+                myleName="社内ネットワーク構築支援エージェント"
+                description="新入社員が社内の人脈を効率的に構築できるよう導きます。"
+                image="images/eventCommunicattionSupportMyle.png"
+                navigateTo="/details"
+              />
+              
+            </Box>
+            <Box display="flex" justifyContent="center" mt={4} mb={8}>
+                <Card
+                  sx={{
+                    width: "80%",
+                    height: 60,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    bgcolor: "white",
+                    color: "primary.dark",
+                    fontSize: "1.5rem",
+                    fontWeight: "bold",
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    transition: "0.3s",
+                    "&:hover": {
+                      bgcolor: "primary.dark",
+                    },
+                  }}
+                  onClick={() => {
+                    dispatch(loginSuccess(email));
+                    navigate("/home");
+                  }}                >
+                  <Typography variant="h5">Myle一覧へ</Typography>
+                </Card>
+              </Box>
+          </Box>
+        )}
+      </>
     </Box>
   );
 };
