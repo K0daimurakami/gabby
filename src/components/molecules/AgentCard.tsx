@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { selectMyle } from "../../pages/home/homeSlice";
+import { loginSuccess } from "../../pages/home/userSlice";
 
 interface Props {
   elementId: string; // 操作データを識別する一意な文字列
@@ -15,6 +16,7 @@ interface Props {
   description: string; // Myleの説明
   image: string; // Myleのイメージ画像
   navigateTo: string; // 遷移先ページのパス
+  mailAddress: string;
 }
 
 const AgentCard: React.FC<Props> = ({
@@ -25,6 +27,7 @@ const AgentCard: React.FC<Props> = ({
   description,
   image,
   navigateTo,
+  mailAddress,
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -47,6 +50,7 @@ const AgentCard: React.FC<Props> = ({
         description: description,
       })
     );
+    dispatch(loginSuccess(mailAddress));
     navigate(`${path}?elementId=${elementId}`);
   };
 
