@@ -1,6 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import AgentCard from "../molecules/AgentCard";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 // エージェント項目の型定義
 interface AgentItem {
@@ -22,6 +24,9 @@ interface Props {
  * 特定のカテゴリーに属するエージェントカードを表示する
  */
 const AgentCategoryContainer: React.FC<Props> = ({ categoryName, agents }) => {
+
+  const { email } = useSelector((state: RootState) => state.user); // ★追加
+
   return (
     <Box sx={{ marginBottom: 4 }}>
       {/* カテゴリータイトル */}
@@ -40,7 +45,7 @@ const AgentCategoryContainer: React.FC<Props> = ({ categoryName, agents }) => {
             description={agent.description}
             image={agent.image}
             navigateTo={`/${agent.detailPage}`} // detailPageは必須項目
-            mailAddress=""
+            mailAddress={email ?? ""}
           />
         ))}
       </Box>
