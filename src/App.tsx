@@ -1,14 +1,39 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { Provider, useDispatch } from "react-redux";
-import store from "./redux/store";
-import { useAuth } from "react-oidc-context";
-import GlobalMenu from "./components/layout/GlobalMenu";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import store, { RootState } from "./redux/store";
+import CenterBox from "./components/layout/CenterBox";
+import AuthenticatedLayout from "./components/layout/AuthenticatedLayout";
 import Home from "./pages/home/Home";
-import { setUserProfile, clearUserProfile } from "./pages/home/userSlice";
-import Details from "./pages/details/Details";
-import { Container, CssBaseline, Box, Button, Typography } from "@mui/material";
+import {
+  setUserProfile,
+  clearUserProfile,
+  loginStart,
+  loginSuccess,
+  loginFailure,
+  signupStart,
+  signupSuccess,
+  signupFailure,
+  logout,
+} from "./pages/home/userSlice";
+import LoginMailEntry from "./pages/login/LoginMailEntry";
+import LoginPwEntry from "./pages/login/LoginPwEntry";
+import SignUpEntry from "./pages/login/SignUpEntry";
+import LoginTop from "./pages/login/LoginTop";
+import {Container, CssBaseline, Typography} from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  CognitoUserPool,
+  CognitoUser,
+  AuthenticationDetails,
+  CognitoUserSession,
+} from "amazon-cognito-identity-js";
 import Onb001Details from "./pages/details/Onb001Details";
 import Onb002Details from "./pages/details/Onb002Details";
 import Onb003Details from "./pages/details/Onb003Details";
@@ -46,6 +71,46 @@ import Comp034Details from "./pages/details/Comp034Details";
 import Comp035Details from "./pages/details/Comp035Details";
 import Comp036Details from "./pages/details/Comp036Details";
 
+// クエリパラメータ：IDに対するコンポーネントマッピング
+const componentMap: Record<string, React.FC> = {
+  Onboarding_KnowledgeSupport_001: Onb001Details,
+  Onboarding_SkillGapAssessment_002: Onb002Details,
+  Onboarding_NetworkBuilding_003: Onb003Details,
+  Onboarding_ProgressManagement_004: Onb004Details,
+  Onboarding_CultureIntegration_005: Onb005Details,
+  Diversity_GenderEquality_006: Dive006Details,
+  Diversity_CulturalInclusion_007: Dive007Details,
+  Diversity_DisabilitySupport_008: Dive008Details,
+  Diversity_LGBTQInclusion_009: Dive009Details,
+  Diversity_AgeInclusion_010: Dive010Details,
+  Diversity_RegionalDiversity_011: Dive011Details,
+  Leadership_Identification_012: Lead012Details,
+  Leadership_TrainingDesign_013: Lead013Details,
+  Leadership_PracticalSupport_014: Lead014Details,
+  Leadership_ProgressMonitoring_015: Lead015Details,
+  Leadership_CrossOrganizationalExchange_016: Lead016Details,
+  Culture_EngagementScore_017: Cult017Details,
+  Culture_FeedbackAnalysis_018: Cult018Details,
+  Culture_WorkshopSupport_019: Cult019Details,
+  Culture_DI_Promotion_020: Cult020Details,
+  Culture_CultureChangeMonitoring_021: Cult021Details,
+  Skill_Reskilling_022: Skil022Details,
+  Skill_CareerDevelopment_023: Skil023Details,
+  Skill_PerformanceManagement_024: Skil024Details,
+  Recruitment_ReferralSupport_025: Recr025Details,
+  Wellbeing_HealthSupport_026: Welb026Details,
+  Wellbeing_CafeteriaPlan_027: Welb027Details,
+  Wellbeing_HybridWork_028: Welb028Details,
+  Reward_NonMonetary_029: Rewd029Details,
+  Reward_PerformanceBased_030: Rewd030Details,
+  Succession_LeaderIdentification_031: Succ031Details,
+  Succession_DevelopmentProgram_032: Succ032Details,
+  Succession_ProgressMonitoring_033: Succ033Details,
+  Compliance_LaborLaw_034: Comp034Details,
+  Compliance_DataProtection_035: Comp035Details,
+  Compliance_InternationalRegulation_036: Comp036Details,
+};
+
 // デフォルトカラーの設定
 const theme = createTheme({
   palette: {
@@ -58,72 +123,33 @@ const theme = createTheme({
     // 背景色の設定
     background: {
       default: "#FFFAE7", // 全体の背景色
-      paper: "#FFFFFF",   // Paperコンポーネントの背景色
+      paper: "#FFFFFF", // Paperコンポーネントの背景色
     },
     // テキストカラーの設定（例としてタイトル用と本文用）
     text: {
       primary: "#000000", // タイトル用
       secondary: "#333333", // 本文用（必要に応じて調整してください）
-    }
+    },
   },
   typography: {
     fontFamily: "NotoSansReguler, sans-serif",
   },
 });
 
-// サインアウトリダイレクト関数
-const signOutRedirect = () => {
-  const clientId = "52raclcpqs9d6skfn49293uv8f";
-  const logoutUri = "http://localhost:3000/";
-  const cognitoDomain = "https://ap-northeast-1f2dwq8jmm.auth.ap-northeast-1.amazoncognito.com";
-  window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
-};
-
 // TODO: atomic designに従ってコンポーネントを分割する
 
-// クエリパラメータ：IDに対するコンポーネントマッピング
-const componentMap: Record<string, React.FC> = {
-  "Onboarding_KnowledgeSupport_001": Onb001Details,
-  "Onboarding_SkillGapAssessment_002": Onb002Details,
-  "Onboarding_NetworkBuilding_003": Onb003Details,
-  "Onboarding_ProgressManagement_004": Onb004Details,
-  "Onboarding_CultureIntegration_005": Onb005Details,
-  "Diversity_GenderEquality_006": Dive006Details,
-  "Diversity_CulturalInclusion_007": Dive007Details,
-  "Diversity_DisabilitySupport_008": Dive008Details,
-  "Diversity_LGBTQInclusion_009": Dive009Details,
-  "Diversity_AgeInclusion_010": Dive010Details,
-  "Diversity_RegionalDiversity_011": Dive011Details,
-  "Leadership_Identification_012": Lead012Details,
-  "Leadership_TrainingDesign_013": Lead013Details,
-  "Leadership_PracticalSupport_014": Lead014Details,
-  "Leadership_ProgressMonitoring_015": Lead015Details,
-  "Leadership_CrossOrganizationalExchange_016": Lead016Details,
-  "Culture_EngagementScore_017": Cult017Details,
-  "Culture_FeedbackAnalysis_018": Cult018Details,
-  "Culture_WorkshopSupport_019": Cult019Details,
-  "Culture_DI_Promotion_020": Cult020Details,
-  "Culture_CultureChangeMonitoring_021": Cult021Details,
-  "Skill_Reskilling_022": Skil022Details,
-  "Skill_CareerDevelopment_023": Skil023Details,
-  "Skill_PerformanceManagement_024": Skil024Details,
-  "Recruitment_ReferralSupport_025": Recr025Details,
-  "Wellbeing_HealthSupport_026": Welb026Details,
-  "Wellbeing_CafeteriaPlan_027": Welb027Details,
-  "Wellbeing_HybridWork_028": Welb028Details,
-  "Reward_NonMonetary_029": Rewd029Details,
-  "Reward_PerformanceBased_030": Rewd030Details,
-  "Succession_LeaderIdentification_031": Succ031Details,
-  "Succession_DevelopmentProgram_032": Succ032Details,
-  "Succession_ProgressMonitoring_033": Succ033Details,
-  "Compliance_LaborLaw_034": Comp034Details,
-  "Compliance_DataProtection_035": Comp035Details,
-  "Compliance_InternationalRegulation_036": Comp036Details,  
+// Cognito設定
+const poolData = {
+  UserPoolId: "ap-northeast-1_f2DWq8JMM",
+  ClientId: "52raclcpqs9d6skfn49293uv8f",
 };
+const userPool = new CognitoUserPool(poolData);
+
+// TODO Route Protectをする
 
 /**
  * クエリパラメータから遷移先コンポーネントを判定するコンポーネント
-*/
+ */
 const DynamicDetailComponent: React.FC = () => {
   // 現在のURL取得
   const location = useLocation();
@@ -131,117 +157,92 @@ const DynamicDetailComponent: React.FC = () => {
   const searchParams = new URLSearchParams(location.search);
   const detailId = searchParams.get("elementId");
   // IDに対応するコンポーネントを取得
-  const SelectedComponent = detailId && componentMap[detailId] 
-    ? componentMap[detailId] 
-    : () => <p>該当する詳細が見つかりません。</p>;
+  const SelectedComponent =
+    detailId && componentMap[detailId]
+      ? componentMap[detailId]
+      : () => <p>該当するMyleが見つかりません。</p>;
   return <SelectedComponent />;
 };
 
 /**
  * アプリケーションのメインコンポーネント
-*/
+ */
 const App: React.FC = () => {
-  // 認証状態を取得
-  const auth = useAuth();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isAuthenticated, isLoading, email, error } = useSelector(
+    (state: RootState) => state.user
+  );
 
-  // 認証済みならユーザ情報をReduxに保存
-  React.useEffect(() => {
-    if (auth.isAuthenticated && auth.user) {
-      dispatch(setUserProfile(auth.user.profile)); // 👈 ここで保存
-    } else {
-      dispatch(clearUserProfile());
-    }
-  }, [auth.isAuthenticated, auth.user, dispatch]);
+  // サインアウト処理
+  const handleLogout = () => {
+    dispatch(logout()); // ここでログアウトアクションを発行
+    navigate("/signin"); // ログアウト後、サインイン画面にリダイレクト
+  };
 
-  // ローディング中
-  if (auth.isLoading) {
-    return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Container>
-          <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
-            <Typography>Loading...</Typography>
-          </Box>
-        </Container>
-      </ThemeProvider>
-    );
-  }
-
-  // エラー発生時
-  if (auth.error) {
-    return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Container>
-          <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
-            <Typography>エラーが発生しました: {auth.error.message}</Typography>
-          </Box>
-        </Container>
-      </ThemeProvider>
-    );
-  }
-
-  // 認証済みの場合
-  if (auth.isAuthenticated) {
-    return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Provider store={store}>
-          <Router>
-            <GlobalMenu />
-            <Container>
-              
-              {/* 認証情報の表示 実験用*/}
-              <Box my={2} p={2} bgcolor="background.paper">
-                <Typography>ユーザー: {auth.user?.profile.email}</Typography>
-                <Button
-                  onClick={() => auth.removeUser()}
-                  variant="contained"
-                  color="primary"
-                  sx={{ mt: 1 }}
-                >
-                  サインアウト
-                </Button>
-              </Box>
-              
-              {/* 既存のルーティング */}
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/details" element={<DynamicDetailComponent />} />
-              </Routes>
-            </Container>
-          </Router>
-        </Provider>
-      </ThemeProvider>
-    );
-  }
-
-  // 未認証の場合
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container>
-        <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" minHeight="100vh">
-          <Typography variant="h6" gutterBottom>ログインしてください</Typography>
-          <Box>
-            <Button
-              onClick={() => auth.signinRedirect()}
-              variant="contained"
-              color="primary"
-              sx={{ mr: 2 }}
-            >
-              サインイン
-            </Button>
-            <Button
-              onClick={() => signOutRedirect()}
-              variant="outlined"
-            >
-              サインアウト
-            </Button>
-          </Box>
-        </Box>
-      </Container>
+      <Provider store={store}>
+        {/* ローディング中 */}
+        {isLoading && (
+          <Container>
+            <CenterBox>
+              <Typography>Loading...</Typography>
+            </CenterBox>
+          </Container>
+        )}
+        {/* 認証済み */}
+        {isAuthenticated && !isLoading && !error && (
+          <>
+            <AuthenticatedLayout>
+              <Routes>
+                <Route path="/home" element={<Home />} />
+                <Route path="/details" element={<DynamicDetailComponent />} />
+              </Routes>
+            </AuthenticatedLayout>
+          </>
+        )}
+        {/* 未認証 */}
+        {!isAuthenticated && !isLoading && (
+          <Container>
+            <Routes>
+              <Route
+                path="/signin"
+                element={
+                  <CenterBox>
+                    <LoginMailEntry />
+                  </CenterBox>
+                }
+              />
+              <Route
+                path="/signin-password"
+                element={
+                  <CenterBox>
+                    <LoginPwEntry />
+                  </CenterBox>
+                }
+              />
+              <Route
+                path="/signup"
+                element={
+                  <CenterBox>
+                    <SignUpEntry />
+                  </CenterBox>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  <CenterBox>
+                    <LoginTop></LoginTop>
+                  </CenterBox>
+                }
+              />
+            </Routes>
+          </Container>
+        )}
+      </Provider>
     </ThemeProvider>
   );
 };
