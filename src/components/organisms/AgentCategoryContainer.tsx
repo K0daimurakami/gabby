@@ -40,6 +40,7 @@ const AgentCategoryContainer: React.FC<Props> = ({ categoryName, agents }) => {
             description={agent.description}
             image={agent.image}
             navigateTo={`/${agent.detailPage}`} // detailPageは必須項目
+            mailAddress=""
           />
         ))}
       </Box>

@@ -199,24 +199,27 @@ const SignUpEntry: React.FC = () => {
                 description="新入社員への業務知識の提供と必要な手続きをガイドします。"
                 image="images/knowledgeSupportMyle.png"
                 navigateTo="/details"
+                mailAddress={email}
               />
               <AgentCard
-                elementId="CareerDevelopment_002"
+                elementId="Onboarding_SkillGapAssessment_002"
                 id={2}
                 categoryName="オンボーディング支援"
                 myleName="スキルギャップ診断と育成エージェント"
                 description="新入社員が社内の人脈を効率的に構築できるよう導きます。"
                 image="images/1on1SupportMyle.png"
                 navigateTo="/details"
+                mailAddress={email}
               />
               <AgentCard
-                elementId="CareerDevelopment_002"
+                elementId="Onboarding_NetworkBuilding_003"
                 id={2}
                 categoryName="オンボーディング支援"
                 myleName="社内ネットワーク構築支援エージェント"
                 description="新入社員が社内の人脈を効率的に構築できるよう導きます。"
                 image="images/eventCommunicattionSupportMyle.png"
                 navigateTo="/details"
+                mailAddress={email}
               />
               
             </Box>
