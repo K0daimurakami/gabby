@@ -16,17 +16,17 @@ const Recr025Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "採用関連25：AさんとBさんにイベント告知をして",
+        messageText: "社員リファラルによる採用プロセスを設計して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "採用関連25：女性向け産休説明会を女性従業員に告知して",
+        messageText: "優秀な人材のリファラルを促進する施策を提案して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "採用関連25：管理職に管理職向けイベントを告知して",
+        messageText: "採用チームと連携し、リファラル採用活動を進めて",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },

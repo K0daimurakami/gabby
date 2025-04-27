@@ -16,17 +16,17 @@ const Rewd029Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "リワード29：AさんとBさんにイベント告知をして",
+        messageText: "Aさんの功績を社内表彰で認め、感謝の気持ちを伝えて",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "リワード29：女性向け産休説明会を女性従業員に告知して",
+        messageText: "目立った成果を上げた従業員を表彰する制度を設計して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "リワード29：管理職に管理職向けイベントを告知して",
+        messageText: "定期的な感謝のメッセージやフィードバックを社員に提供して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },

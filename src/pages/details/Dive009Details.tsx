@@ -16,17 +16,17 @@ const Dive009Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "ダイバーシティ9：AさんとBさんにイベント告知をして",
+        messageText: "LGBTQ+に関する啓発コンテンツを全社員に配信して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "ダイバーシティ9：女性向け産休説明会を女性従業員に告知して",
+        messageText: "カミングアウトを支える社内相談窓口の案内をして",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "ダイバーシティ9：管理職に管理職向けイベントを告知して",
+        messageText: "インクルーシブな福利厚生制度の改善点を提案して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },

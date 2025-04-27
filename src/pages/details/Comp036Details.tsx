@@ -16,17 +16,17 @@ const Comp036Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "コンプラ36：AさんとBさんにイベント告知をして",
+        messageText: "各国の法的要件を満たすための国際的なコンプライアンス体制を構築して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "コンプラ36：女性向け産休説明会を女性従業員に告知して",
+        messageText: "多国籍法規制に基づいた人事ポリシーを策定して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "コンプラ36：管理職に管理職向けイベントを告知して",
+        messageText: "海外拠点における法令遵守の教育と監査を実施して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },

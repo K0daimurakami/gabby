@@ -16,17 +16,17 @@ const Succ032Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "サクセッション32：AさんとBさんにイベント告知をして",
+        messageText: "次世代リーダー向けの育成プログラムを構築して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "サクセッション32：女性向け産休説明会を女性従業員に告知して",
+        messageText: "リーダー候補者向けに必要なスキルを学べるカリキュラムを設計して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "サクセッション32：管理職に管理職向けイベントを告知して",
+        messageText: "特定の部門リーダーに必要なスキルを重点的に学べる研修プランを提供して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },
