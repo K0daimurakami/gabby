@@ -170,10 +170,10 @@ const SignUpEntry: React.FC = () => {
           sx={{ mb: 2, width: "70%" }}
         />
 
-        <Box display="flex" gap={2} sx={{ mb: 7, width: "50%" }}>
+        <Box display="flex" gap={2} sx={{ mb: 7, width: "60%" }}>
           <TextField
             type="password"
-            placeholder="パスワード"
+            placeholder="8文字以上・英大文字/小文字・数字・記号を含めてください"
             label="パスワード"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
