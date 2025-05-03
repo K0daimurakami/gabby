@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   loginSuccess,
   loginFailure,
@@ -14,6 +14,7 @@ import {
   CognitoUser,
   AuthenticationDetails,
 } from "amazon-cognito-identity-js";
+import { RootState } from "../../redux/store";
 
 // サインアップ画面コンポーネント
 const SignUpEntry: React.FC = () => {
@@ -29,13 +30,37 @@ const SignUpEntry: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirmationCode, setConfirmationCode] = useState("");
   const [isConfirmed, setIsConfirmed] = useState(false);
-
   const [showCodeInput, setShowCodeInput] = useState(false);
   const [message, setMessage] = useState("");
   const [cognitoUser, setCognitoUser] = useState<CognitoUser | null>(null);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const categoryAgents = useSelector((state: RootState) => {
+    return state.home.categories[selectedCategory] || [];
+  });
+  
+  // AgentCard生成
+  const renderRecommendedAgents = () => {
+    if (!categoryAgents || categoryAgents.length === 0) {
+      return <Typography>おすすめのエージェントは見つかりませんでした。</Typography>;
+    }
+
+    return categoryAgents.map((agent, index) => (
+      <AgentCard
+        key={agent.elementId}
+        elementId={agent.elementId}
+        id={index}
+        categoryName={selectedCategory}
+        myleName={agent.title}
+        description={agent.description}
+        image={agent.image}
+        navigateTo={`/${agent.detailPage}`}
+        mailAddress={email}
+      />
+    ));
+  };
 
   // サインアップ（アカウント作成）処理
   const handleSignUp = () => {
@@ -88,7 +113,9 @@ const SignUpEntry: React.FC = () => {
 
   return (
     <Box mt={4} display="flex" flexDirection="column" sx={{ width: "100%" }}>
-      <Typography variant="h6" mb={2}>アカウントを作成</Typography>
+      <Typography variant="h6" mb={2}>
+        アカウントを作成
+      </Typography>
       <>
         <TextField
           type="email"
@@ -143,10 +170,10 @@ const SignUpEntry: React.FC = () => {
           sx={{ mb: 2, width: "70%" }}
         />
 
-        <Box display="flex" gap={2} sx={{ mb: 7, width: "50%" }}>
+        <Box display="flex" gap={2} sx={{ mb: 7, width: "60%" }}>
           <TextField
             type="password"
-            placeholder="パスワード"
+            placeholder="8文字以上・英大文字/小文字・数字・記号を含めてください"
             label="パスワード"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -191,65 +218,36 @@ const SignUpEntry: React.FC = () => {
               <Typography variant="h6">あなたにオススメのMyle</Typography>
             </Box>
             <Box display="flex" justifyContent="center" gap={2} flexWrap="wrap">
-              <AgentCard
-                elementId="Onboarding_KnowledgeSupport_001"
-                id={1}
-                categoryName="オンボーディング支援"
-                myleName="業務知識・手続き支援エージェント"
-                description="新入社員への業務知識の提供と必要な手続きをガイドします。"
-                image="images/knowledgeSupportMyle.png"
-                navigateTo="/details"
-                mailAddress={email}
-              />
-              <AgentCard
-                elementId="Onboarding_SkillGapAssessment_002"
-                id={2}
-                categoryName="オンボーディング支援"
-                myleName="スキルギャップ診断と育成エージェント"
-                description="新入社員が社内の人脈を効率的に構築できるよう導きます。"
-                image="images/1on1SupportMyle.png"
-                navigateTo="/details"
-                mailAddress={email}
-              />
-              <AgentCard
-                elementId="Onboarding_NetworkBuilding_003"
-                id={2}
-                categoryName="オンボーディング支援"
-                myleName="社内ネットワーク構築支援エージェント"
-                description="新入社員が社内の人脈を効率的に構築できるよう導きます。"
-                image="images/eventCommunicattionSupportMyle.png"
-                navigateTo="/details"
-                mailAddress={email}
-              />
-              
+              {renderRecommendedAgents()}
             </Box>
             <Box display="flex" justifyContent="center" mt={4} mb={8}>
-                <Card
-                  sx={{
-                    width: "80%",
-                    height: 60,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: "pointer",
-                    bgcolor: "white",
-                    color: "primary.dark",
-                    fontSize: "1.5rem",
-                    fontWeight: "bold",
-                    borderRadius: 2,
-                    boxShadow: 3,
-                    transition: "0.3s",
-                    "&:hover": {
-                      bgcolor: "primary.dark",
-                    },
-                  }}
-                  onClick={() => {
-                    dispatch(loginSuccess(email));
-                    navigate("/home");
-                  }}                >
-                  <Typography variant="h5">Myle一覧へ</Typography>
-                </Card>
-              </Box>
+              <Card
+                sx={{
+                  width: "80%",
+                  height: 60,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  bgcolor: "white",
+                  color: "primary.dark",
+                  fontSize: "1.5rem",
+                  fontWeight: "bold",
+                  borderRadius: 2,
+                  boxShadow: 3,
+                  transition: "0.3s",
+                  "&:hover": {
+                    bgcolor: "primary.dark",
+                  },
+                }}
+                onClick={() => {
+                  dispatch(loginSuccess(email));
+                  navigate("/home");
+                }}
+              >
+                <Typography variant="h5">Myle一覧へ</Typography>
+              </Card>
+            </Box>
           </Box>
         )}
       </>
