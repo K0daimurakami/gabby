@@ -2,10 +2,10 @@ import React from "react";
 import { Container, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import AccordionExpandIcon from "../../components/organisms/deatilNameContainer";
-import ProcessContainer from "../../components/organisms/processContainer";
-import ResultImageContainer from "../../components/organisms/resultImageContainer";
-import ChatApp from "../../components/organisms/chatContainer";
+import AccordionExpandIcon from "../../components/organisms/DeatilNameContainer";
+import ProcessContainer from "../../components/organisms/ProcessContainer";
+import ResultImageContainer from "../../components/organisms/ResultImageContainer";
+import ChatApp from "../../components/organisms/ChatContainer";
 import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
 
 const Onb004Details: React.FC = () => {

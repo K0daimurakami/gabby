@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import GlobalMenu from "../../components/layout/GlobalMenu";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../pages/home/userSlice";
+import { logout } from "../../pages/login/userSlice";
 import { RootState } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 

@@ -4,35 +4,19 @@ import {
   Routes,
   Route,
   useLocation,
-  useNavigate,
 } from "react-router-dom";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store, { RootState } from "./redux/store";
 import CenterBox from "./components/layout/CenterBox";
 import AuthenticatedLayout from "./components/layout/AuthenticatedLayout";
 import Home from "./pages/home/Home";
-import {
-  setUserProfile,
-  clearUserProfile,
-  loginStart,
-  loginSuccess,
-  loginFailure,
-  signupStart,
-  signupSuccess,
-  signupFailure,
-  logout,
-} from "./pages/home/userSlice";
 import LoginMailEntry from "./pages/login/LoginMailEntry";
 import LoginPwEntry from "./pages/login/LoginPwEntry";
 import SignUpEntry from "./pages/login/SignUpEntry";
-import LoginTop from "./pages/login/LoginTop";
 import {Container, CssBaseline, Typography} from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   CognitoUserPool,
-  CognitoUser,
-  AuthenticationDetails,
-  CognitoUserSession,
 } from "amazon-cognito-identity-js";
 import Onb001Details from "./pages/details/Onb001Details";
 import Onb002Details from "./pages/details/Onb002Details";
@@ -136,8 +120,6 @@ const theme = createTheme({
   },
 });
 
-// TODO: atomic designに従ってコンポーネントを分割する
-
 // Cognito設定
 const poolData = {
   UserPoolId: "ap-northeast-1_f2DWq8JMM",
@@ -168,17 +150,9 @@ const DynamicDetailComponent: React.FC = () => {
  * アプリケーションのメインコンポーネント
  */
 const App: React.FC = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { isAuthenticated, isLoading, email, error } = useSelector(
+  const { isAuthenticated, isProcessing: isLoading, email, authError: error } = useSelector(
     (state: RootState) => state.user
   );
-
-  // サインアウト処理
-  const handleLogout = () => {
-    dispatch(logout()); // ここでログアウトアクションを発行
-    navigate("/signin"); // ログアウト後、サインイン画面にリダイレクト
-  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -235,7 +209,7 @@ const App: React.FC = () => {
                 path="*"
                 element={
                   <CenterBox>
-                    <LoginTop></LoginTop>
+                    <LoginMailEntry></LoginMailEntry>
                   </CenterBox>
                 }
               />
