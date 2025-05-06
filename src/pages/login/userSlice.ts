@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // ユーザー情報の型
 interface UserState {
   // ユーザ情報
-  // TODO：命名を修正
   sub: string | null; //現状DBに入れるユーザID、直す必要あり
   email: string; //認証処理で使うメアド //ログイン時にRedux投入はできてる
   password: string; //ユーザのパスワード入力
