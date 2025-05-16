@@ -34,7 +34,7 @@ import Lead013Details from "./pages/details/Lead013Details";
 import Lead014Details from "./pages/details/Lead014Details";
 import Lead015Details from "./pages/details/Lead015Details";
 import Lead016Details from "./pages/details/Lead016Details";
-import Cult0165Details from "./pages/details/Cult016.5Details";
+import Cult0165Details from "./pages/details/Cult0165Details";
 import Cult017Details from "./pages/details/Cult017Details";
 import Cult018Details from "./pages/details/Cult018Details";
 import Cult019Details from "./pages/details/Cult019Details";
