@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { selectMyle } from "../../pages/home/homeSlice";
-import { loginSuccess } from "../../pages/home/userSlice";
+import { loginSuccess } from "../../pages/login/userSlice";
 
 interface Props {
   elementId: string; // 操作データを識別する一意な文字列

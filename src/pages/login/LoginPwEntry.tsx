@@ -1,88 +1,69 @@
 import React, { useState } from "react";
 import {
   BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
   useNavigate,
 } from "react-router-dom";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import store, { RootState } from "../../redux/store";
-import GlobalMenu from "../../components/layout/GlobalMenu";
-import Home from "../../pages/home/Home";
 import {
-  setUserProfile,
-  clearUserProfile,
   loginStart,
   loginSuccess,
   loginFailure,
-  signupStart,
-  signupSuccess,
-  signupFailure,
-  logout,
-} from "../../pages/home/userSlice";
+  setUserField,
+} from "./userSlice";
 import {
-  Container,
-  CssBaseline,
   Box,
   Button,
   Typography,
   TextField,
-  Link,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   CognitoUserPool,
   CognitoUser,
   AuthenticationDetails,
-  CognitoUserSession,
 } from "amazon-cognito-identity-js";
 
-// ログインPW画面コンポーネント
+/**
+ * ログインPW入力画面コンポーネント
+ */
 const LoginPwEntry: React.FC = () => {
-  // Cognito設定
+  /* ユーザプール設定（cognito） */
   const poolData = {
     UserPoolId: "ap-northeast-1_f2DWq8JMM",
     ClientId: "52raclcpqs9d6skfn49293uv8f",
   };
   const userPool = new CognitoUserPool(poolData);
 
-  // ユーザー入力状態管理
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const error = useSelector((state: RootState) => state.user.error);
-  const passedEmail = location.state?.email || "";
-  const [email, setEmail] = useState(passedEmail);
-  const [password, setPassword] = useState("");
+  /* 画面利用するstate */
+  // ユーザ情報(スライスから取得)
+  const sliceUserInf = useSelector((state: RootState) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // ログイン処理
+  /**
+   * ログインをする処理
+  */
   const handleLogin = async () => {
-    console.log("ログイン処理を開始");
     dispatch(loginStart()); // ローディング開始
+
+    // 認証ユーザ情報(cognito)
     const authenticationDetails = new AuthenticationDetails({
-      Username: email,
-      Password: password,
+      Username: sliceUserInf.email,
+      Password: sliceUserInf.password,
     });
     const userData = {
-      Username: email,
-      Pool: userPool, // これはすでに App.tsx 内で定義されてますね
+      Username: sliceUserInf.email,
+      Pool: userPool,
     };
     const cognitoUser = new CognitoUser(userData);
-    console.log("CognitoUser:", cognitoUser);
 
-    // 認証開始
+    // 認証処理
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
-        console.log(
-          "ログイン成功！アクセストークン:",
-          result.getAccessToken().getJwtToken()
-        );
-        dispatch(loginSuccess(email)); // email はすでに state にあるユーザーのもの
+        dispatch(loginSuccess(sliceUserInf.email));
         navigate("/home");
       },
       onFailure: (err) => {
-        console.error("ログイン失敗:", err);
         dispatch(loginFailure(err.message || "ログインに失敗しました"));
       },
     });
@@ -93,7 +74,7 @@ const LoginPwEntry: React.FC = () => {
       <TextField
         label="メールアドレス"
         fullWidth
-        value={email}
+        value={sliceUserInf.email}
         disabled
         sx={{ mb: 2 }}
       />
@@ -101,11 +82,13 @@ const LoginPwEntry: React.FC = () => {
         label="パスワード"
         type="password"
         fullWidth
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={sliceUserInf.password}
+        onChange={(e) =>
+          dispatch(setUserField({ key: "password", value: e.target.value }))
+        }
         sx={{ mb: 2 }}
       />
-      {error && (
+      {sliceUserInf.authError && (
         <Typography color="error" sx={{ mt: 2 }}>
           メールアドレス、もしくはパスワードが誤っています。
         </Typography>

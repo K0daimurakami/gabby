@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { loginSuccess } from "../../pages/home/userSlice";
+import { loginSuccess } from "../../pages/login/userSlice";
 import CoterraceIcon from "../../components/atoms/CotteraceIcon";
 
 const GlobalMenu: React.FC = () => {

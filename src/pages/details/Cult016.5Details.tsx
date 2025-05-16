@@ -8,7 +8,7 @@ import ResultImageContainer from "../../components/organisms/ResultImageContaine
 import ChatApp from "../../components/organisms/ChatContainer";
 import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
 
-const Comp036Details: React.FC = () => {
+const Cult0165Details: React.FC = () => {
   const isShowOutput = useSelector(
     (state: RootState) => state.details.isShowOutput
   );
@@ -16,17 +16,17 @@ const Comp036Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "各国の法的要件を満たすための国際的なコンプライアンス体制を構築して",
+        messageText: "AさんとBさんにイベント告知をして",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "多国籍法規制に基づいた人事ポリシーを策定して",
+        messageText: "女性向け産休説明会を女性従業員に告知して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "海外拠点における法令遵守の教育と監査を実施して",
+        messageText: "管理職に管理職向けイベントを告知して",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },
@@ -59,4 +59,4 @@ const Comp036Details: React.FC = () => {
   );
 };
 
-export default Comp036Details;
+export default Cult0165Details;

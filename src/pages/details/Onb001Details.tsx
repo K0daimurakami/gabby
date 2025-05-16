@@ -2,10 +2,10 @@ import React from "react";
 import { Container, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import AccordionExpandIcon from "../../components/organisms/deatilNameContainer";
-import ProcessContainer from "../../components/organisms/processContainer";
-import ResultImageContainer from "../../components/organisms/resultImageContainer";
-import ChatApp from "../../components/organisms/chatContainer";
+import AccordionExpandIcon from "../../components/organisms/DeatilNameContainer";
+import ProcessContainer from "../../components/organisms/ProcessContainer";
+import ResultImageContainer from "../../components/organisms/ResultImageContainer";
+import ChatApp from "../../components/organisms/ChatContainer";
 import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
 
 const Onb001Details: React.FC = () => {
@@ -16,17 +16,17 @@ const Onb001Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "AさんとBさんにイベント告知をして",
+        messageText: "新入社員に業務の基本を紹介して",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
       {
-        messageText: "女性向け産休説明会を女性従業員に告知して",
+        messageText: "社内手続きをわかりやすく案内して",
         icon: <HelpIcon fontSize="large" />,
         type: "help",
       },
       {
-        messageText: "管理職に管理職向けイベントを告知して",
+        messageText: "人事部門の新入社員向けに業務ナレッジを定着させて",
         icon: <InfoIcon fontSize="large" />,
         type: "info",
       },

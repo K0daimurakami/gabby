@@ -1,41 +1,34 @@
 import React, { useState } from "react";
 import {
   BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
   useNavigate,
 } from "react-router-dom";
-import { Provider, useDispatch, useSelector } from "react-redux";
-import store, { RootState } from "../../redux/store";
-import { useAuth } from "react-oidc-context";
-import GlobalMenu from "../../components/layout/GlobalMenu";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  Container,
-  CssBaseline,
+  setUserField,
+} from "./userSlice";
+import store, { RootState } from "../../redux/store";
+import {
   Box,
   Button,
   Typography,
   TextField,
   Link,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {
-  CognitoUserPool,
-  CognitoUser,
-  AuthenticationDetails,
-  CognitoUserSession,
-} from "amazon-cognito-identity-js";
-import { Auth } from "aws-amplify";
 
-// ログインメアド画面コンポーネント
+/**
+ * ログインメアド入力画面コンポーネント
+ */
 const LoginMailEntry: React.FC = () => {
-  const [email, setEmail] = React.useState("");
+  // ユーザ情報(スライスから取得)
+  const sliceUserInf = useSelector((state: RootState) => state.user);
+  
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleNext = () => {
-    if (!email) return;
-    navigate(`/signin-password`, { state: { email } });
+    if (!sliceUserInf.email) return;
+    navigate(`/signin-password`, { state: sliceUserInf.email });
   };
 
   return (
@@ -62,8 +55,8 @@ const LoginMailEntry: React.FC = () => {
         <TextField
           fullWidth
           label="メールアドレス"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={sliceUserInf.email}
+          onChange={(e) => dispatch(setUserField({ key: "email", value: e.target.value}))}
           variant="outlined"
           size="small"
           sx={{ mt: 2 }}
