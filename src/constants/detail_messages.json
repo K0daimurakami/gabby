@@ -3,38 +3,41 @@
     "Onboarding_KnowledgeSupport_001": {
       "pattern1": {
         "process_messages": [
-          "イベント情報の取得",
-          "Aさんの従業員情報の取得",
-          "Bさんの従業員情報の取得",
-          "Aさん向けの告知文を作成",
-          "Bさん向けの告知文を作成",
-          "Aさんに告知文章を送信",
-          "Bさんに告知文章を送信"
+          "新入社員向けに必要な業務知識を部門ごとに整理",
+          "基本的な業務フローやよく使うツールの使い方をまとめた資料を準備",
+          "対象者を指定して、業務ガイドの配信対象を設定",
+          "配信方法（メール、チャットなど）を選択",
+          "業務ガイドを送信し、閲覧状況を確認",
+          "必要に応じてフォローアップメッセージを送信"
         ],
-        "send_trigger_message": "AさんとBさんにイベント告知をして",
-        "myle_response": "AさんとBさんにイベントを告知しました",
+        "send_trigger_message": "新入社員に業務の基本を紹介して",
+        "myle_response": "AさんとBさんに業務ガイドを送付しました",
         "output_url": "/images/eventNoticeResult.png"
       },
       "pattern2": {
         "process_messages": [
-          "女性従業員のデータを取得",
-          "女性向け産休説明会のイベント情報を取得",
-          "一人一人の従業員に対しての告知文を作成",
-          "女性従業員に告知文章を送信"
+          "新入社員に必要な社内手続き（勤怠登録、申請ツール、福利厚生など）を一覧化",
+          "ステップごとに手続き内容をガイドに分解",
+          "各ガイドに期限や担当窓口の情報を付与",
+          "新入社員ごとにカスタマイズしてガイドを作成",
+          "チャットまたはメールで配信",
+          "完了状況をトラッキングして、未対応者にはリマインド送信"
         ],
-        "send_trigger_message": "女性向け産休説明会を女性従業員に告知して",
-        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "send_trigger_message": "社内手続きをわかりやすく案内して",
+        "myle_response": "女性従業員に入社手続きガイドを案内しました。",
         "output_url": "/images/eventNoticeResult2.png"
       },
       "pattern3": {
         "process_messages": [
-          "管理職情報の取得",
-          "管理職向けイベント情報の取得",
-          "管理職向けの告知文を作成",
-          "管理職に告知文章を送信"
+          "部門ごとに必要なナレッジ・スキルをヒアリング",
+          "新入社員向けに「人事部門で最初に知っておくべきこと」シリーズを作成",
+          "日ごとに配信する形式で、情報の定着を支援",
+          "配信スケジュールを設定して自動化",
+          "対象の新入社員に対して初回メッセージを送信",
+          "内容の理解度チェックを実施し、必要に応じて追加フォロー"
         ],
-        "send_trigger_message": "管理職に管理職向けイベントを告知して",
-        "myle_response": "管理職向けイベントを告知しました。",
+        "send_trigger_message": "人事部門の新入社員向けに業務ナレッジを定着させて",
+        "myle_response": "管理職向けに部門別の業務ガイドを展開しました。",
         "output_url": "/images/eventNoticeResult3.png"
       }
     },
@@ -596,6 +599,44 @@
           "フィードバックを収集し、今後のイベント改善に活かす"
         ],
         "send_trigger_message": "組織間でのリーダー人材ネットワークを構築して",
+        "myle_response": "管理職向けイベントを告知しました。",
+        "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Culture_MVVPromotionEvent_0165": {
+      "pattern1": {
+        "process_messages": [
+          "イベント情報の取得",
+          "Aさんの従業員情報の取得",
+          "Bさんの従業員情報の取得",
+          "Aさん向けの告知文を作成",
+          "Bさん向けの告知文を作成",
+          "Aさんに告知文章を送信",
+          "Bさんに告知文章を送信"
+        ],
+        "send_trigger_message": "AさんとBさんにイベント告知をして",
+        "myle_response": "AさんとBさんにイベントを告知しました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "女性従業員のデータを取得",
+          "女性向け産休説明会のイベント情報を取得",
+          "一人一人の従業員に対しての告知文を作成",
+          "女性従業員に告知文章を送信"
+        ],
+        "send_trigger_message": "女性向け産休説明会を女性従業員に告知して",
+        "myle_response": "女性従業員に産休説明会を告知しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      },
+      "pattern3": {
+        "process_messages": [
+          "管理職情報の取得",
+          "管理職向けイベント情報の取得",
+          "管理職向けの告知文を作成",
+          "管理職に告知文章を送信"
+        ],
+        "send_trigger_message": "管理職に管理職向けイベントを告知して",
         "myle_response": "管理職向けイベントを告知しました。",
         "output_url": "/images/eventNoticeResult3.png"
       }
