@@ -34,6 +34,7 @@ import Lead013Details from "./pages/details/Lead013Details";
 import Lead014Details from "./pages/details/Lead014Details";
 import Lead015Details from "./pages/details/Lead015Details";
 import Lead016Details from "./pages/details/Lead016Details";
+import Cult0165Details from "./pages/details/Cult016.5Details";
 import Cult017Details from "./pages/details/Cult017Details";
 import Cult018Details from "./pages/details/Cult018Details";
 import Cult019Details from "./pages/details/Cult019Details";
@@ -73,6 +74,7 @@ const componentMap: Record<string, React.FC> = {
   Leadership_PracticalSupport_014: Lead014Details,
   Leadership_ProgressMonitoring_015: Lead015Details,
   Leadership_CrossOrganizationalExchange_016: Lead016Details,
+  Culture_MVVPromotionEvent_0165: Cult0165Details,
   Culture_EngagementScore_017: Cult017Details,
   Culture_FeedbackAnalysis_018: Cult018Details,
   Culture_WorkshopSupport_019: Cult019Details,

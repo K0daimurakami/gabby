@@ -120,6 +120,13 @@
     ],
     "組織風土改善": [
       {
+        "elementId": "Culture_MVVPromotionEvent_0165",
+        "title": "MVV浸透のためのイベントの告知エージェント",
+        "description": "MVV（ミッション・ビジョン・バリュー）の理解と浸透を促す社内イベントを自動で告知し、組織全体の一体感を高めます。",
+        "image": "images/myleLogo4.png",
+        "detailPage": "details"
+      },
+      {
         "elementId": "Culture_EngagementScore_017",
         "title": "エンゲージメントスコアの可視化エージェント",
         "description": "従業員エンゲージメントを数値化し、リアルタイムで組織状態を把握します。",
