@@ -10,11 +10,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
 /**
- * TODO 現状テキストがベタガキだが、ここをHome画面のJSONから撮ってきたデータを入れるようにする
- * ただcategoriesを入れるだけだと、どのmyleの名前を取って来ればいいかわからない
- * homeStateのselectMyleから取ってくるようにする（selectMyleに名前と文章を入れる必要がある）
+ * Myle名、カテゴリ表示コンポーネント
 */
-
 const AccordionExpandIcon: React.FC = () => {
   const selectedMyle = useSelector((state: RootState) => state.home.selectedMyle);
 

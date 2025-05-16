@@ -36,7 +36,10 @@ interface MessageTemplate {
 interface TemplateSelectorProps {
   messageTemplates: MessageTemplate[];
 }
-
+/**
+ * チャット入力画面コンポーネント
+ * TODO：Atomicデザインに分解
+*/
 const ChatApp: React.FC<TemplateSelectorProps> = ({ messageTemplates }) => {
   const dispatch = useDispatch();
   //  URLからcurrentScreenを取得
