@@ -11,22 +11,22 @@ function* handleSendSelectedMyle(action: ReturnType<typeof selectMyle>) {
   try {
 
     // 認証情報を取得
-    const userProfile: RootState["user"] = yield select((state) => state.user.profile);
+    const userProfile: RootState["user"] = yield select((state) => state.user);
       
     console.log("APIリクエスト開始");
     console.log("API URL:", `${API_URL}/api/v1/users/test0323/activities`);
-    console.log("送信データ:", { payload: action.payload });
+    console.log("action.payload: ", { payload: action.payload });
+    console.log("ユーザデータ：", userProfile);
     // サーバーへのPOSTリクエスト
     const response: AxiosResponse<any> = yield call(
       axios.post,
       `${API_URL}/api/v1/users/test0323/activities`, // ここをAPIGatewayのURLに設定
       {
         elementId: action.payload.elementId, // 操作データを識別する一意な文字列
-        userId: userProfile.sub,
         userMailAddress: userProfile.email,
         actionType: "selectMyle", // 操作種別：Myle選択
         categoryName: action.payload.categoryName, // Myleのカテゴリ
-        myleId: action.payload.id, // カテゴリ内のMyleのID
+        //myleId: action.payload.id, // カテゴリ内のMyleのID
         myleName: action.payload.myleName, /// Myleの名前
       }
     );
