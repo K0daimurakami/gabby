@@ -26,23 +26,23 @@ interface ProcessMessage {
 // 画面上の情報
 interface DetailsState {
   chatMessages: ChatMessage[];　// チャット内のメッセージ情報
-  onProcessing: boolean;
-  isActiveSendButton: boolean;
+  onProcessing: boolean; // いる？
+  isActiveSendButton: boolean; //いる？
   processMessages: ProcessMessage[]; // 各処理プロセスの情報
-  isShowOutput: boolean;
-  currentStep: number;
-  outputUrl: string | null;
-  isShowHelpButton: boolean;
-  currentScreen: string | null;
+  isMyleProcessDone: boolean; // 詳細画面で結果が表示済かどうか
+  currentStep: number; // 処理トレース内でしか使ってないから名前変えた方がいいかも
+  //outputUrl: string | null;
+  isShowHelpButton: boolean; // いる？
+  currentScreen: string | null; // 処理トレース内でしか使ってないから名前変えた方がいいかも
 }
 const initialState: DetailsState = {
   chatMessages: [],
   onProcessing: false,
   isActiveSendButton: false,
   processMessages: [],
-  isShowOutput: false,
+  isMyleProcessDone: false,
   currentStep: 0,
-  outputUrl: null, // ✅ 初期状態で画像のURLを持たない
+  //outputUrl: null, // ✅ 初期状態で画像のURLを持たない
   isShowHelpButton: true,
   currentScreen: null,
 };
@@ -78,9 +78,9 @@ const detailsSlice = createSlice({
       state.onProcessing = false;
       state.isActiveSendButton = false;
       state.processMessages = [];
-      state.isShowOutput = false;
+      state.isMyleProcessDone = false;
       state.currentStep = 0;
-      state.outputUrl = null;
+      //state.outputUrl = null;
       state.isShowHelpButton = true;
     },
     /**
@@ -88,7 +88,7 @@ const detailsSlice = createSlice({
     */
     sendMessage: (state, action: PayloadAction<ChatMessage>) => {
       // 結果が既に表示されている場合はstateをリセット
-      if (state.isShowOutput) {
+      if (state.isMyleProcessDone) {
         detailsSlice.caseReducers.resetState(state);
       }
 
@@ -96,8 +96,8 @@ const detailsSlice = createSlice({
       state.chatMessages.push(action.payload);
       state.onProcessing = true;
       state.isActiveSendButton = false;
-      state.isShowOutput = false;
-      state.outputUrl = null; // ✅ 送信時に画像URLをリセット
+      state.isMyleProcessDone = false;
+      //state.outputUrl = null; // ✅ 送信時に画像URLをリセット
 
       // ReduxでcurrentScreen設定されているか確認
       if (!state.currentScreen) {
@@ -140,7 +140,7 @@ const detailsSlice = createSlice({
           })
         );
         state.currentStep = 0;
-        state.outputUrl = selectedPattern.output_url; // ✅ 画像URLを Redux State に保存
+        //state.outputUrl = selectedPattern.output_url; // ✅ 画像URLを Redux State に保存
       } else {
         // 処理パターンがない場合
         state.chatMessages.push({
@@ -183,7 +183,7 @@ const detailsSlice = createSlice({
       });
       state.onProcessing = false;
       state.isActiveSendButton = true;
-      state.isShowOutput = true;
+      state.isMyleProcessDone = true;
       state.chatMessages.push({
         id: new Date().getTime().toString(),
         sender: "other",

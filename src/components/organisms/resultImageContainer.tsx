@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Avatar, Box, Card, CardMedia, Paper, Typography } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import PopupMessage from "../molecules/PopupMessage";
 
 const styles = {
   typography: {
@@ -12,9 +13,24 @@ const styles = {
 };
 
 const ResultImageContainer: React.FC = () => {
-  const outputUrl = useSelector((state: RootState) => state.details.outputUrl);
+  //const outputUrl = useSelector((state: RootState) => state.details.outputUrl);
 
-  if (!outputUrl) return null; // ✅ 画像が設定されていない場合は何も表示しない
+  //if (!outputUrl) return null; // ✅ 画像が設定されていない場合は何も表示しない
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  // ✅ コンポーネントのマウント後 1 秒後にポップアップを表示
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 1000);
+
+    return () => clearTimeout(timer); // クリーンアップ
+  }, []);
+
+  const handleClose = () => {
+    setShowPopup(false);
+  };
 
   return (
     <>
@@ -149,6 +165,11 @@ const ResultImageContainer: React.FC = () => {
           </Box>
         </Box>
       </Card>
+      <PopupMessage
+        open={showPopup}
+        onClose={handleClose}
+        message="ご利用ありがとうございました。"
+      />
     </>
   );
 };

@@ -6,31 +6,34 @@ import AccordionExpandIcon from "../../components/organisms/DeatilNameContainer"
 import ProcessContainer from "../../components/organisms/ProcessContainer";
 import ResultImageContainer from "../../components/organisms/ResultImageContainer";
 import ChatApp from "../../components/organisms/ChatContainer";
-import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
+import {
+  Send as SendIcon,
+  Help as HelpIcon,
+  Info as InfoIcon,
+} from "@mui/icons-material";
 
 const Onb002Details: React.FC = () => {
-  const isShowOutput = useSelector(
-    (state: RootState) => state.details.isShowOutput
-  );
+  const detailSliceState = useSelector((state: RootState) => state.details);
 
   // テンプレート一覧
-    const templates = [
-      {
-        messageText: "Aさんにスキル診断を実施して育成計画を提案して",
-        icon: <SendIcon fontSize="large" />,
-        type: "message",
-      },
-      {
-        messageText: "新入社員全員のスキルギャップを診断して育成プランを作成して",
-        icon: <HelpIcon fontSize="large" />,
-        type: "help",
-      },
-      {
-        messageText: "スキル診断の結果をもとにフォローが必要な社員に補足研修を案内して",
-        icon: <InfoIcon fontSize="large" />,
-        type: "info",
-      },
-    ];
+  const templates = [
+    {
+      messageText: "Aさんにスキル診断を実施して育成計画を提案して",
+      icon: <SendIcon fontSize="large" />,
+      type: "message",
+    },
+    {
+      messageText: "新入社員全員のスキルギャップを診断して育成プランを作成して",
+      icon: <HelpIcon fontSize="large" />,
+      type: "help",
+    },
+    {
+      messageText:
+        "スキル診断の結果をもとにフォローが必要な社員に補足研修を案内して",
+      icon: <InfoIcon fontSize="large" />,
+      type: "info",
+    },
+  ];
 
   return (
     <Container>
@@ -43,16 +46,14 @@ const Onb002Details: React.FC = () => {
             <ProcessContainer />
           </Grid>
           {/* ✅ プロセスが完了したら画像を表示 */}
-          {isShowOutput && (
+          {detailSliceState.isMyleProcessDone && (
             <Grid item xs={12}>
               <ResultImageContainer />
             </Grid>
           )}
         </Grid>
         <Grid item xs={6}>
-          <ChatApp 
-          messageTemplates = {templates}
-          />
+          <ChatApp messageTemplates={templates} />
         </Grid>
       </Grid>
     </Container>

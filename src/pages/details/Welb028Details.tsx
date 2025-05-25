@@ -10,7 +10,7 @@ import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons
 
 const Welb028Details: React.FC = () => {
   const isShowOutput = useSelector(
-    (state: RootState) => state.details.isShowOutput
+    (state: RootState) => state.details.isMyleProcessDone
   );
 
   // テンプレート一覧

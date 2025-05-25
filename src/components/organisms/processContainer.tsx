@@ -18,34 +18,30 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const ProcessContainer = () => {
   const dispatch = useDispatch();
-  const processMessages = useSelector(
-    (state: RootState) => state.details.processMessages
-  );
-  const onProcessing = useSelector(
-    (state: RootState) => state.details.onProcessing
-  );
-  const currentStep = useSelector(
-    (state: RootState) => state.details.currentStep
+  const detailsSliceState = useSelector(
+    (state: RootState) => state.details
   );
 
   // `processing` または `success` のステップのみを表示する
-  const visibleSteps = processMessages.filter((msg) => msg.state !== "pending");
-
+  const visibleSteps = detailsSliceState.processMessages.filter((msg) => msg.state !== "pending");
   const totalSteps = visibleSteps.length;
 
   useEffect(() => {
-    if (onProcessing && processMessages.length > 0) {
+    // 処理中かつ残処理がある場合
+    if (detailsSliceState.onProcessing && detailsSliceState.processMessages.length > 0) {
       const timer = setTimeout(() => {
-        if (currentStep + 1 < processMessages.length) {
+        // 現在のステップの次のステップがまだ存在するかどうか判定
+        if (detailsSliceState.currentStep + 1 < detailsSliceState.processMessages.length) {
           dispatch(proceedProcessing());
         } else {
           dispatch(endProcessing());
         }
-      }, 3000);
+      }, 1500); // 3秒後に上記の処理が走る
 
       return () => clearTimeout(timer);
     }
-  }, [currentStep, processMessages.length, onProcessing, dispatch]);
+  }, // 以下変数が変更された際に、useEffectを実行 
+  [detailsSliceState.currentStep, detailsSliceState.processMessages.length, detailsSliceState.onProcessing, dispatch]);
 
   return (
     <Box sx={{ width: "100%" }}>

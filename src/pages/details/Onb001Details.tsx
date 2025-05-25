@@ -6,31 +6,33 @@ import AccordionExpandIcon from "../../components/organisms/DeatilNameContainer"
 import ProcessContainer from "../../components/organisms/ProcessContainer";
 import ResultImageContainer from "../../components/organisms/ResultImageContainer";
 import ChatApp from "../../components/organisms/ChatContainer";
-import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
+import {
+  Send as SendIcon,
+  Help as HelpIcon,
+  Info as InfoIcon,
+} from "@mui/icons-material";
 
 const Onb001Details: React.FC = () => {
-  const isShowOutput = useSelector(
-    (state: RootState) => state.details.isShowOutput
-  );
+  const detailSliceState = useSelector((state: RootState) => state.details);
 
   // テンプレート一覧
-    const templates = [
-      {
-        messageText: "新入社員に業務の基本を紹介して",
-        icon: <SendIcon fontSize="large" />,
-        type: "message",
-      },
-      {
-        messageText: "社内手続きをわかりやすく案内して",
-        icon: <HelpIcon fontSize="large" />,
-        type: "help",
-      },
-      {
-        messageText: "人事部門の新入社員向けに業務ナレッジを定着させて",
-        icon: <InfoIcon fontSize="large" />,
-        type: "info",
-      },
-    ];
+  const templates = [
+    {
+      messageText: "新入社員に業務の基本を紹介して",
+      icon: <SendIcon fontSize="large" />,
+      type: "message",
+    },
+    {
+      messageText: "社内手続きをわかりやすく案内して",
+      icon: <HelpIcon fontSize="large" />,
+      type: "help",
+    },
+    {
+      messageText: "人事部門の新入社員向けに業務ナレッジを定着させて",
+      icon: <InfoIcon fontSize="large" />,
+      type: "info",
+    },
+  ];
 
   return (
     <Container>
@@ -43,16 +45,14 @@ const Onb001Details: React.FC = () => {
             <ProcessContainer />
           </Grid>
           {/* ✅ プロセスが完了したら画像を表示 */}
-          {isShowOutput && (
+          {detailSliceState.isMyleProcessDone && (
             <Grid item xs={12}>
               <ResultImageContainer />
             </Grid>
           )}
         </Grid>
         <Grid item xs={6}>
-          <ChatApp 
-          messageTemplates = {templates}
-          />
+          <ChatApp messageTemplates={templates} />
         </Grid>
       </Grid>
     </Container>

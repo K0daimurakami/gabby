@@ -27,11 +27,11 @@ function* handleSendMessage(action: ReturnType<typeof sendMessage>) {
       `${API_URL}/api/v1/users/test0323/activities`, // ここをAPIGatewayのURLに設定
       {
         elementId: uniqueIdentifier, // メッセージの内容を送信
-        userMailAddress: userProfile.email,
+        userMailAddress: userProfile.email, //ユーザのメアド
         actionType: "InputMessage",
-        categoryName: previousState.selectedMyle.categoryName, // Myleのカテゴリ
+        categoryName: previousState.selectedMyle.categoryName, // 選択されたMyleのカテゴリ
         // myleId: previousState.selectedMyle.id, // カテゴリ内のMyleのID
-        myleName: previousState.selectedMyle.myleName, /// Myleの名前
+        myleName: previousState.selectedMyle.myleName, /// 選択されたMyleの名前
         inputText: action.payload.chatText, // ユーザが入力したテキスト
       }
     );

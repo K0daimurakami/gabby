@@ -23,11 +23,11 @@ function* handleSendSelectedMyle(action: ReturnType<typeof selectMyle>) {
       `${API_URL}/api/v1/users/test0323/activities`, // ここをAPIGatewayのURLに設定
       {
         elementId: action.payload.elementId, // 操作データを識別する一意な文字列
-        userMailAddress: userProfile.email,
+        userMailAddress: userProfile.email, // ユーザのメアド
         actionType: "selectMyle", // 操作種別：Myle選択
-        categoryName: action.payload.categoryName, // Myleのカテゴリ
+        categoryName: action.payload.categoryName, // 選択されたMyleのカテゴリ
         //myleId: action.payload.id, // カテゴリ内のMyleのID
-        myleName: action.payload.myleName, /// Myleの名前
+        myleName: action.payload.myleName, /// 選択されたMyleの名前
       }
     );
 
