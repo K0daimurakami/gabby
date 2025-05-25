@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import AccordionExpandIcon from "../../components/organisms/DeatilNameContainer";
 import ProcessContainer from "../../components/organisms/ProcessContainer";
-import ResultImageContainer from "../../components/organisms/ResultImageContainer";
+import MussResultImageContainer from "../../components/organisms/MussResultImageContainer";
 import ChatApp from "../../components/organisms/ChatContainer";
 import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
 
@@ -45,7 +45,7 @@ const Cult0165Details: React.FC = () => {
           {/* ✅ プロセスが完了したら画像を表示 */}
           {isShowOutput && (
             <Grid item xs={12}>
-              <ResultImageContainer />
+              <MussResultImageContainer />
             </Grid>
           )}
         </Grid>

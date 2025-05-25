@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-const ResultImageContainer: React.FC = () => {
+const TeamsResultContainer: React.FC = () => {
   //const outputUrl = useSelector((state: RootState) => state.details.outputUrl);
 
   //if (!outputUrl) return null; // ✅ 画像が設定されていない場合は何も表示しない
@@ -40,68 +40,49 @@ const ResultImageContainer: React.FC = () => {
       >
         ◆ 結果
       </Typography>
-      <Card sx={{ p: 3, backgroundColor: "#fff" }}>
-        {/* Slack画面のラッパー */}
+      <Card sx={{ p: 3, backgroundColor: "#f4f4f4" }}>
         <Box
           sx={{
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            border: "1px solid #ddd",
+            borderRadius: "6px",
             backgroundColor: "#fff",
             p: 2,
             maxWidth: 600,
             margin: "0 auto",
           }}
         >
-          <Typography
-            variant="subtitle1"
-            fontWeight="bold"
-            sx={{ mb: 1}}
-          >
+          <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 1 }}>
             ユーザAの画面
           </Typography>
           {/* Slackヘッダー風 */}
           <Box
             sx={{
               display: "flex",
-              alignItems: "center", // ← これで縦中央にそろえる
-              backgroundColor: "#4A154B",
-              color: "#fff",
+              alignItems: "center",
+              backgroundColor: "#f3f2f1",
+              borderBottom: "1px solid #ccc",
               px: 2,
               py: 1,
-              borderTopLeftRadius: "8px",
-              borderTopRightRadius: "8px",
+              borderTopLeftRadius: "6px",
+              borderTopRightRadius: "6px",
               mb: 2,
             }}
           >
             <Avatar
-              sx={{
-                width: 28,
-                height: 28,
-                fontSize: 14,
-                bgcolor: "#E3823D",
-                mr: 1.5, // 少し右にスペース
-              }}
+              sx={{ width: 28, height: 28, fontSize: 14, bgcolor: "#6264A7", mr: 1.5 }}
             >
               M
             </Avatar>
-            <Typography
-              variant="subtitle2"
-              sx={{ color: "#fff", fontWeight: "bold" }}
-            >
-              イベント告知Myle さんとのダイレクトメッセージ
+            <Typography variant="subtitle2" fontWeight="bold">
+              イベント告知Myle さんとのチャット
             </Typography>
           </Box>
-          <Box
-            sx={{
-              backgroundColor: "#f0f0f0", // ごく薄いグレー
-              borderRadius: "4px",
-              px: 2,
-              py: 2,
-            }}
-          >
-            {/* Myle のメッセージ行 */}
-            <Box display="flex" alignItems="flex-start" mb={1}>
-              <Avatar sx={{ bgcolor: "#E3823D", mr: 1 }}>
+
+{/* メッセージエリア */}
+<Box sx={{ backgroundColor: "#f9f9f9", borderRadius: "4px", px: 2, py: 2 }}>
+            {/* メッセージ1 */}
+            <Box display="flex" alignItems="flex-start" mb={2}>
+              <Avatar sx={{ bgcolor: "#6264A7", mr: 1 }}>
                 <ChatBubbleOutlineIcon />
               </Avatar>
               <Box>
@@ -112,11 +93,12 @@ const ResultImageContainer: React.FC = () => {
                   午後13:00
                 </Typography>
                 <Paper
-                  elevation={1}
+                  elevation={0}
                   sx={{
-                    p: 2,
+                    p: 1.5,
                     backgroundColor: "#fff",
-                    borderRadius: "8px",
+                    border: "1px solid #e0e0e0",
+                    borderRadius: "6px",
                     mt: 0.5,
                   }}
                 >
@@ -130,7 +112,7 @@ const ResultImageContainer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{
-                      color: "#1a0dab",
+                      color: "#2b88d8",
                       textDecoration: "underline",
                       mt: 1,
                       display: "inline-block",
@@ -142,19 +124,19 @@ const ResultImageContainer: React.FC = () => {
               </Box>
             </Box>
 
-            {/* スタンプだけの別メッセージ */}
+            {/* メッセージ2 */}
             <Box display="flex" alignItems="flex-start">
-              <Avatar sx={{ bgcolor: "#E3823D", mr: 1 }}>
+              <Avatar sx={{ bgcolor: "#6264A7", mr: 1 }}>
                 <ChatBubbleOutlineIcon />
               </Avatar>
               <Box>
-                
                 <Paper
-                  elevation={1}
+                  elevation={0}
                   sx={{
-                    p: 2,
+                    p: 1.5,
                     backgroundColor: "#fff",
-                    borderRadius: "8px",
+                    border: "1px solid #e0e0e0",
+                    borderRadius: "6px",
                     mt: 0.5,
                   }}
                 >
@@ -162,57 +144,39 @@ const ResultImageContainer: React.FC = () => {
                 </Paper>
               </Box>
             </Box>
-          </Box>
-          <Typography
-            variant="subtitle1"
-            fontWeight="bold"
-            sx={{ mb: 1}}
-          >
+          </Box>          
+          
+          {/* あなたの画面 */}
+          <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 4, mb: 1 }}>
             あなたの画面
           </Typography>
-          {/* Slackヘッダー風 */}
+
           <Box
             sx={{
               display: "flex",
-              alignItems: "center", // ← これで縦中央にそろえる
-              backgroundColor: "#4A154B",
-              color: "#fff",
+              alignItems: "center",
+              backgroundColor: "#f3f2f1",
+              borderBottom: "1px solid #ccc",
               px: 2,
               py: 1,
-              borderTopLeftRadius: "8px",
-              borderTopRightRadius: "8px",
+              borderTopLeftRadius: "6px",
+              borderTopRightRadius: "6px",
               mb: 2,
             }}
           >
             <Avatar
-              sx={{
-                width: 28,
-                height: 28,
-                fontSize: 14,
-                bgcolor: "#E3823D",
-                mr: 1.5, // 少し右にスペース
-              }}
+              sx={{ width: 28, height: 28, fontSize: 14, bgcolor: "#6264A7", mr: 1.5 }}
             >
               M
             </Avatar>
-            <Typography
-              variant="subtitle2"
-              sx={{ color: "#fff", fontWeight: "bold" }}
-            >
-              イベント告知Myle さんとのダイレクトメッセージ
+            <Typography variant="subtitle2" fontWeight="bold">
+              イベント告知Myle さんとのチャット
             </Typography>
           </Box>
-          <Box
-            sx={{
-              backgroundColor: "#f0f0f0", // ごく薄いグレー
-              borderRadius: "4px",
-              px: 2,
-              py: 2,
-            }}
-          >
-            {/* Myle のメッセージ行 */}
-            <Box display="flex" alignItems="flex-start" mb={1}>
-              <Avatar sx={{ bgcolor: "#E3823D", mr: 1 }}>
+
+          <Box sx={{ backgroundColor: "#f9f9f9", borderRadius: "4px", px: 2, py: 2 }}>
+            <Box display="flex" alignItems="flex-start">
+              <Avatar sx={{ bgcolor: "#6264A7", mr: 1 }}>
                 <ChatBubbleOutlineIcon />
               </Avatar>
               <Box>
@@ -223,16 +187,16 @@ const ResultImageContainer: React.FC = () => {
                   午後13:01
                 </Typography>
                 <Paper
-                  elevation={1}
+                  elevation={0}
                   sx={{
-                    p: 2,
+                    p: 1.5,
                     backgroundColor: "#fff",
-                    borderRadius: "8px",
+                    border: "1px solid #e0e0e0",
+                    borderRadius: "6px",
                     mt: 0.5,
                   }}
                 >
                   対象ユーザーへのイベント告知が完了しました。
-                  <br />
                 </Paper>
               </Box>
             </Box>
@@ -248,4 +212,4 @@ const ResultImageContainer: React.FC = () => {
   );
 };
 
-export default ResultImageContainer;
+export default TeamsResultContainer;

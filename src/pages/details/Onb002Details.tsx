@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import AccordionExpandIcon from "../../components/organisms/DeatilNameContainer";
 import ProcessContainer from "../../components/organisms/ProcessContainer";
-import ResultImageContainer from "../../components/organisms/ResultImageContainer";
+import TeamsResultContainer from "../../components/organisms/TeamsResultContainer";
 import ChatApp from "../../components/organisms/ChatContainer";
 import {
   Send as SendIcon,
@@ -48,7 +48,7 @@ const Onb002Details: React.FC = () => {
           {/* ✅ プロセスが完了したら画像を表示 */}
           {detailSliceState.isMyleProcessDone && (
             <Grid item xs={12}>
-              <ResultImageContainer />
+              <TeamsResultContainer />
             </Grid>
           )}
         </Grid>
