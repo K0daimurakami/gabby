@@ -410,6 +410,20 @@
         "output_url": "/images/eventNoticeResult3.png"
       }
     },
+    "Diversity_DEI_WordDetactive_0115": {
+      "pattern1": {
+        "process_messages": [
+          "2025年時点でのWebからDEIに関する情報を取得",
+          "社内のチャット情報を取得",
+          "DEIに配慮した会話を抽出",
+          "特に良い実用例を抽出",
+          "スプレッドシートに情報をまとめる"
+        ],
+        "send_trigger_message": "世間のDEI情報を基に、社内でDEIに配慮したコミュニケーションが取れている部を見つけて実用例を教えて",
+        "myle_response": "DEIに配慮したコミュニケーションを抽出しました。",
+        "output_url": "/images/eventNoticeResult.png"
+      }
+    },
     "Leadership_Identification_012": {
       "pattern1": {
         "process_messages": [
@@ -835,6 +849,20 @@
         "send_trigger_message": "文化改革におけるKPIをモニタリングして更新提案をして",
         "myle_response": "管理職向けイベントを告知しました。",
         "output_url": "/images/eventNoticeResult3.png"
+      }
+    },
+    "Culture_HRBP_0215": {
+      "pattern1": {
+        "process_messages": [
+          "対象社員の特定",
+          "対象社員の人事情報の読み込み",
+          "フィードバック、人事レポートの作成",
+          "対象社員へフィードバックのメール送信",
+          "異動要否を含めた人事レポートをダウンロード"
+        ],
+        "send_trigger_message": "Aさんの経歴、評価情報、スキルセットを基に今期のFBと異動要否の判断を行なって。",
+        "myle_response": "AさんへのFB送信と異動要否レポートの作成をしました",
+        "output_url": "/images/eventNoticeResult.png"
       }
     },
     "Skill_Reskilling_022": {

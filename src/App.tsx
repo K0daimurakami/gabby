@@ -29,6 +29,7 @@ import Dive008Details from "./pages/details/Dive008Details";
 import Dive009Details from "./pages/details/Dive009Details";
 import Dive010Details from "./pages/details/Dive010Details";
 import Dive011Details from "./pages/details/Dive011Details";
+import Dive0115Details from "./pages/details/Dive0115Details";
 import Lead012Details from "./pages/details/Lead012Details";
 import Lead013Details from "./pages/details/Lead013Details";
 import Lead014Details from "./pages/details/Lead014Details";
@@ -38,6 +39,7 @@ import Cult0165Details from "./pages/details/Cult0165Details";
 import Cult017Details from "./pages/details/Cult017Details";
 import Cult018Details from "./pages/details/Cult018Details";
 import Cult019Details from "./pages/details/Cult019Details";
+import Cult0215Details from "./pages/details/Cult0215Details";
 import Cult020Details from "./pages/details/Cult020Details";
 import Cult021Details from "./pages/details/Cult021Details";
 import Skil022Details from "./pages/details/Skil022Details";
@@ -69,6 +71,7 @@ const componentMap: Record<string, React.FC> = {
   Diversity_LGBTQInclusion_009: Dive009Details,
   Diversity_AgeInclusion_010: Dive010Details,
   Diversity_RegionalDiversity_011: Dive011Details,
+  Diversity_DEI_WordDetactive_0115: Dive0115Details,
   Leadership_Identification_012: Lead012Details,
   Leadership_TrainingDesign_013: Lead013Details,
   Leadership_PracticalSupport_014: Lead014Details,
@@ -80,6 +83,7 @@ const componentMap: Record<string, React.FC> = {
   Culture_WorkshopSupport_019: Cult019Details,
   Culture_DI_Promotion_020: Cult020Details,
   Culture_CultureChangeMonitoring_021: Cult021Details,
+  Culture_HRBP_0215: Cult0215Details,
   Skill_Reskilling_022: Skil022Details,
   Skill_CareerDevelopment_023: Skil023Details,
   Skill_PerformanceManagement_024: Skil024Details,

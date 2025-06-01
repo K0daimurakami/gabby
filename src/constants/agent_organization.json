@@ -79,6 +79,13 @@
         "description": "地域特性を活かした多様な働き方と地方創生の取り組みを支援します。",
         "image": "images/1on1SupportMyle.png",
         "detailPage": "details"
+      },
+      {
+        "elementId": "Diversity_DEI_WordDetactive_0115",
+        "title": "DEI単語検知エージェント",
+        "description": "世の中のDEIのトレンドやニュースから表現や文脈の抽出、浸透度合いの判定をします。",
+        "image": "images/1on1SupportMyle.png",
+        "detailPage": "details"
       }
     ],
     "リーダーシップ育成": [
@@ -159,6 +166,13 @@
         "title": "文化変革プログラムのモニタリングエージェント",
         "description": "組織文化改革の進捗状況を追跡し、効果測定を行います。",
         "image": "images/myleLogo15.png",
+        "detailPage": "details"
+      },
+      {
+        "elementId": "Culture_HRBP_0215",
+        "title": "HRBP面談代替エージェント",
+        "description": "人事データを読み込んで、個人のキャリア支援やマネージャーのサポートを行います。",
+        "image": "images/myleLogo8.png",
         "detailPage": "details"
       }
     ],
