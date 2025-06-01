@@ -1227,6 +1227,19 @@
         "output_url": "/images/eventNoticeResult3.png"
       }
     },
+    "Reward_GoodPlay_0305": {
+      "pattern1": {
+        "process_messages": [
+          "ユーザの所属部署とメンバーの特定",
+          "Goodプレー行動ヒアリングシートの作成",
+          "メンバーへのヒアリングメール送信",
+          "ヒアリング結果スプレッドシートの用意"
+        ],
+        "send_trigger_message": "私が所属している部の中で、「今週のGoodプレー行動」のヒアリングを行なって",
+        "myle_response": "Goodプレー行動のヒアリングをしました",
+        "output_url": "/images/eventNoticeResult.png"
+      }
+    },
     "Succession_LeaderIdentification_031": {
       "pattern1": {
         "process_messages": [

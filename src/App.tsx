@@ -51,6 +51,7 @@ import Welb027Details from "./pages/details/Welb027Details";
 import Welb028Details from "./pages/details/Welb028Details";
 import Rewd029Details from "./pages/details/Rewd029Details";
 import Rewd030Details from "./pages/details/Rewd030Details";
+import Rewd0305Details from "./pages/details/Rewd0305Details";
 import Succ031Details from "./pages/details/Succ031Details";
 import Succ032Details from "./pages/details/Succ032Details";
 import Succ033Details from "./pages/details/Succ033Details";
@@ -93,6 +94,7 @@ const componentMap: Record<string, React.FC> = {
   Wellbeing_HybridWork_028: Welb028Details,
   Reward_NonMonetary_029: Rewd029Details,
   Reward_PerformanceBased_030: Rewd030Details,
+  Reward_GoodPlay_0305: Rewd0305Details,
   Succession_LeaderIdentification_031: Succ031Details,
   Succession_DevelopmentProgram_032: Succ032Details,
   Succession_ProgressMonitoring_033: Succ033Details,

@@ -231,7 +231,7 @@
         "detailPage": "details"
       }
     ],
-    "リワード（報酬・インセンティブ）": [
+    "賞賛・リコグニション（認識）・インセンティブ": [
       {
         "elementId": "Reward_NonMonetary_029",
         "title": "非金銭的報酬（称賛・認識）エージェント",
@@ -244,6 +244,13 @@
         "title": "パフォーマンス連動型報酬エージェント",
         "description": "成果に基づく公平な報酬システムを設計し、運用をサポートします。",
         "image": "images/myleLogo9.png",
+        "detailPage": "details"
+      },
+      {
+        "elementId": "Reward_GoodPlay_0305",
+        "title": "Goodプレー行動特定エージェント",
+        "description": "今週のGoodプレー行動のヒアリングと広告を行います。",
+        "image": "images/myleLogo15.png",
         "detailPage": "details"
       }
     ],
