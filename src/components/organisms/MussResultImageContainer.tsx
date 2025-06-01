@@ -23,7 +23,7 @@ const MussResultImageContainer: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowPopup(true);
-    }, 1000);
+    }, 5000);
 
     return () => clearTimeout(timer); // クリーンアップ
   }, []);
