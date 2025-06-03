@@ -16,6 +16,11 @@ const Dive0115Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
+        messageText: "社員がDEIの違反に触れるような発言をしたときに指摘して",
+        icon: <SendIcon fontSize="large" />,
+        type: "message",
+      },
+      {
         messageText: "世間のDEI情報を基に、社内でDEIに配慮したコミュニケーションが取れている部を見つけて実用例を教えて",
         icon: <SendIcon fontSize="large" />,
         type: "message",

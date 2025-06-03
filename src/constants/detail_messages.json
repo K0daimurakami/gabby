@@ -188,6 +188,61 @@
         "output_url": "/images/eventNoticeResult3.png"
       }
     },
+    "Onboarding_Knowledge_0055": {
+      "pattern1": {
+        "process_messages": [
+          "Aさんの配属部署の取得",
+          "配属部署の業務に必要な情報を検討",
+          "部署内のナレッジを検索し情報を精査",
+          "Aさんへナレッジ情報の送信とヒアリングを実施",
+          "ヒアリング結果を基にナレッジを追加"
+        ],
+        "send_trigger_message": "新入社員であるAさんに対し、オンボーディング支援に必要な情報をまとめて送信してほしい",
+        "myle_response": "Aさんに対しオンボーディング情報の共有をしました。",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "部署ごとでまとまっているナレッジを検索",
+          "部署ごとに業務で必要なナレッジを精査",
+          "不足しているナレッジの検出",
+          "不足分のナレッジを補強するためのヒアリングシート作成",
+          "ヒアリングシートの結果をナレッジに反映"
+        ],
+        "send_trigger_message": "部署の特性を加味した上で社内外の情報から重要度の高いナレッジをまとめてほしい",
+        "myle_response": "部署ごとのナレッジを作成しました。",
+        "output_url": "/images/eventNoticeResult2.png"
+      }
+    },
+    "Onboarding_greetingCheck_0056": {
+      "pattern1": {
+        "process_messages": [
+          "新入社員の情報を取得",
+          "チームメンバーの情報を取得",
+          "チームメンバーに対しコミュニケーションが取れているかのアンケートを作成",
+          "チームメンバーに対しアンケートを送信",
+          "コミュニケーションが取れていないメンバー用に会話内容の案を作成",
+          "対象メンバーに会話内容案を送信"
+        ],
+        "send_trigger_message": "新入社員のAさんに対しチームメンバーが自己紹介できているかヒアリングしてください。その際に会話内容の案も提示してあげてください。",
+        "myle_response": "ヒアリングの実施とコミュニケーションのサポートをしました。",
+        "output_url": "/images/eventNoticeResult.png"
+      }
+    },
+    "Onboarding_anniversaryGreeting_0057": {
+      "pattern1": {
+        "process_messages": [
+          "新入社員の情報を取得",
+          "声かけのタイミングを設定",
+          "チームメンバーの情報を取得",
+          "タイミングごとに各メンバーの声かけ案を作成",
+          "メンバーに対し、節目の連絡と案の送信"
+        ],
+        "send_trigger_message": "新入社員のAさんに対し入社後の節目のタイミングでチームに通知と各人に声かけ案の作成をしてください。",
+        "myle_response": "新入社員の節目のタイミングでの声かけ支援を設定しました。",
+        "output_url": "/images/eventNoticeResult.png"
+      }
+    },
     "Diversity_GenderEquality_006": {
       "pattern1": {
         "process_messages": [
@@ -413,7 +468,19 @@
     "Diversity_DEI_WordDetactive_0115": {
       "pattern1": {
         "process_messages": [
-          "2025年時点でのWebからDEIに関する情報を取得",
+          "2025年時点でのDEIに関する情報を取得",
+          "社内のチャット情報を取得",
+          "問題発言の抽出",
+          "指摘内容と修正点の検討",
+          "発言者へのチャット連携"
+        ],
+        "send_trigger_message": "社員がDEIの違反に触れるような発言をしたときに指摘して",
+        "myle_response": "DEIの観点から問題のあるコミュニケーションに指摘しました。",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "2025年時点でのDEIに関する情報を取得",
           "社内のチャット情報を取得",
           "DEIに配慮した会話を抽出",
           "特に良い実用例を抽出",
@@ -865,6 +932,112 @@
         "output_url": "/images/eventNoticeResult.png"
       }
     },
+    "Culture_Reminder_0216": {
+      "pattern1": {
+        "process_messages": [
+          "現状のアンケート回答状況を取得",
+          "社員の過去の回答データを取得",
+          "社員ごとの適切なリマインド時間、内容を作成",
+          "社員に合わせて個別リマインドを実施"
+        ],
+        "send_trigger_message": "アップロードしたアンケートをユーザごとに最も効果のありそうなタイミングでリマインドして。",
+        "myle_response": "アップロードしたアンケートをユーザごとに最も効果的にリマインドしました",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "部署ごとに過去のアンケート回答データを取得",
+          "効果的なリマインドのタイミングを部署ごとに分析",
+          "タイミングの調査結果を作成"
+        ],
+        "send_trigger_message": "リマインドのタイミングとしてどのような時がいいのか部署ごとに傾向分析して。",
+        "myle_response": "リマインドに関する分析レポートの作成をしました",
+        "output_url": "/images/eventNoticeResult.png"
+      }
+    },
+    "Culture_1on1_0217": {
+      "pattern1": {
+        "process_messages": [
+          "Aさんのスキルセット判定のために技術力ヒアリングシートを作成",
+          "ヒアリングシートをAさんに送信",
+          "ヒアリングシートの結果を基に、Webエンジニアとして向上するべき技術を選定",
+          "選定技術の活用している部署を特定",
+          "特定部署の社員とAさんの1on1をGoogleカレンダーで設定"
+        ],
+        "send_trigger_message": "Aさんに対しWebエンジニアとしての技術力向上を目的とした1on1を組んで。",
+        "myle_response": "Aさんの技術力向上を目的とした1on1を設定しました。",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "管理職の性格把握を行うために管理職対象のアンケートを作成",
+          "アンケートを管理職全員に送信",
+          "アンケート結果からマッチングを作成",
+          "マッチングに合わせて1on1をGoogleカレンダーで設定"
+        ],
+        "send_trigger_message": "業務内容ではなく性格をベースに管理職同士での1on1を組んでほしい",
+        "myle_response": "性格をベースとした管理職1on1を設定しました。",
+        "output_url": "/images/eventNoticeResult.png"
+      }
+    },
+    "Culture_MeetingAction_0218": {
+      "pattern1": {
+        "process_messages": [
+          "16時から開催の会議情報を取得",
+          "会議に参加し会議内容を把握",
+          "会議内容からネクストアクションが決まっていない議題を検知",
+          "対象者ごとに連絡文言を作成",
+          "会議参加者に確認連絡を実施",
+          "ネクストアクションを保存"
+        ],
+        "send_trigger_message": "今日の16時から開催の会議で終了の10分前にネクストアクションは決まっていない場合、確認連絡をしてほしい。",
+        "myle_response": "ネクストアクション決定のリマインドをしました。",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "先週の会議情報を取得",
+          "各会議でのネクストアクションを取得",
+          "期限が過ぎているものに完了かどうか確認連絡を実施。"
+        ],
+        "send_trigger_message": "先週の会議で、終了後期限までにネクストアクションが実施されているか確認をしてほしい。",
+        "myle_response": "期限が過ぎているネクストアクションのリマインドをしました。",
+        "output_url": "/images/eventNoticeResult.png"
+      }
+    },
+    "Culture_IcebreakTopic_0219": {
+      "pattern1": {
+        "process_messages": [
+          "技術に関するトップニュースをYahooニュースから選定",
+          "選定したニュースからZOOMの背景画像を作成"
+        ],
+        "send_trigger_message": "技術者との会議のアイスブレイク用の話題を最近のニュースから3つ選定して一覧をZOOM背景画像にして欲しい。",
+        "myle_response": "ZOOM背景画像を作成しました。",
+        "output_url": "/images/eventNoticeResult.png"
+      }
+    },
+    "Culture_IcebreakTopic_02191": {
+      "pattern1": {
+        "process_messages": [
+          "ユーザの所属組織情報を取得",
+          "チームメンバーの業務情報を取得",
+          "今日の一言を作成"
+        ],
+        "send_trigger_message": "チームメンバーの業務状況を加味して今日の一言を考えてください。",
+        "myle_response": "チーム状況を加味して今日の一言を作成しました。",
+        "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "ユーザのプロジェクト情報を取得",
+          "プロジェクトの近況応報を取得",
+          "今日の一言を作成"
+        ],
+        "send_trigger_message": "直近のプロジェクト状況を踏まえて今日の一言を考えてください。",
+        "myle_response": "プロジェクト状況を加味して今日の一言を作成しました。",
+        "output_url": "/images/eventNoticeResult.png"
+      }
+    },
     "Skill_Reskilling_022": {
       "pattern1": {
         "process_messages": [
@@ -1230,14 +1403,24 @@
     "Reward_GoodPlay_0305": {
       "pattern1": {
         "process_messages": [
-          "ユーザの所属部署とメンバーの特定",
-          "Goodプレー行動ヒアリングシートの作成",
-          "メンバーへのヒアリングメール送信",
-          "ヒアリング結果スプレッドシートの用意"
+          "Goodプレー行動ヒアリングチャットの作成",
+          "各メンバーへのヒアリングメール送信",
+          "ヒアリング結果を基にGoodプレー行動をメンバーごとに分類",
+          "Goodプレー行動情報の逐次更新"
         ],
-        "send_trigger_message": "私が所属している部の中で、「今週のGoodプレー行動」のヒアリングを行なって",
+        "send_trigger_message": "週次で「今週のGoodプレー行動」のヒアリングを行なって",
         "myle_response": "Goodプレー行動のヒアリングをしました",
         "output_url": "/images/eventNoticeResult.png"
+      },
+      "pattern2": {
+        "process_messages": [
+          "ユーザ権限を確認",
+          "AさんのGoodプレー情報を取得",
+          "情報を基に活躍サマリを作成"
+        ],
+        "send_trigger_message": "Aさんの働きぶりをGoodプレー行動を基に教えて",
+        "myle_response": "Goodプレー行動を基にAさんの活躍サマリを作成しました",
+        "output_url": "/images/eventNoticeResult2.png"
       }
     },
     "Succession_LeaderIdentification_031": {

@@ -35,6 +35,27 @@
         "description": "企業文化や価値観を新入社員に効果的に伝えるサポートを行います。",
         "image": "images/myleLogo3.png",
         "detailPage": "details"
+      },
+      {
+        "elementId": "Onboarding_Knowledge_0055",
+        "title": "オンボーディング時のナレッジ共有エージェント",
+        "description": "オンボーディング開始時の参画者へのヒアリング情報を基にナレッジの共有を行います。",
+        "image": "images/myleLogo12.png",
+        "detailPage": "details"
+      },
+      {
+        "elementId": "Onboarding_greetingCheck_0056",
+        "title": "新規参画者に対する自己紹介支援エージェント",
+        "description": "新規参画者に対して自己紹介などのコミュニケーションを支援します。",
+        "image": "images/myleLogo4.png",
+        "detailPage": "details"
+      },
+      {
+        "elementId": "Onboarding_anniversaryGreeting_0057",
+        "title": "新入社員に対する節目での声かけ支援エージェント",
+        "description": "新入社員の入社の節目での声かけを支援します。",
+        "image": "images/myleLogo13.png",
+        "detailPage": "details"
       }
     ],
     "ダイバーシティ推進": [
@@ -173,6 +194,41 @@
         "title": "HRBP面談代替エージェント",
         "description": "人事データを読み込んで、個人のキャリア支援やマネージャーのサポートを行います。",
         "image": "images/myleLogo8.png",
+        "detailPage": "details"
+      },
+      {
+        "elementId": "Culture_Reminder_0216",
+        "title": "アンケートリマインダーエージェント",
+        "description": "過去のアンケート回答データからリマインド対象に対し個別化したタイミング、文章でのリマインドを行います。",
+        "image": "images/myleLogo8.png",
+        "detailPage": "details"
+      },
+      {
+        "elementId": "Culture_1on1_0217",
+        "title": "1on1マッチエージェント",
+        "description": "スキルシナジーでのマッチングやメンタルマッチングなど、さまざまな条件での1on1を作成します。",
+        "image": "images/myleLogo1.png",
+        "detailPage": "details"
+      },
+      {
+        "elementId": "Culture_MeetingAction_0218",
+        "title": "会議アクション確認エージェント",
+        "description": "会議内容のリアルタイム分析、過去の会議での決定事項情報を利用して会議のサポートを行います。",
+        "image": "images/myleLogo19.png",
+        "detailPage": "details"
+      },
+      {
+        "elementId": "Culture_IcebreakTopic_0219",
+        "title": "会議トピック作成エージェント",
+        "description": "最新のニュースやユーザの情報から会議のトピックを選定し、会議のサポートを行います。",
+        "image": "images/myleLogo6.png",
+        "detailPage": "details"
+      },
+      {
+        "elementId": "Culture_IcebreakTopic_02191",
+        "title": "今日の一言作成エージェント",
+        "description": "メンバーの状況やプロジェクトの状況から適切な今日の一言を作成します。",
+        "image": "images/myleLogo11.png",
         "detailPage": "details"
       }
     ],

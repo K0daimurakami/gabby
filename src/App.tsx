@@ -23,6 +23,9 @@ import Onb002Details from "./pages/details/Onb002Details";
 import Onb003Details from "./pages/details/Onb003Details";
 import Onb004Details from "./pages/details/Onb004Details";
 import Onb005Details from "./pages/details/Onb005Details";
+import Onb0055Details from "./pages/details/Onb0055Details";
+import Onb0056Details from "./pages/details/Onb0056Details";
+import Onb0057Details from "./pages/details/Onb0057Details";
 import Dive006Details from "./pages/details/Dive006Details";
 import Dive007Details from "./pages/details/Dive007Details";
 import Dive008Details from "./pages/details/Dive008Details";
@@ -39,9 +42,14 @@ import Cult0165Details from "./pages/details/Cult0165Details";
 import Cult017Details from "./pages/details/Cult017Details";
 import Cult018Details from "./pages/details/Cult018Details";
 import Cult019Details from "./pages/details/Cult019Details";
-import Cult0215Details from "./pages/details/Cult0215Details";
 import Cult020Details from "./pages/details/Cult020Details";
 import Cult021Details from "./pages/details/Cult021Details";
+import Cult0215Details from "./pages/details/Cult0215Details";
+import Cult0216Details from "./pages/details/Cult0216Details";
+import Cult0217Details from "./pages/details/Cult0217Details";
+import Cult0218Details from "./pages/details/Cult0218Details";
+import Cult0219Details from "./pages/details/Cult0219Details";
+import Cult02191Details from "./pages/details/Cult02191Details";
 import Skil022Details from "./pages/details/Skil022Details";
 import Skil023Details from "./pages/details/Skil023Details";
 import Skil024Details from "./pages/details/Skil024Details";
@@ -66,6 +74,9 @@ const componentMap: Record<string, React.FC> = {
   Onboarding_NetworkBuilding_003: Onb003Details,
   Onboarding_ProgressManagement_004: Onb004Details,
   Onboarding_CultureIntegration_005: Onb005Details,
+  Onboarding_Knowledge_0055: Onb0055Details,
+  Onboarding_greetingCheck_0056: Onb0056Details,
+  Onboarding_anniversaryGreeting_0057: Onb0057Details,
   Diversity_GenderEquality_006: Dive006Details,
   Diversity_CulturalInclusion_007: Dive007Details,
   Diversity_DisabilitySupport_008: Dive008Details,
@@ -85,6 +96,11 @@ const componentMap: Record<string, React.FC> = {
   Culture_DI_Promotion_020: Cult020Details,
   Culture_CultureChangeMonitoring_021: Cult021Details,
   Culture_HRBP_0215: Cult0215Details,
+  Culture_Reminder_0216: Cult0216Details,
+  Culture_1on1_0217: Cult0217Details,
+  Culture_MeetingAction_0218: Cult0218Details,
+  Culture_IcebreakTopic_0219: Cult0219Details,
+  Culture_IcebreakTopic_02191: Cult02191Details,
   Skill_Reskilling_022: Skil022Details,
   Skill_CareerDevelopment_023: Skil023Details,
   Skill_PerformanceManagement_024: Skil024Details,

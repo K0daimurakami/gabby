@@ -8,7 +8,7 @@ import ResultImageContainer from "../../components/organisms/ResultImageContaine
 import ChatApp from "../../components/organisms/ChatContainer";
 import { Send as SendIcon, Help as HelpIcon, Info as InfoIcon } from "@mui/icons-material";
 
-const Rewd0305Details: React.FC = () => {
+const Onb0057Details: React.FC = () => {
   const isShowOutput = useSelector(
     (state: RootState) => state.details.isMyleProcessDone
   );
@@ -16,11 +16,7 @@ const Rewd0305Details: React.FC = () => {
   // テンプレート一覧
     const templates = [
       {
-        messageText: "私が所属している部の中で、「今週のGoodプレー行動」のヒアリングを行なって",
-        icon: <SendIcon fontSize="large" />,
-        type: "message",
-      },{
-        messageText: "Aさんの働きぶりをGoodプレー行動を基に教えて",
+        messageText: "新入社員のAさんに対し入社後の節目のタイミングでチームに通知と各人に声かけ案の作成をしてください。",
         icon: <SendIcon fontSize="large" />,
         type: "message",
       },
@@ -53,4 +49,4 @@ const Rewd0305Details: React.FC = () => {
   );
 };
 
-export default Rewd0305Details;
+export default Onb0057Details;
