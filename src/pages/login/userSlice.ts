@@ -6,6 +6,7 @@ interface UserState {
   sub: string | null; //現状DBに入れるユーザID、直す必要あり
   email: string; //認証処理で使うメアド //ログイン時にRedux投入はできてる
   password: string; //ユーザのパスワード入力
+  communicationTool: string;  //ユーザの使用するコミュニケーションツール
   interestedCategory: string; //ユーザの興味あるカテゴリ入力
   personalIssue: string; //ユーザの課題自由入力
   isAuthenticated: boolean; //ユーザの認証可否、App.tsxでの分岐用
@@ -21,6 +22,7 @@ const initialState: UserState = {
   email: "",
   name: null,
   password: "",
+  communicationTool: "",
   interestedCategory: "",
   personalIssue: "",
   isAuthenticated: false,
